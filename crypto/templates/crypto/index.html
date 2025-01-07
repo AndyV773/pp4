@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div>
+        {% for channel in channel_list %}
+            <h2>{{ channel.name }}</h2>
+        {% endfor %}
+    </div>
+{% endblock %}
