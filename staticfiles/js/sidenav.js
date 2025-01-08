@@ -15,16 +15,20 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 
-function menuButtonDisplay() {
+function sideDisplay() {
+    let menuButton = document.getElementById("menu-button");
+    let sideHeader = document.getElementById("side-header");
 
     if (window.innerWidth >= 576) {
-        document.getElementById("menu-button").innerHTML = "Menu";
+        menuButton.innerHTML = "Menu";
+        sideHeader.innerHTML = `<i class="fa-solid fa-chart-line"></i>`;
     } else {
-        document.getElementById("menu-button").innerHTML = "&#9776;";
+        menuButton.innerHTML = "&#9776;";
+        sideHeader.innerHTML = `Crypto Net <i class="fa-solid fa-chart-line"></i>`;
     }
 }
 
-menuButtonDisplay()
+sideDisplay()
 
 // resize event https://www.w3schools.com/jsref/event_onresize.asp
-window.addEventListener("resize", menuButtonDisplay);
+window.addEventListener("resize", sideDisplay);

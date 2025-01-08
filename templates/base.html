@@ -42,8 +42,11 @@
     </nav>
     <main class="d-flex flex-row h-100">
         <div id="channel-list" class="col-12 col-sm-4 bg-info vh-100 container-fluid">
-            <span id="menu-button" class="btn btn-secondary mt-2" style="font-size:30px;cursor:pointer"
-                onclick="openNav()">&#9776;</span>
+            <div class="d-flex justify-content-between">
+                <h2 id="side-header" class="mt-2"><i class="fa-solid fa-chart-line"></i></h2>
+                <span id="menu-button" class="btn btn-secondary mt-2" style="font-size:30px;cursor:pointer"
+                    onclick="openNav()">&#9776;</span>
+            </div>
             <h2 class="mt-4">Channels</h2>
             <ul class="list-unstyled">
                 {% for channel in channel_list %}
@@ -62,9 +65,13 @@
             {% endblock content %}
         </div>
     </main>
+    <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
+    
     <script src="{% static 'js/sidenav.js' %}"></script>
     {% block extras %}
     {% endblock %}
