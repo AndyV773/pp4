@@ -28,8 +28,9 @@
 </head>
 
 <body>
+    <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#129092;|</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
         {% if user.is_authenticated %}
@@ -41,12 +42,18 @@
     </nav>
     <main class="d-flex flex-row h-100">
         <div class="col-sm-4 bg-info vh-100 container-fluid">
-            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-            {% for channel in channel_list %}
-            <a href="{% url 'channel_detail' channel.slug %}">
-                <h2>{{ channel.name }}</h2>
-            </a>
-            {% endfor %}
+            <span id="menu-button" class="btn btn-secondary mt-2" style="font-size:30px;cursor:pointer"
+                onclick="openNav()">&#9776;</span>
+            <h2 class="mt-4">Channels</h2>
+            <ul class="list-unstyled">
+                {% for channel in channel_list %}
+                <li>
+                    <a href="{% url 'channel_detail' channel.slug %}" class="container-fluid btn btn-secondary mt-2">
+                        <h2>{{ channel.name }}</h2>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="d-none d-sm-block col-sm-8">
             {% block content %}

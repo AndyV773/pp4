@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+    <h1>Blank Page</h1>
     <div>
         {% for channel in channel_list %}
-            <h2>{{ channel.name }}</h2>
+            <div>{{ channel.name }}</div>
         {% endfor %}
     </div>
 {% endblock %}
