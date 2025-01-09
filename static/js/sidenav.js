@@ -2,10 +2,10 @@
 function openNav() {
     let open = document.getElementById("mySidenav");
 
-    if (open.style.width === "70%") {
+    if (open.style.width === "67%") {
         document.getElementById("mySidenav").style.width = "0";
     } else if (window.innerWidth >= 576) {
-        document.getElementById("mySidenav").style.width = "70%";
+        document.getElementById("mySidenav").style.width = "67%";
     } else {
         document.getElementById("mySidenav").style.width = "100%";
     }

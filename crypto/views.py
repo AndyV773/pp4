@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse
-from .models import Channel
+from .models import Channel, Post
 
 # Create your views here.
 class ChannelList(generic.ListView):
@@ -24,6 +24,8 @@ def channel_detail(request, slug):
 
     queryset = Channel.objects.all()
     channel = get_object_or_404(queryset, slug=slug)
+    posts = channel.channel_posts.all().order_by("-created_on")
+    post_count = channel.channel_posts.filter(approved=True).count()
 
 
     return render(
@@ -32,6 +34,7 @@ def channel_detail(request, slug):
         {
             "channel_list": queryset,
             "channel": channel,
-            "coder": "Andy",
+            "posts": posts,
+            "post_count": post_count,
         },  # context
     )

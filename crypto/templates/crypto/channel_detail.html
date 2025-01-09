@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<a href="{% url 'home' %}" class="btn">&#129092;|</a>
-<h1 class="mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
-<div>{{ channel.name }}</div>
+<header class="border-bottom border-5 bg-warning">
+    <a class="position-absolute fs-2 ms-2" href="{% url 'home' %}" class="btn">&#129092;|</a>
+    <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
+    <div class="d-flex justify-content-around">
+        <h2>
+            {{ channel.name }}
+        </h2>
+        <div class="d-flex pt-2">
+            <p>Post count</p>
+            <div class="ms-2">{{ post_count }}</div>
+        </div>
+    </div>
+</header>
+{% for post in posts %}
+<article class="d-flex justify-content-center">
+    <div class="card m-4" style="width: 60rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <div class="card-text">{{ post.content | safe }}</div>
+            <a href="#" class="btn btn-secondary">Comment</a>
+        </div>
+    </div>
+</article>
+{% endfor %}
 {% endblock content %}
 
-{% block extras %}
+<!-- {% block extras %}
 <script src="{% static 'js/content.js' %}"></script>
-{% endblock %}
+{% endblock %} -->
