@@ -31,7 +31,7 @@
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#129092;|</a>
-        <a href="#">About</a>
+        <a href="#" class="mt-5">About</a>
         <a href="#">Contact</a>
         {% if user.is_authenticated %}
         <a href="{% url 'account_logout' %}">Logout</a>
@@ -40,7 +40,7 @@
         <a href="{% url 'account_login' %}">Login</a>
         {% endif %}
         <!-- social links code used from code institute love running project -->
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mt-5">
             <ul class="list-unstyled d-flex justify-content-evenly" style="width: 30rem;">
                 <li>
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"
@@ -68,7 +68,7 @@
                 </li>
             </ul>
         </div>
-        <div class="text-light">
+        <div>
             <p>Copyright &copy; <span id="copyright-date"></span> Crypto Net</p>
             <p>V 0.0.1</p>
         </div>

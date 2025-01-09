@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.http import HttpResponse
 from .models import Channel, Post
@@ -36,5 +36,26 @@ def channel_detail(request, slug):
             "channel": channel,
             "posts": posts,
             "post_count": post_count,
+        },  # context
+    )
+
+
+def post_detail(request, slug):
+    """
+    Display an individual :model:`blog.Post`.
+
+    **Context**
+
+    :template:`crypto/post_detail.html`
+    """
+
+    # channel = get_object_or_404(Channel, slug=slug)
+    posts = get_object_or_404(Post, slug=slug)
+
+    return render(
+        request,
+        "crypto/post_detail.html",
+        {
+            "posts": posts,
         },  # context
     )

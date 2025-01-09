@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="border-bottom border-5 bg-warning">
+    <a class="position-absolute fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn">&#129092;|</a>
+    <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
+    <div class="d-flex justify-content-around">
+        <h2>
+            {{ channel.name }}
+        </h2>
+        <div class="d-flex pt-2">
+            <p>Posts</p>
+            <div class="ms-2">{{ posts.created_on }}</div>
+        </div>
+    </div>
+</header>
+<div>{{ posts }}</div>
+{% endblock content %}

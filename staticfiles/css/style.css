@@ -27,7 +27,7 @@ h1 h2 {
 }
 
 /* ----------------------------------------------------------- navigation menu */
-/* code from w3s */
+/* sidenav code from w3s */
 /* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full */
 .sidenav {
     height: 100%;
@@ -53,6 +53,10 @@ h1 h2 {
 
 }
 
+.sidenav p {
+    color: #818181;
+}
+
 .sidenav a:hover {
     color: #f1f1f1;
 }
@@ -60,11 +64,12 @@ h1 h2 {
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    left: -25px;
+    left: -70px;
     font-size: 36px;
     margin-left: 50px;
 }
 
+/* ----------------------------------------------------------- media queries */
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;

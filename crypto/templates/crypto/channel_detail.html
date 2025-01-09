@@ -2,14 +2,14 @@
 {% load static %}
 {% block content %}
 <header class="border-bottom border-5 bg-warning">
-    <a class="position-absolute fs-2 ms-2" href="{% url 'home' %}" class="btn">&#129092;|</a>
+    <a class="position-absolute fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn">&#129092;|</a>
     <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
     <div class="d-flex justify-content-around">
         <h2>
             {{ channel.name }}
         </h2>
         <div class="d-flex pt-2">
-            <p>Post count</p>
+            <p>Posts</p>
             <div class="ms-2">{{ post_count }}</div>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ post.title }}</h5>
             <div class="card-text">{{ post.content | safe }}</div>
-            <a href="#" class="btn btn-secondary">Comment</a>
+            <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary">Comment</a>
         </div>
     </div>
 </article>
