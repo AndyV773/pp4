@@ -73,9 +73,9 @@
             <p>V 0.0.1</p>
         </div>
     </nav>
-    <main class="d-flex flex-row h-100">
+    <main class="d-flex flex-row vh-100">
         <!-- left section -->
-        <section id="channel-list" class="col-12 col-sm-4 bg-info vh-100 container-fluid">
+        <section id="channel-list" class="col-12 col-sm-4 bg-info container-fluid">
             <div class="d-flex justify-content-between">
                 <h2 id="side-header" class="mt-2"><i class="fa-solid fa-chart-line"></i></h2>
                 <span id="menu-button" class="btn btn-secondary mt-2" style="font-size:30px;cursor:pointer"
@@ -99,7 +99,7 @@
             </ul>
         </section>
         <!-- right section -->
-        <section id="channel-content" class="d-none d-sm-block col-sm-8">
+        <section id="channel-content" class="d-none d-sm-block col-sm-8 overflow-y-auto">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}

@@ -22,17 +22,17 @@ def channel_detail(request, slug):
     :template:`crypto/channel_detail.html`
     """
 
-    queryset = Channel.objects.all()
-    channel = get_object_or_404(queryset, slug=slug)
-    posts = channel.channel_posts.all().order_by("-created_on")
-    post_count = channel.channel_posts.filter(approved=True).count()
+    channel_list = Channel.objects.all()
+    channel = get_object_or_404(channel_list, slug=slug)
+    posts = channel.channel_posts.filter(status=1).order_by("-created_on")
+    post_count = channel.channel_posts.filter(approved=True, status=1).count()
 
 
     return render(
         request,
         "crypto/channel_detail.html",
         {
-            "channel_list": queryset,
+            "channel_list": channel_list,
             "channel": channel,
             "posts": posts,
             "post_count": post_count,
@@ -48,7 +48,7 @@ def post_detail(request, slug, post_id):
 
     :template:`crypto/post_detail.html`
     """
-    queryset = Channel.objects.all()
+    channel_list = Channel.objects.all()
     channel = get_object_or_404(Channel, slug=slug)
     post = get_object_or_404(Post, id=post_id)
 
@@ -56,7 +56,8 @@ def post_detail(request, slug, post_id):
         request,
         "crypto/post_detail.html",
         {
-            "channel_list": queryset,
+            "channel_list": channel_list,
+            "channel": channel,
             "post": post,
         },  # context
     )
