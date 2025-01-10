@@ -63,6 +63,10 @@ h1 h2 {
     color: #f1f1f1;
 }
 
+.active {
+    color: #f1f1f1;
+}
+
 .sidenav .closebtn {
     position: absolute;
     top: 0;

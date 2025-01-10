@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<ul class="list-unstyled d-flex justify-content-evenly" style="width: 30rem;">
+    <li>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+            aria-label="visit our facebook page (opens in a new tab)">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.x.com/" target="_blank" rel="noopener" aria-label="visit our x page (opens in a new tab)">
+            <i class="fa-brands fa-square-x-twitter"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+            aria-label="visit our youtube page (opens in a new tab)">
+            <i class="fa-brands fa-square-youtube"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+            aria-label="visit our instagram page (opens in a new tab)">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </li>
+</ul>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/content.js' %}"></script>
+{% endblock %}

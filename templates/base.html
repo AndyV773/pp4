@@ -1,6 +1,7 @@
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'about' as about_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -31,13 +32,18 @@
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#129092;|</a>
-        <a href="#" class="mt-5">About</a>
-        <a href="#">Contact</a>
+        <a class="list-group-item {% if request.path == about_url %}disabled" aria-current="page{% endif %}"
+            href="{% url 'about' %}" class="mt-5">About</a>
+        <a class="list-group-item {% if request.path == contact_url %}disabled" aria-current="page{% endif %}"
+            href="#">Contact</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'account_logout' %}">Logout</a>
+        <a class="list-group-item {% if request.path == logout_url %}disabled" aria-current="page{% endif %}"
+            href="{% url 'account_logout' %}">Logout</a>
         {% else %}
-        <a href="{% url 'account_signup' %}">Register</a>
-        <a href="{% url 'account_login' %}">Login</a>
+        <a class="list-group-item {% if request.path == signup_url %}disabled" aria-current="page{% endif %}"
+            href="{% url 'account_signup' %}">Register</a>
+        <a class="list-group-item {% if request.path == login_url %}disabled" aria-current="page{% endif %}"
+            href="{% url 'account_login' %}">Login</a>
         {% endif %}
         <!-- social links code used from code institute love running project -->
         <div class="d-flex justify-content-center mt-5">
@@ -118,7 +124,7 @@
 
     <script src="{% static 'js/sidenav.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
-    {% if 'home' not in url %}
+    {% if request.path == logout_url or request.path == signup_url or request.path == login_url %}
     <script src="{% static 'js/content.js' %}"></script>
     {% endif %}
     {% block extras %}
