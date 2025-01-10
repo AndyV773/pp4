@@ -40,7 +40,7 @@ def channel_detail(request, slug):
     )
 
 
-def post_detail(request, slug):
+def post_detail(request, slug, post_id):
     """
     Display an individual :model:`blog.Post`.
 
@@ -48,14 +48,15 @@ def post_detail(request, slug):
 
     :template:`crypto/post_detail.html`
     """
-
-    # channel = get_object_or_404(Channel, slug=slug)
-    posts = get_object_or_404(Post, slug=slug)
+    queryset = Channel.objects.all()
+    channel = get_object_or_404(Channel, slug=slug)
+    post = get_object_or_404(Post, id=post_id)
 
     return render(
         request,
         "crypto/post_detail.html",
         {
-            "posts": posts,
+            "channel_list": queryset,
+            "post": post,
         },  # context
     )

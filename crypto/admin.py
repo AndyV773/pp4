@@ -20,8 +20,7 @@ class PostAdmin(SummernoteModelAdmin):
     Admin configuration for the Post model, with Summernote integration
     for rich text.
     """
-    list_display = ('title', 'author', 'slug', 'status', 'approved', 'created_on')
-    search_fields = ['author', 'content']
+    list_display = ('author', 'status', 'approved', 'created_on')
+    search_fields = ['author', 'approved']
     list_filter = ('status', 'created_on')
-    prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)

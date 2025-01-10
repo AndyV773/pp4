@@ -16,12 +16,13 @@
 </header>
 {% for post in posts %}
 <article class="d-flex justify-content-center">
+    <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
     <div class="card m-4" style="width: 60rem;">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
+            <h5 class="card-title">{{ channel.name }}</h5>
             <div class="card-text">{{ post.content | safe }}</div>
-            <a href="{% url 'post_detail' post.slug %}" class="btn btn-secondary">Comment</a>
+            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-secondary">Comment</a>
         </div>
     </div>
 </article>
