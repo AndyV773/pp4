@@ -18,5 +18,5 @@ class ContactRequestAdmin(admin.ModelAdmin):
     """
     Admin configuration for the ContactRequest model.
     """
-    list_display = ('message', 'read', 'created_on')
+    list_display = ('name', 'message', 'read', 'created_on')
     list_filter = ('read',)

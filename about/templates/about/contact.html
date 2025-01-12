@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
+        class="fa-solid fa-circle-arrow-left"></i></a>
+<a class="text-secondary text-decoration-none" href="{% url 'home' %}">
+    <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+</a>
+<!-- Creating New Contact -->
+<form method="POST">
+    {{ contact_form }}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
+{% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/content.js' %}"></script>
+{% endblock %}
