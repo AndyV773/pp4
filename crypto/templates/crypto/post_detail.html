@@ -5,14 +5,14 @@
     <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none"
         href="{% url 'channel_detail' post.channel.slug %}" class="btn"><i class="fa-solid fa-circle-arrow-left"></i></a>
     <a class="text-secondary text-decoration-none" href="{% url 'home' %}">
-        <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
+        <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
     </a>
     <div class="d-flex justify-content-around">
-        <h2>
+        <h3>
             {{ channel.name }}
-        </h2>
+        </h3>
         <div class="d-flex pt-2">
-            <p>Posts</p>
+            <p>Comments</p>
             <div class="ms-2">{{ post.created_on }}</div>
         </div>
     </div>

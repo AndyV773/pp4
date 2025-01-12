@@ -100,7 +100,7 @@
             <main>
                 <ul class="list-unstyled">
                     {% for channel in channel_list %}
-                    <li class="overflow-y-hidden">
+                    <li class="overflow-y-hidden shadow">
                         <a href="{% url 'channel_detail' channel.slug %}"
                             class="channel container-fluid btn btn-secondary mt-2">
                             <h2>{{ channel.name }}</h2>
