@@ -33,9 +33,7 @@
     <nav id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i
                 class="fa-solid fa-circle-arrow-left"></i></a>
-        <a class="text-decoration-none" href="{% url 'home' %}">
-            <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
-        </a>
+        <h1 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
         <a class="list-group-item {% if request.path == about_url %}disabled" aria-current="page{% endif %}"
             href="{% url 'about' %}" class="mt-5">About</a>
         <a class="list-group-item {% if request.path == contact_url %}disabled" aria-current="page{% endif %}"
