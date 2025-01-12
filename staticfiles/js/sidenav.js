@@ -17,14 +17,11 @@ function closeNav() {
 
 function sideDisplay() {
     let menuButton = document.getElementById("menu-button");
-    let sideHeader = document.getElementById("side-header");
 
-    if (window.innerWidth >= 576) {
+    if (window.innerWidth >= 768) {
         menuButton.innerHTML = "Menu";
-        sideHeader.innerHTML = `<i class="fa-solid fa-chart-line"></i>`;
     } else {
-        menuButton.innerHTML = "&#9776;";
-        sideHeader.innerHTML = `Crypto Net <i class="fa-solid fa-chart-line"></i>`;
+        menuButton.innerHTML = `<i class="fa-solid fa-bars"></i>`;
     }
 }
 
