@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 <header class="sticky-top shadow bg--medium">
-    <a class="position-absolute text--platinum fs-2 ms-2 text-decoration-none" href="{% url 'channel_detail' post.channel.slug %}" class="btn">
+    <a class="position-absolute text--platinum fs-2 ms-2 text-decoration-none"
+        href="{% url 'channel_detail' post.channel.slug %}" class="btn">
         <i class="fa-solid fa-circle-arrow-left"></i>
     </a>
     <a class="text--platinum text-decoration-none" href="{% url 'home' %}">
@@ -13,8 +14,7 @@
             {{ channel.name }}
         </h3>
         <div class="d-flex text-light">
-            <p class="m-0">Comments</p>
-            <div class="ms-2">{{ comment_count }}</div>
+            <div class="ms-2">{{ comment_count }} Comments</div>
         </div>
     </div>
 </header>
@@ -23,13 +23,43 @@
     <div class="card m-4" style="width: 60rem;">
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-top" alt="BTC Default">
         <div class="card-body">
-            <h5 class="card-title">{{ post }}</h5>
+            <h4 class="card-title">@{{ post.author }}</h4>
             <div class="card-text">{{ post.content | safe }}</div>
             <a href="#" class="btn btn-secondary float-end">Add Comment</a>
-            <div></div>
+            <h5>Comments:</h5>
+            {% for comment in comments %}
+            <fieldset class="mt-4">
+                <legend>@{{ comment.author }}</legend>
+                <div class="ms-3">{{ comment.comment }}</div>
+                <div>{{ comment.created_on }}</div>
+            </fieldset>
+            {% endfor %}
         </div>
     </div>
 </article>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock content %}
 
 {% block extras %}

@@ -13,8 +13,7 @@
             {{ channel.name }}
         </h3>
         <div class="d-flex text-light">
-            <p class="m-0">Posts</p>
-            <div class="ms-2">{{ post_count }}</div>
+            <div class="ms-2">{{ post_count }} Posts</div>
         </div>
     </div>
 </header>
@@ -24,14 +23,47 @@
     <div class="card m-4" style="width: 60rem;">
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-top" alt="BTC Default">
         <div class="card-body">
-            <h5 class="card-title">{{ channel.name }}</h5>
-            <div class="card-text">{{ post.content | safe }}</div>
-            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-secondary">View Comments</a>
-            {{ comment_count }}
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">@{{ post.author }}</h5>
+                <div>{{ post.created_on }}</div>
+            </div>
+            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="text-decoration-none">
+                <div class="card-text">{{ post.content | safe }}</div>
+            </a>
+            <div>{{ comment_count }} Comments</div>
         </div>
     </div>
 </article>
 {% endfor %}
+<!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
+<!-- Button trigger modal -->
+<button type="button" class="position-absolute bottom-0 end-0 m-2 btn bg--light text-light btn-lg rounded"
+    data-bs-toggle="modal" data-bs-target="#{{ channel.id }}">
+    <i class="fa-solid fa-pen"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="{{ channel.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ channel.name }} Post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {{ post_form }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
 <!-- {% block extras %}

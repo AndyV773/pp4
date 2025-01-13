@@ -25,10 +25,11 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'created_on')
     summernote_fields = ('content',)
 
+
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     """
     Admin configuration for the Comment model.
     """
-    list_display = ('author', 'channel', 'comment', 'approved', 'created_on')
+    list_display = ('author', 'channel', 'post', 'comment', 'approved', 'created_on')
     list_filter = ('approved', 'created_on')

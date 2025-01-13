@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.http import HttpResponse
 from .models import Channel, Post, Comment
+from .forms import PostForm
 
 # Create your views here.
 class ChannelList(generic.ListView):
@@ -29,6 +30,15 @@ def channel_detail(request, slug):
     comment = Comment.objects.all()
     comment_count = comment.filter(approved=True).count()
 
+    if request.method == "POST":
+        post_form = PostForm(data=request.POST)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.author = request.user
+            post.channel = channel
+            post.save()
+
+    post_form = PostForm()  # resets content of form
 
     return render(
         request,
@@ -39,6 +49,7 @@ def channel_detail(request, slug):
             "posts": posts,
             "post_count": post_count,
             "comment_count": comment_count,
+            "post_form": post_form,
         },  # context
     )
 

@@ -39,7 +39,7 @@ class Post(models.Model):
         ordering = ["-created_on"]
 
     def __str__(self):
-        return f"{self.channel.name}"
+        return f"{self.channel.name}-{self.id}"
 
 
 class Comment(models.Model):
