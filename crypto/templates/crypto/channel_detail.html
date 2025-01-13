@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<header class="sticky-top border-bottom shadow bg-warning">
-    <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
-            class="fa-solid fa-circle-arrow-left"></i></a>
-    <a class="text-secondary text-decoration-none" href="{% url 'home' %}">
-        <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+<header class="sticky-top shadow bg--medium">
+    <a class="position-absolute text--platinum fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn">
+        <i class="fa-solid fa-circle-arrow-left"></i>
+    </a>
+    <a class="text--platinum text-decoration-none" href="{% url 'home' %}">
+        <h2 class="text-center pt-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
     </a>
     <div class="d-flex justify-content-around">
-        <h3>
+        <h3 class="text-light text-uppercase fs-5 m-0">
             {{ channel.name }}
         </h3>
-        <div class="d-flex pt-2">
-            <p>Posts</p>
+        <div class="d-flex text-light">
+            <p class="m-0">Posts</p>
             <div class="ms-2">{{ post_count }}</div>
         </div>
     </div>
