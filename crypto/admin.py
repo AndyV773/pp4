@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Channel, Post
+from .models import Channel, Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
@@ -24,3 +24,11 @@ class PostAdmin(SummernoteModelAdmin):
     search_fields = ['author', 'approved']
     list_filter = ('status', 'created_on')
     summernote_fields = ('content',)
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for the Comment model.
+    """
+    list_display = ('author', 'channel', 'comment', 'approved', 'created_on')
+    list_filter = ('approved', 'created_on')
