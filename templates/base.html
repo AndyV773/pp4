@@ -88,7 +88,7 @@
             <header class="sticky-top bg--dark text-light p-2">
                 <div class="d-flex justify-content-between">
                     <h2 id="side-header" class="fs-4 mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-                    <span id="menu-button" class="btn bg--light text-light g--shadow fs-3 mt-2 me-2"
+                    <span id="menu-button" class="btn bg--light text-light p--shadow fs-3 mt-2 me-2"
                         style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                 </div>
                 {% if user.is_authenticated %}
@@ -103,7 +103,7 @@
                     {% for channel in channel_list %}
                     <li class="overflow-y-hidden p-2">
                         <a href="{% url 'channel_detail' channel.slug %}"
-                            class="channel container-fluid btn text-light bg--light g--shadow text-uppercase">
+                            class="channel container-fluid btn text-light bg--light p--shadow text-uppercase">
                             <h2 class="m-0">{{ channel.name }}</h2>
                         </a>
                     </li>

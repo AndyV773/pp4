@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 {% load static %}
 <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
         class="fa-solid fa-circle-arrow-left"></i></a>
 <a class="text-secondary text-decoration-none" href="{% url 'home' %}">
     <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
 </a>
-<!-- Creating New Contact -->
-<form method="POST">
-    {{ contact_form }}
-    {% csrf_token %}
-    <button type="submit" class="btn btn-secondary">Submit</button>
-</form>
+<!-- Contact form -->
+<div class="d-flex justify-content-center">
+    <form method="POST" class="col-8">
+        {{ contact_form | crispy }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-lg bg--medium text-light shadow cc--hover">Submit</button>
+    </form>
+</div>
 {% endblock content %}
 
 {% block extras %}

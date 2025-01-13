@@ -29,8 +29,12 @@ h5 {
     color: rgb(217, 217, 217);
 }
 
-.g--shadow:hover {
+.p--shadow:hover {
     box-shadow: 0 0 4px 2px rgb(217, 217, 217);
+}
+
+.cc--hover:hover {
+    background-color: rgb(60, 110, 113);
 }
 
 .disabled {
