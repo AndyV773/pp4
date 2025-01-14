@@ -145,3 +145,53 @@ def post_delete(request, slug, post_id):
         print("Delete error")
 
     return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
+
+
+def comment_edit(request, slug, post_id, comment_id):
+    """
+    Display an individual comment for edit.
+
+    **context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comments``
+        A single comment related to the post.
+    ``coment_form``
+        An instance of :form:`blog.CommentForm`.
+    """
+    if request.method == "POST":
+
+        channel = get_object_or_404(Channel, slug=slug)
+        post = get_object_or_404(Posts, pk=post_id)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
+
+
+def comment_delete(request, slug, post_id, comment_id):
+    """
+    Delete an individual comment.
+
+    **context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comments``
+        A single comment related to the post.
+    """
+
+    channel = get_object_or_404(Channel, slug=slug)
+    post = get_object_or_404(Post, pk=post_id)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))

@@ -8,7 +8,7 @@ class PostForm(forms.ModelForm):
     """
     class Meta:
         model = Post
-        fields = ('status',)
+        fields = ('content', 'status',)
 
 
 class CommentForm(forms.ModelForm):
