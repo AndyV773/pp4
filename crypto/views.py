@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from .models import Channel, Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -91,3 +91,57 @@ def post_detail(request, slug, post_id):
             "comment_form": comment_form,
         },  # context
     )
+
+
+def post_edit(request, slug, post_id):
+    """
+    Display an individual comment for edit.
+
+    **context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comments``
+        A single comment related to the post.
+    ``coment_form``
+        An instance of :form:`blog.CommentForm`.
+    """
+    if request.method == "POST":
+
+        channel_list = Channel.objects.all()
+        channel = get_object_or_404(Channel, slug=slug)
+        post = Post.objects.filter(status=1)
+        post = get_object_or_404(post, id=post_id)
+        post_form = PostForm(data=request.POST, instance=post)
+
+        if post_form.is_valid() and post.author == request.user:
+            post = post_form.save(commit=False)
+            post.channel = channel
+            post.save()
+        else:
+            print("form error")
+
+    return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
+
+
+def post_delete(request, slug, post_id):
+    """
+    Delete an individual comment.
+
+    **context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comments``
+        A single comment related to the post.
+    """
+    channel_list = Channel.objects.all()
+    channel = get_object_or_404(channel_list, slug=slug)
+    post = get_object_or_404(Post, pk=post_id)
+
+    if post.author == request.user:
+        post.delete()
+    else:
+        print("Delete error")
+
+    return HttpResponseRedirect(reverse('channel_detail', args=[slug]))

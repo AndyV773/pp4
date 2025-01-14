@@ -103,7 +103,7 @@
                     {% for channel in channel_list %}
                     <li class="overflow-y-hidden p-2">
                         <a href="{% url 'channel_detail' channel.slug %}"
-                            class="channel container-fluid btn text-light bg--light p--shadow text-uppercase">
+                            class="channel container-fluid btn text-light bg--light p--shadow text-capitalize">
                             <h2 class="m-0">{{ channel.name }}</h2>
                         </a>
                     </li>
@@ -131,7 +131,7 @@
 
     <script src="{% static 'js/sidenav.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
-    {% if request.path == logout_url or request.path == signup_url or request.path == login_url %}
+    {% if request.path != home_url %}
     <script src="{% static 'js/content.js' %}"></script>
     {% endif %}
     {% block extras %}
