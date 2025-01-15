@@ -50,8 +50,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_summernote',
+    'django_countries',
     'crypto',
     'about',
+    'profile',
 ]
 
 # allauth login/logout redirect

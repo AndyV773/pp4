@@ -15,7 +15,7 @@
         <form method="POST" class="col-8 text-light">
             {{ add_channel_form | crispy }}
             {% csrf_token %}
-            <button type="submit" class="btn btn-lg bg--medium text-light shadow cc--hover float-end">Submit</button>
+            <button id="submit-channel" type="submit" class="btn btn-lg bg--medium text-light shadow cc--hover float-end">Submit</button>
         </form>
     </div>
 </div>
