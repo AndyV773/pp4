@@ -28,7 +28,10 @@ const deleteModal = new bootstrap.Modal(document.getElementById("delete-modal"))
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
         let postId = e.target.getAttribute("data-post_id");
+        console.log(postId);
+
         let postContent = document.getElementById(`post${postId}`).innerText;
+        console.log(postContent);
 
         postText.id = `id_content${postId}`;
         postText.value = postContent;
@@ -54,6 +57,8 @@ for (let button of editButtons) {
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let postId = e.target.getAttribute("data-post_id");
+        console.log(postId);
+        
         deleteModelConfirm.href = `delete_post/${postId}`;
         deleteModal.show();
     });

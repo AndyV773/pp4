@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse
+from django.utils.text import slugify
 from django.views import generic
 from django.http import HttpResponseRedirect
 from .models import Channel, Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import AddChannelForm, PostForm, CommentForm
 
 # Create your views here.
 class ChannelList(generic.ListView):
@@ -10,8 +11,36 @@ class ChannelList(generic.ListView):
     View to display a list of channels
     """
     # all().order_by("rank")
-    queryset = Channel.objects.all()
+    queryset = Channel.objects.filter(approved=True)
     template_name = "crypto/index.html"
+
+
+def add_channel(request):
+    """
+    Allows user to make a contact requests
+    **Context**
+
+    **Template:**
+    :template:`crypto/add_channel.html`
+    """
+    add_channel_form = AddChannelForm(data=request.POST)
+    if add_channel_form.is_valid():
+        channel = add_channel_form.save(commit=False)
+        channel.slug = slugify(channel.name)
+        channel.save()
+
+    channel_list = Channel.objects.filter(approved=True)
+    add_channel_form = AddChannelForm()        
+
+    return render(
+            request,
+            "crypto/add_channel.html",
+            {
+                "channel_list": channel_list,
+                "add_channel_form": add_channel_form,
+            },  # context
+        )
+
 
 
 def channel_detail(request, slug):
@@ -23,12 +52,13 @@ def channel_detail(request, slug):
     :template:`crypto/channel_detail.html`
     """
 
-    channel_list = Channel.objects.all()
+    channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(channel_list, slug=slug)
     posts = channel.channel_posts.filter(status=1).order_by("-created_on")
     post_count = channel.channel_posts.filter(approved=True, status=1).count()
-    comment = Comment.objects.all()
-    comment_count = comment.filter(approved=True).count()
+    
+    comment_list = Comment.objects.all()
+    comment_count = comment_list.filter(approved=True).count()
 
     if request.method == "POST":
         post_form = PostForm(data=request.POST)
@@ -62,7 +92,7 @@ def post_detail(request, slug, post_id):
 
     :template:`crypto/post_detail.html`
     """
-    channel_list = Channel.objects.all()
+    channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(Channel, slug=slug)
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.all().order_by("-created_on")
@@ -108,7 +138,7 @@ def post_edit(request, slug, post_id):
     """
     if request.method == "POST":
 
-        channel_list = Channel.objects.all()
+        channel_list = Channel.objects.filter(approved=True)
         channel = get_object_or_404(Channel, slug=slug)
         post = Post.objects.filter(status=1)
         post = get_object_or_404(post, id=post_id)
@@ -135,7 +165,7 @@ def post_delete(request, slug, post_id):
     ``comments``
         A single comment related to the post.
     """
-    channel_list = Channel.objects.all()
+    channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(channel_list, slug=slug)
     post = get_object_or_404(Post, pk=post_id)
 

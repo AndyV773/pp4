@@ -14,7 +14,7 @@ def about_me(request):
     **Template:**
     :template:`about/about.html`
     """
-    channel_list = Channel.objects.all()
+    channel_list = Channel.objects.filter(approved=True)
 
     return render(
             request,
@@ -38,7 +38,7 @@ def contact_me(request):
     if contact_form.is_valid():
         contact_form.save()
 
-    channel_list = Channel.objects.all()
+    channel_list = Channel.objects.filter(approved=True)
     contact_form = ContactForm()        
 
     return render(

@@ -14,6 +14,7 @@ class Channel(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}"
@@ -29,14 +30,14 @@ class Post(models.Model):
     channel = models.ForeignKey(
         Channel, on_delete=models.CASCADE, related_name="channel_posts"
     )
-    content = models.TextField(max_length=280)
+    content = models.TextField(max_length=380)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["approved", "-created_on"]
 
     def __str__(self):
         return f"{self.channel.name}-{self.id}"
@@ -60,7 +61,7 @@ class Comment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["approved", "created_on"]
+        ordering = ["approved", "-created_on"]
 
     def __str__(self):
         return f"@{self.author}"

@@ -8,9 +8,9 @@ class ChannelAdmin(admin.ModelAdmin):
     """
     Admin configuration for the Channel model
     """
-    list_display = ('name', 'slug', 'created_on')
-    search_fields = ['name', 'created_on']
-    list_filter = ('name', 'created_on')
+    list_display = ('name', 'slug', 'created_on', 'approved')
+    search_fields = ['name']
+    list_filter = ('name', 'created_on', 'approved')
     prepopulated_fields = {'slug': ('name',)}
 
 

@@ -1,5 +1,14 @@
 from django import forms
-from .models import Post, Comment
+from .models import Channel, Post, Comment
+
+
+class AddChannelForm(forms.ModelForm):
+    """
+    Form for submitting a single channel
+    """
+    class Meta:
+        model = Channel
+        fields = ('name',)
 
 
 class PostForm(forms.ModelForm):
