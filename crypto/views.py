@@ -193,7 +193,7 @@ def comment_edit(request, slug, post_id, comment_id):
     if request.method == "POST":
 
         channel = get_object_or_404(Channel, slug=slug)
-        post = get_object_or_404(Posts, pk=post_id)
+        post = get_object_or_404(Post, pk=post_id)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
 

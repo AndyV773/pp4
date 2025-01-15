@@ -1,38 +1,42 @@
 const thePostButton = document.getElementById("the-post-button");
-const theModelBody = document.getElementById("the-model-body");
-const theModelLabel = document.getElementById("the-modal-label");
 
 const editButtons = document.getElementsByClassName("btn-edit");
 const postText = document.getElementById("id_content");
 const postForm = document.getElementById("post-form");
-const submitButton = document.getElementById("submit-button");
-const editTitle = document.getElementById("edit-title");
+const submitButton = document.getElementById("post-submit-button");
+const editPostTitle = document.getElementById("edit-post-title");
 
 const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteModelConfirm = document.getElementById("delete-model-confirm");
-const deleteModal = new bootstrap.Modal(document.getElementById("delete-modal"));
+const deleteModelConfirm = document.getElementById("post-delete-model-confirm");
+const deleteModal = new bootstrap.Modal(document.getElementById("post-delete-modal"));
 
+/**
+ * Resets the post modal elements and form
+ * for posting a post
+ */
 thePostButton.addEventListener("click", (e) => {
-    editTitle.innerHTML = "";
+    editPostTitle.innerHTML = "";
     postText.value = "";
     postForm.setAttribute("action", "");
     submitButton.innerText = "Submit";
 });
 
+
 /**
 * Initializes edit functionality for the provided edit buttons.
 * 
 * For each button in the `editButtons` collection:
-* - Retrieves the associated comment's ID upon click.
+* - Retrieves the associated post's ID upon click.
 * - Fetches the content of the corresponding comment.
-* - Populates the `commentText` input/textarea with the comment's content for editing.
+* - Populates the `postText` input/textarea with the post's content for editing.
+* - Updates the title to include "Edit"
 * - Updates the submit button's text to "Update".
-* - Sets the form's action attribute to the `edit_comment/{commentId}` endpoint.
+* - Sets the form's action attribute to the `edit_post/{postId}` endpoint.
 */
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
         console.log("Selected target: ", e.target)
-        editTitle.innerHTML = "Edit";
+        editPostTitle.innerHTML = "Edit";
 
         let postId = e.target.getAttribute("data-post_id");
         console.log("Edit post id: ", postId);
@@ -46,6 +50,7 @@ for (let button of editButtons) {
         postForm.setAttribute("action", `edit_post/${postId}/`);
     });
 }
+
 
 /**
 * Initializes deletion functionality for the provided delete buttons.

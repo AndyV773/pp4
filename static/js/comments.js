@@ -1,11 +1,27 @@
-const editButtons = document.getElementsByClassName("btn-edit");
-const commentText = document.getElementById("id_body");
-const commentForm = document.getElementById("comment-form");
-const submitButton = document.getElementById("submit-button");
+const theCommentButton = document.getElementById("the-comment-button");
 
-const deleteModal = new bootstrap.Modal(document.getElementById("delete-modal"));
+const editButtons = document.getElementsByClassName("btn-edit");
+const commentText = document.getElementById("id_comment");
+const commentForm = document.getElementById("comment-form");
+const submitButton = document.getElementById("comment-submit-button");
+const editCommentTitle = document.getElementById("edit-comment-title");
+
+const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-modal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("delete-model-confirm");
+const deleteConfirm = document.getElementById("comment-delete-model-confirm");
+
+
+/**
+ * Resets the comment modal elements and form
+ * for posting a comment
+ */
+theCommentButton.addEventListener("click", (e) => {
+    editCommentTitle.innerHTML = "";
+    commentText.value = "";
+    commentForm.setAttribute("action", "");
+    submitButton.innerText = "Submit";
+});
+
 
 /**
 * Initializes edit functionality for the provided edit buttons.
@@ -14,11 +30,15 @@ const deleteConfirm = document.getElementById("delete-model-confirm");
 * - Retrieves the associated comment's ID upon click.
 * - Fetches the content of the corresponding comment.
 * - Populates the `commentText` input/textarea with the comment's content for editing.
+* - Updates the title to include "Edit"
 * - Updates the submit button's text to "Update".
 * - Sets the form's action attribute to the `edit_comment/{commentId}` endpoint.
 */
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
+        console.log("Selected target: ", e.target)
+        editCommentTitle.innerHTML = "Edit";
+
         let commentId = e.target.getAttribute("data-comment_id");
         console.log("Edit comment id: ", commentId);
 
@@ -26,10 +46,12 @@ for (let button of editButtons) {
         console.log("Edit comment content: ", commentContent);
 
         commentText.value = commentContent;
+
         submitButton.innerText = "Update";
-        commentForm.setAttribute("action", `edit_comment/${commentId}`);
+        commentForm.setAttribute("action", `edit_comment/${commentId}/`);
     });
 }
+
 
 /**
 * Initializes deletion functionality for the provided delete buttons.
@@ -46,10 +68,7 @@ for (let button of deleteButtons) {
         let commentId = e.target.getAttribute("data-comment_id");
         console.log("Comment delete id: ", commentId);
 
-        let postId = e.target.getAttribute("data-post_id");
-        console.log("Comment delete post id: ", postId);
-
-        deleteConfirm.href = `${postId}/delete_comment/${commentId}`;
+        deleteConfirm.href = `delete_comment/${commentId}`;
         deleteModal.show();
     });
 }

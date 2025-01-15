@@ -5,8 +5,10 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
 
 {% block content %}
-<a href="{% url 'home' %}" class="btn">
-  <i class="fa-solid fa-circle-arrow-left"></i>
+<a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
+    class="fa-solid fa-circle-arrow-left"></i></a>
+<a class="text-secondary" href="{% url 'home' %}">
+  <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
 </a>
 <!-- code used from code institute django blog -->
 <div class="container">
@@ -24,7 +26,7 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <button class="btn btn-secondary right" type="submit">{% trans 'Sign Out' %}</button>
+        <button class="btn btn-lg shadow bg--light text-light float-end me-4" type="submit">{% trans 'Sign Out' %}</button>
       </form>
     </div>
   </div>

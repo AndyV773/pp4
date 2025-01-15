@@ -12,7 +12,7 @@
     </a>
     <div class="d-flex justify-content-around">
         <h3 class="text-light fs-5 m-0">
-            {{ channel.name|capfirst }}
+            {{ channel.name | capfirst }}
         </h3>
         <div class="d-flex text-light">
             <div class="ms-2">{{ comment_count }} Comments</div>
@@ -37,15 +37,13 @@
             <hr>
             <fieldset class="mt-4">
                 <legend>@{{ comment.author }}</legend>
-                <div id="comment{{ comment.id }}" class="ms-3">{{ comment.comment }}</div>
-                <div>{{ comment.created_on }}</div>
+                <div id="comment{{ comment.id }}" class="ms-3">{{ comment.comment | linebreaks }}</div>
+                <div>{{ comment.created_on | date:"H:i d/m/Y" }}</div>
                 <div class="d-flex justify-content-evenly">
                     {% if comment.author == user %}
-                    <button class="btn btn-delete" data-comment_id="{{ comment.id }}" data-post_id="{{ post.id }}">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                    <button class="btn btn-edit" data-comment_id="{{ comment.id }}"><i
-                            class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="fa-solid fa-trash-can btn btn-delete" data-comment_id="{{ comment.id }}"></button>
+                    <button class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal"
+                        data-bs-target="#comment-model" data-comment_id="{{ comment.id }}"></button>
                     {% endif %}
                 </div>
             </fieldset>
@@ -55,30 +53,32 @@
 </article>
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
-<!-- Button trigger modal -->
-<button type="button"
+<!-- comment button trigger modal -->
+<button id="the-comment-button"
     class="position-absolute bottom-0 end-0 m-3 btn bg--medium text--platinum btn-lg fs-2 rounded shadow-lg cc--hover"
-    data-bs-toggle="modal" data-bs-target="#commentModel">
+    data-bs-toggle="modal" data-bs-target="#comment-model">
     <i class="fa-solid fa-pen"></i>
 </button>
 {% endif %}
 <!-- comment and edit modal -->
-<div class="modal fade" id="commentModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="comment-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="comment-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5 text-capitalize" id="comment-modal-label"><span id="edit-title"></span>Comment</h5>
+                <h5 class="modal-title fs-5 text-capitalize" id="comment-modal-label"><span
+                        id="edit-comment-title"></span>Comment</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="comment-model-body" class="modal-body">
                 <form id="comment-form" method="POST">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
+                    <hr>
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-lg bg--medium shadow text-light cc--hover"
                             data-bs-dismiss="modal">Cancel</button>
-                        <button id="submit-button" type="submit"
+                        <button id="comment-submit-button" type="submit"
                             class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
                     </div>
                 </form>
@@ -87,8 +87,8 @@
     </div>
 </div>
 
-<!-- delete modal -->
-<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+<!-- comment delete modal -->
+<div class="modal fade" id="comment-delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -100,9 +100,9 @@
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="delete-model-confirm" href="#" class="btn
-          btn-danger">Delete</a>
+                <button type="button" class="btn bg--light text-light" data-bs-dismiss="modal">Close</button>
+                <a id="comment-delete-model-confirm" href="#" class="btn
+          btn-danger text-light">Delete</a>
             </div>
         </div>
     </div>

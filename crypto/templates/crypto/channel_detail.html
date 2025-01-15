@@ -11,7 +11,7 @@
     </a>
     <div class="d-flex justify-content-around">
         <h3 class="text-light fs-5 m-0">
-            {{ channel.name|capfirst }}
+            {{ channel.name | capfirst }}
         </h3>
         <div class="d-flex text-light">
             <div class="ms-2">{{ post_count }} Posts</div>
@@ -28,7 +28,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h5 class="card-title">@{{ post.author }}</h5>
-                <div>{{ post.created_on|date:"H:i d/m/Y" }}</div>
+                <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </div>
             <a href="{% url 'post_detail' post.channel.slug post.id %}" class="text-decoration-none"></a>
             <div id="post{{ post.id }}" class="card-text">
@@ -50,7 +50,7 @@
 {% endfor %}
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
-<!-- Button trigger modal -->
+<!-- post button trigger modal -->
 <button id="the-post-button"
     class="position-absolute bottom-0 end-0 m-3 btn bg--medium text--platinum btn-lg fs-2 rounded shadow-lg cc--hover"
     data-bs-toggle="modal" data-bs-target="#post-model">
@@ -64,18 +64,18 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5 text-capitalize" id="post-modal-label"><span id="edit-title"></span>
+                <h5 class="modal-title fs-5 text-capitalize" id="post-modal-label"><span id="edit-post-title"></span>
                     {{ channel.name }} Post</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="post-model-body" class="modal-body">
+            <div class="modal-body">
                 <form id="post-form" method="POST">
                     {{ post_form | crispy }}
                     {% csrf_token %}
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-lg bg--medium shadow text-light cc--hover"
                             data-bs-dismiss="modal">Cancel</button>
-                        <button id="submit-button" type="submit"
+                        <button id="post-submit-button" type="submit"
                             class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
                     </div>
                 </form>
@@ -84,21 +84,21 @@
     </div>
 </div>
 
-<!-- delete modal -->
-<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+<!-- post delete modal -->
+<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="delete-modal-label">Delete comment?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id="delete-model-body" class="delete-modal-body">
+            <div class="delete-modal-body">
                 Are you sure you want to delete your comment?
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="delete-model-confirm" href="#" class="btn
+                <a id="post-delete-model-confirm" href="#" class="btn
           btn-danger">Delete</a>
             </div>
         </div>
