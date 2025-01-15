@@ -40,8 +40,8 @@
             <a type="button" href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
                 {{ comment_count }} <i class="fa-solid fa-comments"></i></a>
             {% if post.author == user %}
-            <button class="btn btn-delete" data-post_id="{{ post.id }}"><i class="fa-solid fa-trash-can"></i></button>
-            <button class="btn btn-edit" data-post_id="{{ post.id }}"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button class="fa-solid fa-trash-can btn btn-delete" data-post_id="{{ post.id }}"></button>
+            <button class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal" data-bs-target="#post-model" data-post_id="{{ post.id }}"></button>
             {% endif %}
         </div>
     </div>
@@ -92,7 +92,7 @@
                 <h5 class="modal-title" id="delete-modal-label">Delete comment?</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="delete-modal-body">
+            <div id="delete-model-body" class="delete-modal-body">
                 Are you sure you want to delete your comment?
                 This action cannot be undone.
             </div>

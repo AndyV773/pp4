@@ -4,16 +4,20 @@ const theModelLabel = document.getElementById("the-modal-label");
 
 const editButtons = document.getElementsByClassName("btn-edit");
 const postText = document.getElementById("id_content");
-const postForm = document.getElementById("post-orm");
+const postForm = document.getElementById("post-form");
 const submitButton = document.getElementById("submit-button");
+const editTitle = document.getElementById("edit-title");
 
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteModelConfirm = document.getElementById("delete-model-confirm");
 const deleteModal = new bootstrap.Modal(document.getElementById("delete-modal"));
 
-// thePostButton.addEventListener("click", (e) => {
-//     theModal.show();
-// });
+thePostButton.addEventListener("click", (e) => {
+    editTitle.innerHTML = "";
+    postText.value = "";
+    postForm.setAttribute("action", "");
+    submitButton.innerText = "Submit";
+});
 
 /**
 * Initializes edit functionality for the provided edit buttons.
@@ -27,20 +31,19 @@ const deleteModal = new bootstrap.Modal(document.getElementById("delete-modal"))
 */
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
+        console.log("Selected target: ", e.target)
+        editTitle.innerHTML = "Edit";
+
         let postId = e.target.getAttribute("data-post_id");
-        console.log(postId);
+        console.log("Edit post id: ", postId);
 
         let postContent = document.getElementById(`post${postId}`).innerText;
-        console.log(postContent);
+        console.log("Edit post content: ", postContent);
 
-        postText.id = `id_content${postId}`;
         postText.value = postContent;
 
         submitButton.innerText = "Update";
-        postForm.setAttribute("action", `edit_post/${postId}`);
-        // theModelConfirm.href = `edit_post/${postId}`;
-        const postModal = new bootstrap.Modal(document.getElementById("post-modal"));
-        postModal.show();
+        postForm.setAttribute("action", `edit_post/${postId}/`);
     });
 }
 
@@ -57,9 +60,9 @@ for (let button of editButtons) {
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let postId = e.target.getAttribute("data-post_id");
-        console.log(postId);
-        
-        deleteModelConfirm.href = `delete_post/${postId}`;
+        console.log("Post delete id: ", postId);
+
+        deleteModelConfirm.href = `delete_post/${postId}/`;
         deleteModal.show();
     });
 }

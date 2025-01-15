@@ -20,10 +20,10 @@ const deleteConfirm = document.getElementById("delete-model-confirm");
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
-        console.log(commentId);
+        console.log("Edit comment id: ", commentId);
 
         let commentContent = document.getElementById(`comment${commentId}`).innerText;
-        console.log(commentContent);
+        console.log("Edit comment content: ", commentContent);
 
         commentText.value = commentContent;
         submitButton.innerText = "Update";
@@ -44,11 +44,11 @@ for (let button of editButtons) {
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
-        console.log(commentId);
+        console.log("Comment delete id: ", commentId);
 
         let postId = e.target.getAttribute("data-post_id");
-        console.log(postId);
-        
+        console.log("Comment delete post id: ", postId);
+
         deleteConfirm.href = `${postId}/delete_comment/${commentId}`;
         deleteModal.show();
     });
