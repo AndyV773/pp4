@@ -1,19 +1,17 @@
 const theCommentButton = document.getElementById("the-comment-button");
-
 const editButtons = document.getElementsByClassName("btn-edit");
 const commentText = document.getElementById("id_comment");
 const commentForm = document.getElementById("comment-form");
 const submitButton = document.getElementById("comment-submit-button");
 const editCommentTitle = document.getElementById("edit-comment-title");
-
-const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-modal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("comment-delete-model-confirm");
+const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-modal"));
 
 
 /**
  * Resets the comment modal elements and form
- * for posting a comment
+ * for posting a new comment
  */
 theCommentButton.addEventListener("click", (e) => {
     editCommentTitle.innerHTML = "";
@@ -36,17 +34,10 @@ theCommentButton.addEventListener("click", (e) => {
 */
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        console.log("Selected target: ", e.target)
-        editCommentTitle.innerHTML = "Edit";
-
         let commentId = e.target.getAttribute("data-comment_id");
-        console.log("Edit comment id: ", commentId);
-
         let commentContent = document.getElementById(`comment${commentId}`).innerText;
-        console.log("Edit comment content: ", commentContent);
-
+        editCommentTitle.innerHTML = "Edit";
         commentText.value = commentContent;
-
         submitButton.innerText = "Update";
         commentForm.setAttribute("action", `edit_comment/${commentId}/`);
     });
@@ -66,8 +57,6 @@ for (let button of editButtons) {
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
-        console.log("Comment delete id: ", commentId);
-
         deleteConfirm.href = `delete_comment/${commentId}`;
         deleteModal.show();
     });
