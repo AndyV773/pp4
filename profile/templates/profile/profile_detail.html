@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="bg-dark vh-100">
+    <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
+            class="fa-solid fa-circle-arrow-left"></i></a>
+    <a class="text-secondary" href="{% url 'home' %}">
+        <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+    </a>
+    <!-- profile information -->
+    <div class="d-flex flex-column mt-5 text-light p-4">
+        <fieldset class="ms-5">
+            <legend>Username:</legend>
+            <div>{{ user }}</div>
+        </fieldset>
+        <hr>
+        <fieldset class="ms-5">
+            <legend>Phone:</legend>
+            <div>{{ profile.default_phone_number }}</div>
+        </fieldset>
+        <hr>
+        <fieldset class="ms-5">
+            <legend>Post code:</legend>
+            <div>{{ profile.default_postcode }}</div>
+        </fieldset>
+        <hr>
+        <fieldset class="ms-5">
+            <legend>Country:</legend>
+            <div>{{ profile.default_country }}</div>
+        </fieldset>
+        <div class="d-flex justify-content-end me-5">
+            <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow">Edit</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extras %}
+{% endblock %}
