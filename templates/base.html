@@ -92,6 +92,9 @@
             <p>V 0.0.1</p>
         </div>
     </nav>
+    <header class="d-none">
+        <h1>Crypto Net</h1>
+    </header>
     <main class="d-flex flex-row vh-100">
         <!-- left section -->
         <section id="channel-list" class="col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
@@ -127,6 +130,23 @@
         </section>
         <!-- right section -->
         <section id="channel-content" class="d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
+            <header>
+                <!-- displaying Django messages -->
+                <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
+                    <div>
+                        <div>
+                            {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible
+          fade show" id="msg" role="alert">
+                                {{ message | safe }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </header>
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}

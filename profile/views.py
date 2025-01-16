@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
 from crypto.models import Channel
@@ -29,7 +30,14 @@ def edit_profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Profile saved'
+            )
             return redirect('profile')
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating profile!')
 
     channel_list = Channel.objects.filter(approved=True)
     profile_form = UserProfileForm(instance=profile)

@@ -41,6 +41,10 @@ h5 {
     color: rgb(60, 110, 113) !important;
 }
 
+.z--3000 {
+    z-index: 3000;
+}
+
 /* ----------------------------------------------------------- fonts */
 .kanit {
     font-family: "Kanit", serif;

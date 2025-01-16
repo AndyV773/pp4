@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from .models import About
 from .forms import ContactForm
 from crypto.models import Channel
@@ -34,9 +35,17 @@ def contact_me(request):
     **Template:**
     :template:`about/contact.html`
     """
-    contact_form = ContactForm(data=request.POST)
-    if contact_form.is_valid():
-        contact_form.save()
+    if request.method == 'POST':
+        contact_form = ContactForm(data=request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            messages.add_message(
+                    request, messages.SUCCESS,
+                    'Details sent'
+                )
+        else:
+            messages.add_message(request, messages.ERROR,
+                                    'Error message did not send!')
 
     channel_list = Channel.objects.filter(approved=True)
     contact_form = ContactForm()        

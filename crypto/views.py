@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.utils.text import slugify
 from django.views import generic
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from .models import Channel, Post, Comment
 from .forms import AddChannelForm, PostForm, CommentForm
 
@@ -23,11 +24,19 @@ def add_channel(request):
     **Template:**
     :template:`crypto/add_channel.html`
     """
-    add_channel_form = AddChannelForm(data=request.POST)
-    if add_channel_form.is_valid():
-        channel = add_channel_form.save(commit=False)
-        channel.slug = slugify(channel.name)
-        channel.save()
+    if request.method == 'POST':
+        add_channel_form = AddChannelForm(data=request.POST)
+        if add_channel_form.is_valid():
+            channel = add_channel_form.save(commit=False)
+            channel.slug = slugify(channel.name)
+            channel.save()
+            messages.add_message(
+                    request, messages.SUCCESS,
+                    'Channel request sent'
+                )
+        else:
+            messages.add_message(request, messages.ERROR,
+                                    'Error requesting channel!')
 
     channel_list = Channel.objects.filter(approved=True)
     add_channel_form = AddChannelForm()        
@@ -67,6 +76,13 @@ def channel_detail(request, slug):
             post.author = request.user
             post.channel = channel
             post.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Post sent'
+            )
+        else:
+            messages.add_message(request, messages.ERROR,
+                                    'Error sending post!')
 
     post_form = PostForm()  # resets content of form
 
@@ -106,6 +122,13 @@ def post_detail(request, slug, post_id):
             comment.channel = channel
             comment.post = post
             comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment sent'
+            )
+        else:
+            messages.add_message(request, messages.ERROR,
+                                    'Error sending comment!')
 
     comment_form = CommentForm()  # resets content of form
 
@@ -148,8 +171,13 @@ def post_edit(request, slug, post_id):
             post = post_form.save(commit=False)
             post.channel = channel
             post.save()
+            messages.add_message(
+                    request, messages.SUCCESS,
+                    'Post updated'
+                )
         else:
-            print("form error")
+            messages.add_message(request, messages.ERROR,
+                                    'Error updating post!')
 
     return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
 
@@ -171,8 +199,13 @@ def post_delete(request, slug, post_id):
 
     if post.author == request.user:
         post.delete()
+        messages.add_message(
+                request, messages.SUCCESS,
+                'Post deleted'
+            )
     else:
-        print("Delete error")
+        messages.add_message(request, messages.ERROR,
+                                'Error deleting post!')
 
     return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
 
@@ -201,6 +234,13 @@ def comment_edit(request, slug, post_id, comment_id):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment updated'
+            )
+    else:
+        messages.add_message(request, messages.ERROR,
+                                'Error updating comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
 
@@ -223,5 +263,12 @@ def comment_delete(request, slug, post_id, comment_id):
 
     if comment.author == request.user:
         comment.delete()
+        messages.add_message(
+                request, messages.SUCCESS,
+                'Comment deleted'
+            )
+    else:
+        messages.add_message(request, messages.ERROR,
+                                'Error deleting comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
