@@ -38,7 +38,7 @@
             </div>
             <a href="{% url 'post_detail' post.channel.slug post.id %}" class="text-decoration-none"></a>
             <div id="post{{ post.id }}" class="card-text">
-                {{ post.content | linebreaks }}
+                {{ post.content }}
             </div>
         </div>
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-0" alt="BTC Default">

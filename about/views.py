@@ -4,6 +4,7 @@ from .models import About
 from .forms import ContactForm
 from crypto.models import Channel
 
+
 # Create your views here.
 def about_me(request):
     """
@@ -22,7 +23,7 @@ def about_me(request):
             "about/about.html",
             {
                 "channel_list": channel_list,
-               
+
             },  # context
         )
 
@@ -35,20 +36,30 @@ def contact_me(request):
     **Template:**
     :template:`about/contact.html`
     """
+
     if request.method == 'POST':
         contact_form = ContactForm(data=request.POST)
         if contact_form.is_valid():
             contact_form.save()
             messages.add_message(
                     request, messages.SUCCESS,
-                    'Details sent'
+                    'Message sent'
                 )
         else:
             messages.add_message(request, messages.ERROR,
-                                    'Error message did not send!')
+                                 'Error message did not send!')
+
+    # to initiate contact form data fields for authenticated user
+    contact_form = ContactForm(
+        initial={
+            'name': request.user
+            if request.user.is_authenticated else '',
+            'email': request.user.email
+            if request.user.is_authenticated else '',
+            'message': '',
+            })
 
     channel_list = Channel.objects.filter(approved=True)
-    contact_form = ContactForm()        
 
     return render(
             request,

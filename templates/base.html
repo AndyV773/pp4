@@ -105,10 +105,11 @@
                         style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                 </div>
                 {% if user.is_authenticated %}
-                <p class="mt-3">You are logged in as {{ user }}</p>
+                <p class="mt-3">You are logged in as @{{ user }}</p>
                 {% else %}
                 <p class="mt-3">You are not logged in</p>
                 {% endif %}
+                {% if channel_list %}
                 <h2 class="mt-4">Channels</h2>
             </header>
             <main>
@@ -123,6 +124,7 @@
                     {% endfor %}
                 </ul>
             </main>
+            {% endif %}
             <footer class="text-center text-light">
                 <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
                 <p>V 0.0.1</p>

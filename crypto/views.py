@@ -11,7 +11,6 @@ class ChannelList(generic.ListView):
     """
     View to display a list of channels
     """
-    # all().order_by("rank")
     queryset = Channel.objects.filter(approved=True)
     template_name = "crypto/index.html"
 
@@ -94,6 +93,7 @@ def channel_detail(request, slug):
             "channel": channel,
             "posts": posts,
             "post_count": post_count,
+            "comment_list": comment_list,
             "comment_count": comment_count,
             "post_form": post_form,
         },  # context

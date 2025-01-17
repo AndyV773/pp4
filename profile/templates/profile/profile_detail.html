@@ -11,22 +11,26 @@
     <div class="d-flex flex-column mt-5 text-light p-4">
         <fieldset class="ms-5">
             <legend>Username:</legend>
-            <div>{{ user }}</div>
+            <div>@{{ user }}</div>
         </fieldset>
         <hr>
         <fieldset class="ms-5">
             <legend>Phone:</legend>
-            <div>{{ profile.default_phone_number }}</div>
+            <div>{{ profile.phone_number }}</div>
         </fieldset>
         <hr>
         <fieldset class="ms-5">
             <legend>Post code:</legend>
-            <div>{{ profile.default_postcode }}</div>
+            {% if profile.post_code %}
+            <div>{{ profile.post_code | upper }}</div>
+            {% else %}
+            <div>{{ profile.post_code }}</div>
+            {% endif %}
         </fieldset>
         <hr>
         <fieldset class="ms-5">
             <legend>Country:</legend>
-            <div>{{ profile.default_country }}</div>
+            <div>{{ profile.country }}</div>
         </fieldset>
         <div class="d-flex justify-content-end me-5">
             <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow">Edit</a>
