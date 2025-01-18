@@ -36,30 +36,33 @@
 <body>
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav bg--medium">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i
-                class="fa-solid fa-circle-arrow-left"></i></a>
-        <h1 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h1>
-        {% if user.is_authenticated %}
-        <a class="list-group-item {% if request.path == profile_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'profile' %}">Account</a>
-        {% endif %}
-        <a class="list-group-item {% if request.path == about_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'about' %}" class="mt-5">About</a>
-        <a class="list-group-item {% if request.path == contact_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'contact' %}">Contact</a>
-        {% if user.is_authenticated %}
-        <a class="list-group-item {% if request.path == add_channel_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'add_channel' %}">Add Channel</a>
-        <a class="list-group-item {% if request.path == logout_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'account_logout' %}">Logout</a>
-        {% else %}
-        <a class="list-group-item {% if request.path == signup_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'account_signup' %}">Register</a>
-        <a class="list-group-item {% if request.path == login_url %}disabled" aria-current="page{% endif %}"
-            href="{% url 'account_login' %}">Login</a>
-        {% endif %}
+        <section>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i
+                    class="fa-solid fa-circle-arrow-left"></i></a>
+            <h1 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i>
+            </h1>
+            {% if user.is_authenticated %}
+            <a class="list-group-item {% if request.path == profile_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'profile' %}">Account</a>
+            {% endif %}
+            <a class="list-group-item {% if request.path == about_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'about' %}" class="mt-5">About</a>
+            <a class="list-group-item {% if request.path == contact_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'contact' %}">Contact</a>
+            {% if user.is_authenticated %}
+            <a class="list-group-item {% if request.path == add_channel_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'add_channel' %}">Add Channel</a>
+            <a class="list-group-item {% if request.path == logout_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'account_logout' %}">Logout</a>
+            {% else %}
+            <a class="list-group-item {% if request.path == signup_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'account_signup' %}">Register</a>
+            <a class="list-group-item {% if request.path == login_url %}disabled" aria-current="page{% endif %}"
+                href="{% url 'account_login' %}">Login</a>
+            {% endif %}
+        </section>
         <!-- social links code used from code institute love running project -->
-        <div class="d-flex justify-content-center mt-5">
+        <section class="d-flex justify-content-center mt-5">
             <ul class="list-unstyled d-flex justify-content-evenly" style="width: 30rem;">
                 <li>
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener"
@@ -86,7 +89,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </section>
         <div>
             <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
             <p>V 0.0.1</p>
@@ -97,7 +100,8 @@
     </header>
     <main class="d-flex flex-row vh-100">
         <!-- left section -->
-        <section id="channel-list" class="col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
+        <section id="channel-list"
+            class="d-flex flex-column col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
             <header class="sticky-top bg--dark text-light p-2">
                 <div class="d-flex justify-content-between">
                     <h2 id="side-header" class="fs-4 mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
@@ -111,20 +115,24 @@
                 {% endif %}
                 {% if channel_list %}
                 <h2 class="mt-4">Channels</h2>
+                {% endif %}
             </header>
-            <main>
-                <ul class="list-unstyled p-2">
-                    {% for channel in channel_list %}
-                    <li class="overflow-y-hidden p-2">
-                        <a href="{% url 'channel_detail' channel.slug %}"
-                            class="channel container-fluid btn text-light bg--light p--shadow">
-                            <h2 class="m-0">{{ channel.name | capfirst }}</h2>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+            <main class="flex-grow-1">
+                {% if channel_list %}
+                <section>
+                    <ul class="list-unstyled p-2">
+                        {% for channel in channel_list %}
+                        <li class="overflow-y-hidden p-2">
+                            <a href="{% url 'channel_detail' channel.slug %}"
+                                class="channel container-fluid btn text-light bg--light p--shadow">
+                                <h2 class="m-0">{{ channel.name | capfirst }}</h2>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                {% endif %}
             </main>
-            {% endif %}
             <footer class="text-center text-light">
                 <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
                 <p>V 0.0.1</p>
