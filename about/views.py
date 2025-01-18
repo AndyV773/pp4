@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import About
 from .forms import ContactForm
 from crypto.models import Channel
@@ -23,7 +24,6 @@ def about_me(request):
             "about/about.html",
             {
                 "channel_list": channel_list,
-
             },  # context
         )
 
@@ -45,6 +45,7 @@ def contact_me(request):
                     request, messages.SUCCESS,
                     'Message sent'
                 )
+            return HttpResponseRedirect(reverse('contact'))
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error message did not send!')

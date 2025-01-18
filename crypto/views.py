@@ -33,6 +33,7 @@ def add_channel(request):
                     request, messages.SUCCESS,
                     'Channel request sent'
                 )
+            return HttpResponseRedirect(reverse('add_channel'))
         else:
             messages.add_message(request, messages.ERROR,
                                     'Error requesting channel!')
@@ -79,6 +80,7 @@ def channel_detail(request, slug):
                 request, messages.SUCCESS,
                 'Post sent'
             )
+            return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
         else:
             messages.add_message(request, messages.ERROR,
                                     'Error sending post!')
@@ -126,6 +128,7 @@ def post_detail(request, slug, post_id):
                 request, messages.SUCCESS,
                 'Comment sent'
             )
+            return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
         else:
             messages.add_message(request, messages.ERROR,
                                     'Error sending comment!')
