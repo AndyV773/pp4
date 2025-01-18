@@ -36,13 +36,29 @@
                 <h5 class="card-title">@{{ post.author }}</h5>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </div>
-            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="text-decoration-none"></a>
             <div id="post{{ post.id }}" class="card-text">
                 {{ post.content }}
             </div>
         </div>
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-0" alt="BTC Default">
         <div class="d-flex justify-content-evenly">
+            <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
+            <div class="align-self-center">
+                <!-- The number of likes goes before the closing strong tag -->
+                <span class="text-secondary">{{ post.number_of_likes }} </span>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if liked %}
+                    <button type="submit" value="{{ post.id }}" class="btn fa-solid fa-heart"></button>
+                    {% else %}
+                    <button type="submit" value="{{ post.id }}" class="btn fa-regular fa-heart"></button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="text-secondary"><i class="fa-regular fa-heart"></i></span>
+                {% endif %}
+            </div>
             <a type="button" href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
                 {{ comment_count }} <i class="fa-solid fa-comments"></i></a>
             {% if post.author == user %}

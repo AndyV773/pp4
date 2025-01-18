@@ -28,7 +28,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h5 class="card-title">@{{ post.author }}</h5>
-                <div>{{ post.created_on }}</div>
+                <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </div>
             <div class="card-text">{{ post.content | safe }}</div>
             <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-0" alt="BTC Default">

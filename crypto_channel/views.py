@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.utils.text import slugify
-from django.views import generic
+from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Channel, Post, Comment
@@ -12,7 +12,7 @@ class ChannelList(generic.ListView):
     View to display a list of channels
     """
     queryset = Channel.objects.filter(approved=True)
-    template_name = "crypto/index.html"
+    template_name = "crypto_channel/index.html"
 
 
 def add_channel(request):
@@ -21,7 +21,7 @@ def add_channel(request):
     **Context**
 
     **Template:**
-    :template:`crypto/add_channel.html`
+    :template:`crypto_channel/add_channel.html`
     """
     if request.method == 'POST':
         add_channel_form = AddChannelForm(data=request.POST)
@@ -43,7 +43,7 @@ def add_channel(request):
 
     return render(
             request,
-            "crypto/add_channel.html",
+            "crypto_channel/add_channel.html",
             {
                 "channel_list": channel_list,
                 "add_channel_form": add_channel_form,
@@ -58,13 +58,18 @@ def channel_detail(request, slug):
 
     **Context**
 
-    :template:`crypto/channel_detail.html`
+    :template:`crypto_channel/channel_detail.html`
     """
 
     channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(channel_list, slug=slug)
     posts = channel.channel_posts.filter(status=1).order_by("-created_on")
     post_count = channel.channel_posts.filter(approved=True, status=1).count()
+    post = get_object_or_404(Post)
+    # https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        liked = True
     
     comment_list = Comment.objects.all()
     comment_count = comment_list.filter(approved=True).count()
@@ -89,17 +94,31 @@ def channel_detail(request, slug):
 
     return render(
         request,
-        "crypto/channel_detail.html",
+        "crypto_channel/channel_detail.html",
         {
             "channel_list": channel_list,
             "channel": channel,
             "posts": posts,
             "post_count": post_count,
+            'liked': liked,
             "comment_list": comment_list,
             "comment_count": comment_count,
             "post_form": post_form,
         },  # context
     )
+
+
+# https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
+class PostLike(View):
+    
+    def post(self, request, slug, post_id, *args, **kwargs):
+        post = get_object_or_404(Post, id=post_id)
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
 
 
 def post_detail(request, slug, post_id):
@@ -108,7 +127,7 @@ def post_detail(request, slug, post_id):
 
     **Context**
 
-    :template:`crypto/post_detail.html`
+    :template:`crypto_channel/post_detail.html`
     """
     channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(Channel, slug=slug)
@@ -137,7 +156,7 @@ def post_detail(request, slug, post_id):
 
     return render(
         request,
-        "crypto/post_detail.html",
+        "crypto_channel/post_detail.html",
         {
             "channel_list": channel_list,
             "channel": channel,

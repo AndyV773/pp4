@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_summernote',
     'django_countries',
-    'crypto',
+    'crypto_channel',
     'about',
     'profile',
 ]

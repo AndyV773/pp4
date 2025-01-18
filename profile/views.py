@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
-from crypto.models import Channel
+from crypto_channel.models import Channel
 
 
 # Create your views here

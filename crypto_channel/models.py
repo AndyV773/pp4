@@ -35,12 +35,18 @@ class Post(models.Model):
     approved = models.BooleanField(default=True)
     status = models.IntegerField(choices=STATUS, default=1)
     updated_on = models.DateTimeField(auto_now=True)
+    # https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
+    likes = models.ManyToManyField(
+        User, related_name='post_like', blank=True)
 
     class Meta:
         ordering = ["approved", "-created_on"]
 
     def __str__(self):
         return f"{self.channel.name}-{self.id}"
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
 
 class Comment(models.Model):
