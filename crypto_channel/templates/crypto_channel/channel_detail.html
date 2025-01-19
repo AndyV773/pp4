@@ -40,7 +40,11 @@
                 {{ post.content }}
             </div>
         </div>
+        {% if "placeholder" in post.featured_image.url %}
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-0" alt="BTC Default">
+        {% else %}
+        <img src=" {{ post.featured_image.url }}" class="card-img-top" alt="{{ channel.name }}">
+        {% endif %}
         <div class="d-flex justify-content-evenly">
             <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
             <div class="align-self-center">
@@ -93,7 +97,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="post-form" method="POST">
+                <form id="post-form" method="POST" enctype="multipart/form-data">
                     {{ post_form | crispy }}
                     {% csrf_token %}
                     <div class="d-flex justify-content-between">
@@ -121,7 +125,7 @@
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg--light text-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn bg--medium text-light cc--hover" data-bs-dismiss="modal">Cancel</button>
                 <a id="post-delete-model-confirm" href="#" class="btn
           btn-danger">Delete</a>
             </div>

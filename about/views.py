@@ -18,12 +18,14 @@ def about_me(request):
     :template:`about/about.html`
     """
     channel_list = Channel.objects.filter(approved=True)
+    about = About.objects.all().order_by("-updated_on").first()
 
     return render(
             request,
             "about/about.html",
             {
                 "channel_list": channel_list,
+                "about": about,
             },  # context
         )
 

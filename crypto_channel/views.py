@@ -51,7 +51,6 @@ def add_channel(request):
         )
 
 
-
 def channel_detail(request, slug):
     """
     Display an individual :model:`blog.Post`.
@@ -65,17 +64,18 @@ def channel_detail(request, slug):
     channel = get_object_or_404(channel_list, slug=slug)
     posts = channel.channel_posts.filter(status=1).order_by("-created_on")
     post_count = channel.channel_posts.filter(approved=True, status=1).count()
-    post = get_object_or_404(Post)
+    comment_count = channel.channel_comments.filter(approved=True).count()
+
     # https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
     liked = False
-    if post.likes.filter(id=request.user.id).exists():
-        liked = True
+    for post in posts:
+        if post.likes.filter(id=request.user.id).exists():
+            liked = True
     
-    comment_list = Comment.objects.all()
-    comment_count = comment_list.filter(approved=True).count()
 
     if request.method == "POST":
-        post_form = PostForm(data=request.POST)
+        post_form = PostForm(request.POST, request.FILES)
+
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.author = request.user
@@ -101,7 +101,6 @@ def channel_detail(request, slug):
             "posts": posts,
             "post_count": post_count,
             'liked': liked,
-            "comment_list": comment_list,
             "comment_count": comment_count,
             "post_form": post_form,
         },  # context
@@ -187,7 +186,7 @@ def post_edit(request, slug, post_id):
         channel = get_object_or_404(Channel, slug=slug)
         post = Post.objects.filter(status=1)
         post = get_object_or_404(post, id=post_id)
-        post_form = PostForm(data=request.POST, instance=post)
+        post_form = PostForm(request.POST, request.FILES, instance=post)
 
         if post_form.is_valid() and post.author == request.user:
             post = post_form.save(commit=False)
