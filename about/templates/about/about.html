@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="bg-dark vh-100">
-    <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
+<div class="bg-dark d-flex flex-column flex-grow-1">
+    <a class="btn position-absolute text-secondary fs-2 ms-2 z-3" href="{% url 'home' %}"><i
             class="fa-solid fa-circle-arrow-left"></i></a>
     <a class="text-secondary" href="{% url 'home' %}">
         <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>

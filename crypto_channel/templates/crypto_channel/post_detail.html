@@ -20,7 +20,7 @@
     </div>
 </header>
 {% if not user.is_authenticated %}
-<p class="mt-4 ms-4 mb-0"><mark class="bg-warning p-2 rounded">Log in to leave a comment</mark></p>
+<a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow">Log in to leave a comment</a>
 {% endif %}
 <article class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
