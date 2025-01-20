@@ -64,14 +64,16 @@ def channel_detail(request, slug):
     channel = get_object_or_404(channel_list, slug=slug)
     posts = channel.channel_posts.filter(status=1).order_by("-created_on")
     post_count = channel.channel_posts.filter(approved=True, status=1).count()
-    comment_count = channel.channel_comments.filter(approved=True).count()
+
+    # code institute tutoring fixed this
+    for post in posts:
+        post.comment_count = post.comments.filter(approved=True).count()
 
     # https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
     liked = False
     for post in posts:
         if post.likes.filter(id=request.user.id).exists():
-            liked = True
-    
+            post.liked = True
 
     if request.method == "POST":
         post_form = PostForm(request.POST, request.FILES)
@@ -101,7 +103,6 @@ def channel_detail(request, slug):
             "posts": posts,
             "post_count": post_count,
             'liked': liked,
-            "comment_count": comment_count,
             "post_form": post_form,
         },  # context
     )

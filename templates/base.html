@@ -115,20 +115,18 @@
                 <h2 class="mt-4">Channels</h2>
                 {% endif %}
             </header>
-            <section class="flex-grow-1">
+            <ul class="list-unstyled p-2 flex-grow-1">
                 {% if channel_list %}
-                <ul class="list-unstyled p-2">
-                    {% for channel in channel_list %}
-                    <li class="overflow-y-hidden p-2">
-                        <a href="{% url 'channel_detail' channel.slug %}"
-                            class="channel container-fluid btn text-light bg--light p--shadow">
-                            <h3 class="m-0">{{ channel.name | capfirst }}</h3>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                {% for channel in channel_list %}
+                <li class="overflow-y-hidden p-2">
+                    <a href="{% url 'channel_detail' channel.slug %}"
+                        class="channel container-fluid btn text-light bg--light p--shadow">
+                        <h3 class="m-0">{{ channel.name | capfirst }}</h3>
+                    </a>
+                </li>
+                {% endfor %}
                 {% endif %}
-            </section>
+            </ul>
             <footer class="text-center text-light">
                 <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
                 <p>V 0.0.1</p>

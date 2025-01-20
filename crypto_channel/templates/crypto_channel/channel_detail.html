@@ -53,7 +53,7 @@
                 {% if user.is_authenticated %}
                 <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
                     {% csrf_token %}
-                    {% if liked %}
+                    {% if post.liked %}
                     <button type="submit" value="{{ post.id }}" class="btn fa-solid fa-heart"></button>
                     {% else %}
                     <button type="submit" value="{{ post.id }}" class="btn fa-regular fa-heart"></button>
@@ -64,7 +64,7 @@
                 {% endif %}
             </div>
             <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
-                {{ comment_count }} <i class="fa-solid fa-comments"></i></a>
+                {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
             {% if post.author == user %}
             <button type="button" class="fa-solid fa-trash-can btn btn-delete" data-post_id="{{ post.id }}"></button>
             <button type="button" class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal"
