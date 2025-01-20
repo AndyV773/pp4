@@ -98,11 +98,6 @@ h5 {
     transition: 0.3s;
 }
 
-.sidenav ul {
-    max-width: 30rem;
-    margin: auto;
-}
-
 .sidenav a:hover {
     color: rgb(40, 75, 99);
     text-shadow: 0 0 3px rgb(217, 217, 217);
@@ -116,6 +111,8 @@ h5 {
     margin-left: 50px;
 }
 
+/* ----------------------------------------------------------- modals */
+/* https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal {
     display: none;
