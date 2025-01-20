@@ -2,20 +2,23 @@
 {% block content %}
 {% load crispy_forms_tags %}
 {% load static %}
-<div class="bg-dark vh-100">
+<header class="bg-dark">
     <a class="btn position-absolute text-secondary fs-2 ms-2 z-3" href="{% url 'home' %}"><i
             class="fa-solid fa-circle-arrow-left"></i></a>
     <a class="text-secondary" href="{% url 'home' %}">
-        <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+        <h2 class="text-center pt-2 mb-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
     </a>
-    <h4 class="m-3 text--platinum">Request a channel</h4>
-    <p class="m-3 text-light">Only approved channels will be listed</p>
+</header>
+<section class="bg-dark vh-100">
+    <h3 class="text--platinum ps-3 pt-4">Request a channel</h3>
+    <p class="text-light ms-3 mt-2">Only approved channels will be listed</p>
     <!-- Contact form -->
     <div class="d-flex justify-content-center pb-5">
         <form method="POST" class="col-8 text-light">
             {{ add_channel_form | crispy }}
             {% csrf_token %}
-            <button id="submit-channel" type="submit" class="btn btn-lg bg--medium text-light shadow cc--hover float-end">Submit</button>
+            <button id="submit-channel" type="submit"
+                class="btn btn-lg bg--medium text-light shadow cc--hover float-end">Submit</button>
         </form>
     </div>
 </div>

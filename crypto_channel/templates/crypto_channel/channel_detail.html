@@ -3,10 +3,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <header class="sticky-top shadow bg--medium">
-    <a class="position-absolute text--platinum fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn">
+    <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}">
         <i class="fa-solid fa-circle-arrow-left"></i>
     </a>
-    <a class="text--platinum text-decoration-none" href="{% url 'home' %}">
+    <a class="text--platinum" href="{% url 'home' %}">
         <h2 class="text-center pt-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
     </a>
     <div class="d-flex justify-content-around">
@@ -24,11 +24,11 @@
 {% if post_count == 0 %}
 <p class="mt-3 ms-4">There are no posts on this channel</p>
 <div class="d-flex justify-content-center m-4">
-    <img class="img-fluid rounded" src="{% static 'images/posts/no-posts.jpg' %}" alt="">
+    <img class="img-fluid rounded" src="{% static 'images/posts/no-posts.jpg' %}" alt="No posts">
 </div>
 {% else %}
 {% for post in posts %}
-<article class="d-flex justify-content-center">
+<section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
     <div class="card border-0 m-4" style="width: 60rem;">
         <div class="card-body">
@@ -41,9 +41,9 @@
             </div>
         </div>
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-0" alt="BTC Default">
+        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-2" alt="BTC Default">
         {% else %}
-        <img src=" {{ post.featured_image.url }}" class="card-img-top" alt="{{ channel.name }}">
+        <img src=" {{ post.featured_image.url }}" class="card-img-top rounded-2" alt="{{ channel.name }}">
         {% endif %}
         <div class="d-flex justify-content-evenly">
             <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
@@ -63,16 +63,16 @@
                 <span class="text-secondary"><i class="fa-regular fa-heart"></i></span>
                 {% endif %}
             </div>
-            <a type="button" href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
+            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
                 {{ comment_count }} <i class="fa-solid fa-comments"></i></a>
             {% if post.author == user %}
-            <button class="fa-solid fa-trash-can btn btn-delete" data-post_id="{{ post.id }}"></button>
-            <button class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal" data-bs-target="#post-model"
-                data-post_id="{{ post.id }}"></button>
+            <button type="button" class="fa-solid fa-trash-can btn btn-delete" data-post_id="{{ post.id }}"></button>
+            <button type="button" class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal"
+                data-bs-target="#post-model" data-post_id="{{ post.id }}"></button>
             {% endif %}
         </div>
     </div>
-</article>
+</section>
 {% if not forloop.last %}
 <hr>
 {% endif %}
@@ -81,7 +81,7 @@
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
 <!-- post button trigger modal -->
-<button id="the-post-button"
+<button id="the-post-button" type="button"
     class="position-absolute bottom-0 end-0 m-3 btn bg--medium text--platinum btn-lg fs-2 rounded shadow-lg cc--hover"
     data-bs-toggle="modal" data-bs-target="#post-model">
     <i class="fa-solid fa-pen"></i>
@@ -127,7 +127,8 @@
                 This action cannot be undone.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn bg--medium text-light cc--hover" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn bg--medium text-light cc--hover"
+                    data-bs-dismiss="modal">Cancel</button>
                 <a id="post-delete-model-confirm" href="#" class="btn
           btn-danger">Delete</a>
             </div>

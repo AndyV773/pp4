@@ -91,11 +91,16 @@ h5 {
 }
 
 .sidenav p,
-.sidenav h1 {
+.sidenav h2 {
     padding: 8px 8px 8px 32px;
     color: rgb(217, 217, 217);
     display: block;
     transition: 0.3s;
+}
+
+.sidenav ul {
+    max-width: 30rem;
+    margin: auto;
 }
 
 .sidenav a:hover {

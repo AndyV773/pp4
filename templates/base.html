@@ -39,14 +39,14 @@
         <section>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i
                     class="fa-solid fa-circle-arrow-left"></i></a>
-            <h1 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i>
-            </h1>
+            <h2 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i>
+            </h2>
             {% if user.is_authenticated %}
-            <a class="list-group-item {% if request.path == profile_url %}disabled" aria-current="page{% endif %}"
+            <a class="list-group-item mt-4 {% if request.path == profile_url %}disabled" aria-current="page{% endif %}"
                 href="{% url 'profile' %}">Account</a>
             {% endif %}
             <a class="list-group-item {% if request.path == about_url %}disabled" aria-current="page{% endif %}"
-                href="{% url 'about' %}" class="mt-5">About</a>
+                href="{% url 'about' %}">About</a>
             <a class="list-group-item {% if request.path == contact_url %}disabled" aria-current="page{% endif %}"
                 href="{% url 'contact' %}">Contact</a>
             {% if user.is_authenticated %}
@@ -62,34 +62,32 @@
             {% endif %}
         </section>
         <!-- social links code used from code institute love running project -->
-        <section class="d-flex justify-content-center mt-5">
-            <ul class="list-unstyled d-flex justify-content-evenly" style="width: 30rem;">
-                <li>
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                        aria-label="visit our facebook page (opens in a new tab)">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.x.com/" target="_blank" rel="noopener"
-                        aria-label="visit our x page (opens in a new tab)">
-                        <i class="fa-brands fa-square-x-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                        aria-label="visit our youtube page (opens in a new tab)">
-                        <i class="fa-brands fa-square-youtube"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                        aria-label="visit our instagram page (opens in a new tab)">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </li>
-            </ul>
-        </section>
+        <ul class="list-unstyled d-flex justify-content-evenly mt-5">
+            <li>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                    aria-label="visit our facebook page (opens in a new tab)">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.x.com/" target="_blank" rel="noopener"
+                    aria-label="visit our x page (opens in a new tab)">
+                    <i class="fa-brands fa-square-x-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                    aria-label="visit our youtube page (opens in a new tab)">
+                    <i class="fa-brands fa-square-youtube"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                    aria-label="visit our instagram page (opens in a new tab)">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </li>
+        </ul>
         <div>
             <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
             <p>V 0.0.1</p>
@@ -100,7 +98,7 @@
     </header>
     <main class="d-flex flex-row vh-100">
         <!-- left section -->
-        <section id="channel-list"
+        <aside id="channel-list"
             class="d-flex flex-column col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
             <header class="sticky-top bg--dark text-light p-2">
                 <div class="d-flex justify-content-between">
@@ -117,60 +115,54 @@
                 <h2 class="mt-4">Channels</h2>
                 {% endif %}
             </header>
-            <main class="flex-grow-1">
+            <section class="flex-grow-1">
                 {% if channel_list %}
-                <section>
-                    <ul class="list-unstyled p-2">
-                        {% for channel in channel_list %}
-                        <li class="overflow-y-hidden p-2">
-                            <a href="{% url 'channel_detail' channel.slug %}"
-                                class="channel container-fluid btn text-light bg--light p--shadow">
-                                <h2 class="m-0">{{ channel.name | capfirst }}</h2>
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </section>
+                <ul class="list-unstyled p-2">
+                    {% for channel in channel_list %}
+                    <li class="overflow-y-hidden p-2">
+                        <a href="{% url 'channel_detail' channel.slug %}"
+                            class="channel container-fluid btn text-light bg--light p--shadow">
+                            <h3 class="m-0">{{ channel.name | capfirst }}</h3>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
                 {% endif %}
-            </main>
+            </section>
             <footer class="text-center text-light">
                 <p>Copyright &copy; <span class="copyright-date"></span> Crypto Net</p>
                 <p>V 0.0.1</p>
             </footer>
-        </section>
+        </aside>
         <!-- right section -->
-        <section id="channel-content"
-            class="d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
-            <header>
-                <!-- displaying Django messages -->
-                <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
+        <article id="channel-content"
+            class="{% if request.path == contact_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
+            <!-- displaying Django messages -->
+            <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
+                <div>
                     <div>
-                        <div>
-                            {% for message in messages %}
-                            <div class="alert {{ message.tags }} alert-dismissible
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible
           fade show" id="msg" role="alert">
-                                {{ message | safe }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                            {% endfor %}
+                            {{ message | safe }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </header>
+            </div>
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
-        </section>
+        </article>
     </main>
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
     <!-- font awesome kit -->
     <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
-
+    <!-- scripts -->
     <script src="{% static 'js/sidenav.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     {% if request.path != home_url %}
