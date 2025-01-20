@@ -111,6 +111,8 @@ h5 {
     margin-left: 50px;
 }
 
+/* ----------------------------------------------------------- modals */
+/* https://www.w3schools.com/howto/howto_css_modals.asp */
 /* The Modal (background) */
 .modal {
     display: none;

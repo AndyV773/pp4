@@ -102,7 +102,6 @@ def channel_detail(request, slug):
             "channel": channel,
             "posts": posts,
             "post_count": post_count,
-            'liked': liked,
             "post_form": post_form,
         },  # context
     )

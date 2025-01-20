@@ -34,6 +34,7 @@
 </head>
 
 <body>
+    <!-- side navigational menu -->
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav bg--medium">
         <section>
@@ -93,11 +94,12 @@
             <p>V 0.0.1</p>
         </div>
     </nav>
+    <!-- hidden header -->
     <header class="d-none">
         <h1>Crypto Net</h1>
     </header>
     <main class="d-flex flex-row vh-100">
-        <!-- left section -->
+        <!-- left aside section -->
         <aside id="channel-list"
             class="d-flex flex-column col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
             <header class="sticky-top bg--dark text-light p-2">
@@ -132,9 +134,10 @@
                 <p>V 0.0.1</p>
             </footer>
         </aside>
-        <!-- right section -->
+        <!-- right article section -->
+        <!-- added background color for landscape view with color backgrounds -->
         <article id="channel-content"
-            class="{% if request.path == contact_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
+            class="{% if request.path == contact_url or request.path == profile_url or request.path == edit_profile_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
             <!-- displaying Django messages -->
             <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
                 <div>

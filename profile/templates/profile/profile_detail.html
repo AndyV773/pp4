@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<div class="bg-dark vh-100">
-    <a class="position-absolute text-secondary fs-2 ms-2 text-decoration-none" href="{% url 'home' %}" class="btn"><i
+<header class="bg-dark">
+    <a class="btn position-absolute text-secondary fs-2 ms-2 z-3" href="{% url 'home' %}"><i
             class="fa-solid fa-circle-arrow-left"></i></a>
     <a class="text-secondary" href="{% url 'home' %}">
-        <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+        <h2 class="text-center pt-2 mb-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
     </a>
-    <!-- profile information -->
-    <div class="d-flex flex-column mt-5 text-light p-4">
+</header>
+<!-- profile information -->
+<section class="bg-dark vh-100">
+    <h3 class="text--platinum ms-3 mt-5">User Information:</h3>
+    <div class="d-flex flex-column text-light p-4">
         <fieldset class="ms-5">
             <legend>Username:</legend>
             <div>@{{ user }}</div>
@@ -36,7 +39,7 @@
             <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow">Edit</a>
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}
 
 {% block extras %}
