@@ -28,11 +28,3 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-
-// code from code institue thorin & company flask 
-document.addEventListener("DOMContentLoaded", function () {
-    let copyRightDate = document.getElementsByClassName("copyright-date");
-    for (let items of copyRightDate){
-        items.textContent = new Date().getFullYear();
-    }
-});

@@ -4,9 +4,8 @@ const commentText = document.getElementById("id_comment");
 const commentForm = document.getElementById("comment-form");
 const submitButton = document.getElementById("comment-submit-button");
 const editCommentTitle = document.getElementById("edit-comment-title");
-const deleteButtons = document.getElementsByClassName("btn-delete-comment");
-const deleteConfirm = document.getElementById("comment-delete-model-confirm");
-const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-modal"));
+const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteConfirm = document.getElementById("delete-model-confirm");
 
 
 /**
@@ -21,6 +20,7 @@ if (theCommentButton) {
         submitButton.innerText = "Submit";
     });
 }
+
 
 /**
 * Initializes edit functionality for the provided edit buttons.
@@ -59,6 +59,5 @@ for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
         deleteConfirm.href = `delete_comment/${commentId}`;
-        deleteModal.show();
     });
 }

@@ -31,10 +31,15 @@
         <img src=" {{ post.featured_image.url }}" class="card-img-top rounded-2" alt="{{ channel.name }}">
         {% endif %}
         <div class="d-flex justify-content-evenly">
+            <!-- view to comments -->
+            <div>
+                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
+                    {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
+            </div>
             <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
+            <!-- The number of likes goes before the closing strong tag -->
             <div class="align-self-center">
-                <!-- The number of likes goes before the closing strong tag -->
-                <span class="text-secondary">{{ post.number_of_likes }} </span>
+                <span>{{ post.number_of_likes }} </span>
                 {% if user.is_authenticated %}
                 <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
                     {% csrf_token %}
@@ -48,15 +53,16 @@
                 <span class="text-secondary"><i class="fa-regular fa-heart"></i></span>
                 {% endif %}
             </div>
-            <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
-                {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
             <!-- delete and edit post buttons  -->
             {% if post.author == user %}
-            <!-- fa-solid fa-trash-can btn -->
-             <!-- fa-solid fa-pen-to-square btn -->
-            <button class="btn-delete" data-post_id="{{ post.id }}" aria-label="Delete post">Delete</button>
-            <button type="button" class="btn-edit" data-bs-toggle="modal"
-                data-bs-target="#post-model" data-post_id="{{ post.id }}" aria-label="Edit post">Edit</button>
+            <!-- delete post -->
+            <!-- fa-solid fa-trash-can -->
+            <button type="button" class="my-btn btn-delete rounded" data-post_id="{{ post.id }}"
+                aria-label="Delete post">Delete</button>
+            <!-- edit post -->
+            <!-- fa-solid fa-pen-to-square -->
+            <button type="button" class="btn-edit rounded" data-bs-toggle="modal" data-bs-target="#post-model"
+                data-post_id="{{ post.id }}" aria-label="Edit post">Edit</button>
             {% endif %}
         </div>
     </div>
@@ -69,11 +75,10 @@
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
 <!-- post button trigger modal -->
+<!-- fa-solid fa-pen -->
 <button id="the-post-button" type="button"
-    class="position-absolute bottom-0 end-0 m-3 btn bg--medium text--platinum btn-lg fs-2 rounded shadow-lg cc--hover"
-    data-bs-toggle="modal" data-bs-target="#post-model">
-    <i class="fa-solid fa-pen"></i>
-</button>
+    class="position-absolute bottom-0 end-0 m-3 btn text-light bg--medium btn-lg fs-2 rounded cc--hover align-center"
+    data-bs-toggle="modal" data-bs-target="#post-model">+</button>
 {% endif %}
 
 <!-- post and edit modal -->
@@ -84,7 +89,8 @@
             <div class="modal-header">
                 <h5 class="modal-title fs-5 text-capitalize" id="post-modal-label"><span id="edit-post-title"></span>
                     {{ channel.name }} Post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  aria-hidden="true"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 <form id="post-form" method="POST" enctype="multipart/form-data">
@@ -97,28 +103,6 @@
                             class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- post delete modal -->
-<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="delete-post-label">
-    <div class="modal-dialog" inert>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="delete-post-label">Delete post?</h5>
-                <button type="button" data-bs-dismiss="modal" aria-label="Close">x</button>
-            </div>
-            <div class="delete-modal-body">
-                Are you sure you want to delete your post?
-                This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg--medium text-light cc--hover"
-                    data-bs-dismiss="modal" aria-label="Post delete cancel">Cancel</button>
-                <a id="post-delete-model-confirm" href="#" class="btn
-          btn-danger" aria-label="Post delete confirm">Delete</a>
             </div>
         </div>
     </div>

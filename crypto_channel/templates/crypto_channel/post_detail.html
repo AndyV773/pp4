@@ -34,11 +34,13 @@
             <!-- delete and edit comment buttons -->
             <div class="d-flex justify-content-evenly">
                 {% if comment.author == user %}
-                <!-- fa-solid fa-trash-can btn  -->
-                <!-- fa-solid fa-pen-to-square btn  -->
-                <button type="button" class="btn-delete-comment" data-comment_id="{{ comment.id }}"
+                <!-- delete comment -->
+                <!-- fa-solid fa-trash-can -->
+                <button type="button" class="my-btn btn-delete rounded" data-comment_id="{{ comment.id }}"
                     aria-label="Delete comment">Delete</button>
-                <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#comment-model"
+                <!-- edit comment -->
+                <!-- fa-solid fa-pen-to-square -->
+                <button type="button" class="btn-edit rounded" data-bs-toggle="modal" data-bs-target="#comment-model"
                     data-comment_id="{{ comment.id }}" aria-label="Edit comment">Edit</button>
                 {% endif %}
             </div>
@@ -54,11 +56,10 @@
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
 <!-- comment button trigger modal -->
+<!-- fa-solid fa-pen -->
 <button id="the-comment-button" type="button"
-    class="position-absolute bottom-0 end-0 m-3 btn bg--medium text--platinum btn-lg fs-2 rounded shadow-lg cc--hover"
-    data-bs-toggle="modal" data-bs-target="#comment-model">
-    <i class="fa-solid fa-pen"></i>
-</button>
+    class="position-absolute bottom-0 end-0 m-3 btn text-light bg--medium btn-lg fs-2 rounded cc--hover"
+    data-bs-toggle="modal" data-bs-target="#comment-model">+</button>
 {% endif %}
 <!-- comment and edit modal -->
 <div class="modal fade" id="comment-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -82,28 +83,6 @@
                             class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- comment delete modal -->
-<div class="modal fade" id="comment-delete-modal" tabindex="-1" aria-labelledby="delete-comment-label">
-    <div class="modal-dialog" inert>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="delete-comment-label">Delete comment?</h5>
-                <button type="button" data-bs-dismiss="modal" aria-label="Comment delete close">x</button>
-            </div>
-            <div class="delete-modal-body">
-                Are you sure you want to delete your comment?
-                This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn bg--medium text-light cc--hover" data-bs-dismiss="modal"
-                    aria-label="Comment delete cancel">Cancel</button>
-                <a id="comment-delete-model-confirm" href="#" class="btn
-          btn-danger" aria-label="Confirm comment delete">Delete</a>
             </div>
         </div>
     </div>

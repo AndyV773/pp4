@@ -145,12 +145,13 @@
             class="{% if request.path == contact_url or request.path == profile_url or request.path == edit_profile_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
             <header class="sticky-top shadow bg--medium">
                 {% if comment_count %}
-                <a class="btn position-absolute text--platinum fs-2" href="{% url 'channel_detail' post.channel.slug %}">
+                <a class="btn position-absolute text--platinum fs-2"
+                    href="{% url 'channel_detail' post.channel.slug %}">
                     <i class="fa-solid fa-circle-arrow-left"></i>
                 </a>
                 {% elif request.path == edit_profile_url %}
                 <a class="btn position-absolute text--platinum fs-2" href="{% url 'profile' %}"><i
-                    class="fa-solid fa-circle-arrow-left"></i></a>
+                        class="fa-solid fa-circle-arrow-left"></i></a>
                 {% else %}
                 <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}">
                     <i class="fa-solid fa-circle-arrow-left"></i>
@@ -173,7 +174,7 @@
                 </div>
             </header>
             <!-- displaying Django messages -->
-            <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
+            <div class="container position-absolute mt-2 start-50 translate-middle z--3000">
                 <div>
                     <div>
                         {% for message in messages %}
@@ -191,6 +192,39 @@
             {% endblock content %}
         </article>
     </main>
+    <!-- delete modal -->
+    <!-- The Modal -->
+    <section id="myModal" class="the-modal">
+        <!-- Modal content -->
+        <div class="modal-content rounded-2">
+            <div class="modal-header">
+                {% if post_count %}
+                <h5 id="delete-modal-label">Delete post?</h5>
+                {% else %}
+                <h5 id="delete-modal-label">Delete comment?</h5>
+                {% endif %}
+                <button type="button" class="modal--close btn-close fs-3 position-absolute top-0 end-0 p-3"
+                    aria-label="Close"></button>
+            </div>
+            <hr>
+            {% if post_count %}
+            <p id="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.</p>
+            {% else %}
+            <p id="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.</p>
+            {% endif %}
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="modal--close btn bg--medium text-light cc--hover me-4"
+                    aria-label="Cancel">Cancel</button>
+                <a id="delete-model-confirm" href="#" class="btn
+          btn-danger" aria-label="Confirm delete">Delete</a>
+            </div>
+        </div>
+    </section>
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

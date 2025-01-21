@@ -5,8 +5,7 @@ const postForm = document.getElementById("post-form");
 const submitButton = document.getElementById("post-submit-button");
 const editPostTitle = document.getElementById("edit-post-title");
 const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteModelConfirm = document.getElementById("post-delete-model-confirm");
-const deleteModal = new bootstrap.Modal(document.getElementById("post-delete-modal"));
+const deleteModelConfirm = document.getElementById("delete-model-confirm");
 
 
 /**
@@ -60,6 +59,5 @@ for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let postId = e.target.getAttribute("data-post_id");
         deleteModelConfirm.href = `delete_post/${postId}/`;
-        deleteModal.show();
     });
 }
