@@ -18,8 +18,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Net</title>
-
+    <!-- meta tags for search engines -->
+    <meta name="description" content="Crypto Net, Crypto Social Platform">
+    <meta name="keywords" content="crypto net, crypto, network, social, currency, currencies, bitcoin, ethereum">
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +33,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Custom CSS -->
+    <link rel='shortcut icon' type='image/x-icon' href="{% static 'images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Crypto Net</title>
 </head>
 
 <body>
@@ -140,6 +143,35 @@
         <!-- added background color for landscape view with color backgrounds -->
         <article id="channel-content"
             class="{% if request.path == contact_url or request.path == profile_url or request.path == edit_profile_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
+            <header class="sticky-top shadow bg--medium">
+                {% if comment_count %}
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'channel_detail' post.channel.slug %}">
+                    <i class="fa-solid fa-circle-arrow-left"></i>
+                </a>
+                {% elif request.path == edit_profile_url %}
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'profile' %}"><i
+                    class="fa-solid fa-circle-arrow-left"></i></a>
+                {% else %}
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}">
+                    <i class="fa-solid fa-circle-arrow-left"></i>
+                </a>
+                {% endif %}
+                <a class="text--platinum" href="{% url 'home' %}">
+                    <h2 class="text-center p-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
+                </a>
+                <div class="d-flex justify-content-around">
+                    <h3 class="text-light fs-5 m-0">
+                        {{ channel.name | capfirst }}
+                    </h3>
+                    <div class="d-flex text-light">
+                        {% if post_count %}
+                        <div class="ms-2">{{ post_count }} Posts</div>
+                        {% elif comment_count %}
+                        <div class="ms-2">{{ comment_count }} <i class="fa-solid fa-comments"></i></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </header>
             <!-- displaying Django messages -->
             <div class="container position-absolute mt-5 start-50 translate-middle z--3000">
                 <div>

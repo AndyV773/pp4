@@ -2,22 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<header class="sticky-top shadow bg--medium">
-    <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}">
-        <i class="fa-solid fa-circle-arrow-left"></i>
-    </a>
-    <a class="text--platinum" href="{% url 'home' %}">
-        <h2 class="text-center pt-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-    </a>
-    <div class="d-flex justify-content-around">
-        <h3 class="text-light fs-5 m-0">
-            {{ channel.name | capfirst }}
-        </h3>
-        <div class="d-flex text-light">
-            <div class="ms-2">{{ post_count }} Posts</div>
-        </div>
-    </div>
-</header>
+<!-- channel detail -->
 {% if not user.is_authenticated %}
 <a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow">Log in to add a post</a>
 {% endif %}
@@ -33,7 +18,7 @@
     <div class="card border-0 m-4" style="width: 60rem;">
         <div class="card-body">
             <div class="d-flex justify-content-between">
-                <h5 class="card-title">@{{ post.author }}</h5>
+                <h4 class="card-title">@{{ post.author }}</h4>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </div>
             <div id="post{{ post.id }}" class="card-text">
@@ -65,10 +50,13 @@
             </div>
             <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
                 {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
+            <!-- delete and edit post buttons  -->
             {% if post.author == user %}
-            <button type="button" class="fa-solid fa-trash-can btn btn-delete" data-post_id="{{ post.id }}"></button>
-            <button type="button" class="fa-solid fa-pen-to-square btn btn-edit" data-bs-toggle="modal"
-                data-bs-target="#post-model" data-post_id="{{ post.id }}"></button>
+            <!-- fa-solid fa-trash-can btn -->
+             <!-- fa-solid fa-pen-to-square btn -->
+            <button class="btn-delete" data-post_id="{{ post.id }}" aria-label="Delete post">Delete</button>
+            <button type="button" class="btn-edit" data-bs-toggle="modal"
+                data-bs-target="#post-model" data-post_id="{{ post.id }}" aria-label="Edit post">Edit</button>
             {% endif %}
         </div>
     </div>
@@ -90,13 +78,13 @@
 
 <!-- post and edit modal -->
 <div class="modal fade" id="post-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="post-modal-label" aria-hidden="true">
+    aria-labelledby="post-modal-label">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title fs-5 text-capitalize" id="post-modal-label"><span id="edit-post-title"></span>
                     {{ channel.name }} Post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  aria-hidden="true"></button>
             </div>
             <div class="modal-body">
                 <form id="post-form" method="POST" enctype="multipart/form-data">
@@ -115,12 +103,12 @@
 </div>
 
 <!-- post delete modal -->
-<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="post-delete-modal" tabindex="-1" aria-labelledby="delete-post-label">
+    <div class="modal-dialog" inert>
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="delete-modal-label">Delete post?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="delete-post-label">Delete post?</h5>
+                <button type="button" data-bs-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="delete-modal-body">
                 Are you sure you want to delete your post?
@@ -128,9 +116,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg--medium text-light cc--hover"
-                    data-bs-dismiss="modal">Cancel</button>
+                    data-bs-dismiss="modal" aria-label="Post delete cancel">Cancel</button>
                 <a id="post-delete-model-confirm" href="#" class="btn
-          btn-danger">Delete</a>
+          btn-danger" aria-label="Post delete confirm">Delete</a>
             </div>
         </div>
     </div>

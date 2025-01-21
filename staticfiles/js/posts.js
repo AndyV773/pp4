@@ -13,12 +13,14 @@ const deleteModal = new bootstrap.Modal(document.getElementById("post-delete-mod
  * Resets the post modal elements and form
  * for posting a new post
  */
-thePostButton.addEventListener("click", (e) => {
-    editPostTitle.innerHTML = "";
-    postText.value = "";
-    postForm.setAttribute("action", "");
-    submitButton.innerText = "Submit";
-});
+if (thePostButton) {
+    thePostButton.addEventListener("click", (e) => {
+        editPostTitle.innerHTML = "";
+        postText.value = "";
+        postForm.setAttribute("action", "");
+        submitButton.innerText = "Submit";
+    });
+}
 
 
 /**

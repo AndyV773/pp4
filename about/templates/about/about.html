@@ -1,13 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<header class="bg-dark">
-    <a class="btn position-absolute text-secondary fs-2 z-3" href="{% url 'home' %}"><i
-            class="fa-solid fa-circle-arrow-left"></i></a>
-    <a class="text-secondary" href="{% url 'home' %}">
-        <h2 class="text-center pt-2 mb-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-    </a>
-</header>
+<!-- about -->
 <section class="bg-dark d-flex flex-column flex-grow-1">
     <div class="d-flex justify-content-center m-3 pb-5">
         <div class="card bg-dark border-2 border-secondary shadow mt-5" style="width: 60rem;">
@@ -15,7 +9,7 @@
             <img src="{{ about.hero_image.url }}" class="card-img-top" alt="{{ about.title }}">
             {% endif %}
             <div class="card-body text-light">
-                <h3 class="card-title text--platinum fs-3">{{ about.title }}</h3>
+                <h4 class="card-title text--platinum fs-3">{{ about.title }}</h4>
                 <hr>
                 <div class="card-text fs-4">{{ about.content | safe }}</div>
                 <div class="text-end m-3">Updated on: {{ about.updated_on | date:"d/m/Y" }}</div>

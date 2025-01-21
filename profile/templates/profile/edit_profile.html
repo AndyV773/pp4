@@ -2,17 +2,11 @@
 {% block content %}
 {% load crispy_forms_tags %}
 {% load static %}
-<header class="bg-dark">
-    <a class="btn position-absolute text-secondary fs-2 ms-2 z-3" href="{% url 'profile' %}"><i
-            class="fa-solid fa-circle-arrow-left"></i></a>
-    <a class="text-secondary" href="{% url 'home' %}">
-        <h2 class="text-center pt-2 mb-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-    </a>
-</header>
-<!-- edit profile form -->
+<!-- edit profile -->
 <section class="bg-dark vh-100">
-    <h3 class="text--platinum ms-3 mt-5">Edit User Information:</h3>
+    <h4 class="text--platinum ms-3 mt-5">Edit User Information:</h4>
     <div class="d-flex justify-content-center mt-4">
+        <!-- profile form -->
         <form method="POST" class="col-8 text-light">
             {{ profile_form | crispy }}
             {% csrf_token %}

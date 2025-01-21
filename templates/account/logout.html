@@ -1,23 +1,14 @@
 {% extends "base.html" %}
-
 {% load i18n %}
-
-{% block head_title %}{% trans "Sign Out" %}{% endblock head_title %}
-
+{% block head_title %}
+{% trans "Sign Out" %}
+{% endblock head_title %}
 {% block content %}
-<header>
-  <a class="btn position-absolute text-secondary fs-2 z-3" href="{% url 'home' %}"><i
-      class="fa-solid fa-circle-arrow-left"></i></a>
-  <a class="text-secondary" href="{% url 'home' %}">
-    <h2 class="text-center pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-  </a>
-</header>
 <!-- code used from code institute django blog -->
 <section class="container pb-5">
   <div class="row">
     <div class="col-sm-8 mt-3 offset-sm-2">
-      <h3>{% trans "Sign Out" %}</h3>
-
+      <h4>{% trans "Sign Out" %}</h4>
       <p>{% trans 'Are you sure you want to sign out?' %}</p>
     </div>
   </div>

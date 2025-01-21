@@ -2,15 +2,9 @@
 {% block content %}
 {% load crispy_forms_tags %}
 {% load static %}
-<header class="bg-dark">
-    <a class="btn position-absolute text-secondary fs-2 ms-2 z-3" href="{% url 'home' %}"><i
-            class="fa-solid fa-circle-arrow-left"></i></a>
-    <a class="text-secondary" href="{% url 'home' %}">
-        <h2 class="text-center pt-2 mb-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-    </a>
-</header>
+<!-- add channel -->
 <section class="bg-dark vh-100">
-    <h3 class="text--platinum ps-3 pt-4">Request a channel</h3>
+    <h4 class="text--platinum ps-3 pt-4">Request a channel</h4>
     <p class="text-light ms-3 mt-2">Only approved channels will be listed</p>
     <!-- Contact form -->
     <div class="d-flex justify-content-center pb-5">
@@ -21,7 +15,7 @@
                 class="btn btn-lg bg--light text-light p--shadow float-end">Submit</button>
         </form>
     </div>
-</div>
+</section>
 {% endblock content %}
 
 {% block extras %}

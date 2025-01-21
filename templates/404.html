@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="d-flex flex-column justify-content-center">
+<!-- 404 page -->
+<section class="d-flex flex-column justify-content-center">
     <img class="h--250" src="{% static 'images/404/404.svg' %}" alt="404 Error">
-    <h2 class="text-center mt-0">Error Go Back</h2>
+    <h4 class="text-center mt-0">Error Go Back</h4>
     <a class="text-center fs-2" href="{% url 'home' %}">Home</a>
-</div>
+</section>
 {% endblock content %}

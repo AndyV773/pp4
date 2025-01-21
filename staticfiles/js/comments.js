@@ -4,7 +4,7 @@ const commentText = document.getElementById("id_comment");
 const commentForm = document.getElementById("comment-form");
 const submitButton = document.getElementById("comment-submit-button");
 const editCommentTitle = document.getElementById("edit-comment-title");
-const deleteButtons = document.getElementsByClassName("btn-delete");
+const deleteButtons = document.getElementsByClassName("btn-delete-comment");
 const deleteConfirm = document.getElementById("comment-delete-model-confirm");
 const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-modal"));
 
@@ -13,13 +13,14 @@ const deleteModal = new bootstrap.Modal(document.getElementById("comment-delete-
  * Resets the comment modal elements and form
  * for posting a new comment
  */
-theCommentButton.addEventListener("click", (e) => {
-    editCommentTitle.innerHTML = "";
-    commentText.value = "";
-    commentForm.setAttribute("action", "");
-    submitButton.innerText = "Submit";
-});
-
+if (theCommentButton) {
+    theCommentButton.addEventListener("click", (e) => {
+        editCommentTitle.innerHTML = "";
+        commentText.value = "";
+        commentForm.setAttribute("action", "");
+        submitButton.innerText = "Submit";
+    });
+}
 
 /**
 * Initializes edit functionality for the provided edit buttons.
