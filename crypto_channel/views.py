@@ -69,7 +69,8 @@ def channel_detail(request, slug):
     for post in posts:
         post.comment_count = post.comments.filter(approved=True).count()
 
-    # https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
+    # https://github.com/Code-Institute-Solutions/
+    # Django3blog/blob/master/10_likes/blog/views.py
     liked = False
     for post in posts:
         if post.likes.filter(id=request.user.id).exists():
@@ -107,7 +108,8 @@ def channel_detail(request, slug):
     )
 
 
-# https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py
+# https://github.com/Code-Institute-Solutions/
+# Django3blog/blob/master/10_likes/blog/views.py
 class PostLike(View):
     
     def post(self, request, slug, post_id, *args, **kwargs):
