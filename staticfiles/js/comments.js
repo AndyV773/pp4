@@ -1,9 +1,12 @@
+// post comment
 const theCommentButton = document.getElementById("the-comment-button");
+// edit comment
 const editButtons = document.getElementsByClassName("btn-edit");
 const commentText = document.getElementById("id_comment");
 const commentForm = document.getElementById("comment-form");
 const submitButton = document.getElementById("comment-submit-button");
 const editCommentTitle = document.getElementById("edit-comment-title");
+// delete comment
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("delete-model-confirm");
 
@@ -15,6 +18,7 @@ const deleteConfirm = document.getElementById("delete-model-confirm");
 if (theCommentButton) {
     theCommentButton.addEventListener("click", (e) => {
         editCommentTitle.innerHTML = "";
+        editCommentTitle.innerHTML = "Add a";
         commentText.value = "";
         commentForm.setAttribute("action", "");
         submitButton.innerText = "Submit";
@@ -35,8 +39,9 @@ if (theCommentButton) {
 */
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let commentId = e.target.getAttribute("data-comment_id");
+        let commentId = e.target.parentElement.getAttribute("data-comment_id");
         let commentContent = document.getElementById(`comment${commentId}`).innerText;
+        editCommentTitle.innerHTML = "";
         editCommentTitle.innerHTML = "Edit";
         commentText.value = commentContent;
         submitButton.innerText = "Update";
@@ -52,12 +57,10 @@ for (let button of editButtons) {
 * - Retrieves the associated comment's ID upon click.
 * - Updates the `deleteConfirm` link's href to point to the 
 * deletion endpoint for the specific comment.
-* - Displays a confirmation modal (`deleteModal`) to prompt 
-* the user for confirmation before deletion.
 */
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let commentId = e.target.getAttribute("data-comment_id");
+        let commentId = e.target.parentElement.getAttribute("data-comment_id");
         deleteConfirm.href = `delete_comment/${commentId}`;
     });
 }

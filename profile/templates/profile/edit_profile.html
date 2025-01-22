@@ -5,13 +5,15 @@
 <!-- edit profile -->
 <section class="bg-dark vh-100">
     <h4 class="text--platinum ms-3 mt-5">Edit User Information:</h4>
+    <!-- profile form -->
     <div class="d-flex justify-content-center mt-4">
-        <!-- profile form -->
         <form method="POST" class="col-8 text-light">
             {{ profile_form | crispy }}
             {% csrf_token %}
-            <a href="{% url 'profile' %}" class="btn btn-lg bg--light text-light p--shadow">Cancel</a>
-            <button type="submit" class="btn btn-lg bg--light text-light p--shadow float-end">Save</button>
+            <a href="{% url 'profile' %}" class="btn btn-lg bg--light text-light p--shadow"
+                aria-label="Cancel">Cancel</a>
+            <button type="submit" class="btn btn-lg bg--light text-light p--shadow float-end"
+                aria-label="Save profile">Save</button>
         </form>
     </div>
 </section>

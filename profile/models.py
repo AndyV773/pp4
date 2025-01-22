@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 
 
 # Create your models here.
+# Credit for the profile code: Code Institute Boutique Ado project
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default information

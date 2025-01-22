@@ -4,7 +4,8 @@
 {% block content %}
 <!-- channel detail -->
 {% if not user.is_authenticated %}
-<a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow">Log in to add a post</a>
+<a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow" aria-label="Go to login page">
+    Log in to add a post</a>
 {% endif %}
 {% if post_count == 0 %}
 <p class="mt-3 ms-4">There are no posts on this channel</p>
@@ -15,25 +16,29 @@
 {% for post in posts %}
 <section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
-    <div class="card border-0 m-4" style="width: 60rem;">
+    <div class="card border-0 m-4">
         <div class="card-body">
-            <div class="d-flex justify-content-between">
+            <!-- post header -->
+            <header class="d-flex justify-content-between">
                 <h4 class="card-title">@{{ post.author }}</h4>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
-            </div>
+            </header>
+            <!-- post content -->
             <div id="post{{ post.id }}" class="card-text">
-                {{ post.content }}
+                {{ post.content | linebreaks }}
             </div>
         </div>
+        <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-2" alt="BTC Default">
+        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded" alt="BTC Default">
         {% else %}
-        <img src=" {{ post.featured_image.url }}" class="card-img-top rounded-2" alt="{{ channel.name }}">
+        <img src=" {{ post.featured_image.url }}" class="card-img-top rounded" alt="{{ post.id }} image">
         {% endif %}
         <div class="d-flex justify-content-evenly">
             <!-- view to comments -->
-            <div>
-                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment">
+            <div class="align-self-center">
+                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment"
+                    aria-label="View post comments">
                     {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
             </div>
             <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
@@ -44,9 +49,13 @@
                 <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
                     {% csrf_token %}
                     {% if post.liked %}
-                    <button type="submit" value="{{ post.id }}" class="btn fa-solid fa-heart"></button>
+                    <button type="submit" value="{{ post.id }}" class="btn" aria-label="Unlike post">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
                     {% else %}
-                    <button type="submit" value="{{ post.id }}" class="btn fa-regular fa-heart"></button>
+                    <button type="submit" value="{{ post.id }}" class="btn" aria-label="Like post">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
                     {% endif %}
                 </form>
                 {% else %}
@@ -56,13 +65,15 @@
             <!-- delete and edit post buttons  -->
             {% if post.author == user %}
             <!-- delete post -->
-            <!-- fa-solid fa-trash-can -->
-            <button type="button" class="my-btn btn-delete rounded" data-post_id="{{ post.id }}"
-                aria-label="Delete post">Delete</button>
+            <button type="button" class="btn my-btn btn-delete p-0 m-0" data-post_id="{{ post.id }}"
+                aria-label="Delete post">
+                <i class="fa-solid fa-trash-can p-3"></i>
+            </button>
             <!-- edit post -->
-            <!-- fa-solid fa-pen-to-square -->
-            <button type="button" class="btn-edit rounded" data-bs-toggle="modal" data-bs-target="#post-model"
-                data-post_id="{{ post.id }}" aria-label="Edit post">Edit</button>
+            <button type="button" class="btn btn-edit p-0 m-0" data-bs-toggle="modal" data-bs-target="#post-model"
+                data-post_id="{{ post.id }}" aria-label="Edit post">
+                <i class="fa-solid fa-pen-to-square p-3"></i>
+            </button>
             {% endif %}
         </div>
     </div>
@@ -75,40 +86,40 @@
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
 <!-- post button trigger modal -->
-<!-- fa-solid fa-pen -->
 <button id="the-post-button" type="button"
     class="position-absolute bottom-0 end-0 m-3 btn text-light bg--medium btn-lg fs-2 rounded cc--hover align-center"
-    data-bs-toggle="modal" data-bs-target="#post-model">+</button>
+    data-bs-toggle="modal" data-bs-target="#post-model" aria-label="Add a post">
+    <i class="fa-solid fa-pen"></i>
+</button>
 {% endif %}
-
 <!-- post and edit modal -->
-<div class="modal fade" id="post-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<section class="modal fade" id="post-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="post-modal-label">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <header class="modal-header">
                 <h5 class="modal-title fs-5 text-capitalize" id="post-modal-label"><span id="edit-post-title"></span>
                     {{ channel.name }} Post</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    aria-hidden="true"></button>
-            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </header>
+            <!-- modal post form -->
             <div class="modal-body">
                 <form id="post-form" method="POST" enctype="multipart/form-data">
                     {{ post_form | crispy }}
                     {% csrf_token %}
                     <div class="d-flex justify-content-between">
                         <button type="button" class="btn btn-lg bg--medium shadow text-light cc--hover"
-                            data-bs-dismiss="modal">Cancel</button>
+                            data-bs-dismiss="modal" aria-label="Cancel post">Cancel</button>
                         <button id="post-submit-button" type="submit"
-                            class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
+                            class="btn btn-lg bg--medium shadow text-light cc--hover"
+                            aria-label="Submit post">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}
-
 {% block extras %}
 <script src="{% static 'js/posts.js' %}"></script>
 {% endblock %}

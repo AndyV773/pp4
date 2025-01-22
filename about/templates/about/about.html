@@ -4,7 +4,7 @@
 <!-- about -->
 <section class="bg-dark d-flex flex-column flex-grow-1">
     <div class="d-flex justify-content-center m-3 pb-5">
-        <div class="card bg-dark border-2 border-secondary shadow mt-5" style="width: 60rem;">
+        <div class="card bg-dark border-2 border-secondary plat--shadow mt-5">
             {% if not "placeholder" in about.hero_image.url %}
             <img src="{{ about.hero_image.url }}" class="card-img-top" alt="{{ about.title }}">
             {% endif %}
@@ -13,8 +13,8 @@
                 <hr>
                 <div class="card-text fs-4">{{ about.content | safe }}</div>
                 <div class="text-end m-3">Updated on: {{ about.updated_on | date:"d/m/Y" }}</div>
-                <a href="{% url 'contact' %}" class="btn btn-lg bg--light text-light p--shadow float-end">Get in
-                    touch</a>
+                <a href="{% url 'contact' %}" class="btn btn-lg bg--light text-light p--shadow float-end"
+                    aria-label="Get in touch">Get in touch</a>
             </div>
         </div>
     </div>

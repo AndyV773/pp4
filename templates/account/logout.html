@@ -6,20 +6,22 @@
 {% block content %}
 <!-- code used from code institute django blog -->
 <section class="container pb-5">
-  <div class="row">
+  <header class="row">
     <div class="col-sm-8 mt-3 offset-sm-2">
       <h4>{% trans "Sign Out" %}</h4>
       <p>{% trans 'Are you sure you want to sign out?' %}</p>
     </div>
-  </div>
+  </header>
+  <!-- sign out form -->
   <div class="row">
     <div class="col-sm-8 mt-3 offset-sm-2">
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
         {% endif %}
-        <button class="btn btn-lg shadow bg--medium cc--hover text-light float-end me-4" type="submit">
+        <button class="btn btn-lg shadow bg--medium cc--hover text-light float-end me-4" type="submit"
+          aria-label="Sign out">
           {% trans 'Sign Out' %}
         </button>
       </form>

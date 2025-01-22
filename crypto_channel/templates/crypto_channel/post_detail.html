@@ -4,44 +4,55 @@
 {% block content %}
 <!-- post detail -->
 {% if not user.is_authenticated %}
-<a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow">Log in to leave a comment</a>
+<a href="{% url 'account_login' %}" class="btn bg-warning m-4 mb-0 shadow" aria-label="Go to log in page">
+    Log in to leave a comment</a>
 {% endif %}
 <section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
-    <div class="card border-0 m-4" style="width: 60rem;">
+    <div class="card border-0 m-4">
         <div class="card-body">
-            <div class="d-flex justify-content-between">
+            <!-- post header -->
+            <header class="d-flex justify-content-between">
                 <h4 class="card-title">@{{ post.author }}</h4>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
+            </header>
+            <!-- post content -->
+            <div class="card-text">
+                {{ post.content | linebreaks }}
             </div>
-            <div class="card-text">{{ post.content | safe }}</div>
         </div>
+        <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded-2" alt="BTC Default">
+        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded" alt="BTC Default">
         {% else %}
-        <img src=" {{ post.featured_image.url }}" class="card-img-top rounded-2" alt="{{ channel.name }}">
+        <img src=" {{ post.featured_image.url }}" class="card-img-top rounded" alt="{{ post.id }} image">
         {% endif %}
         <h5 class="mt-3 mb-0">Comments:</h5>
         <hr>
         {% if comment_count == 0 %}
         <p class="mt-3">There are no comments on this post</p>
         {% else %}
+        <!-- comment section -->
         {% for comment in comments %}
         <fieldset class="mt-4">
             <legend>@{{ comment.author }}</legend>
-            <div id="comment{{ comment.id }}" class="ms-3">{{ comment.comment | linebreaks }}</div>
+            <div id="comment{{ comment.id }}" class="ms-3">
+                {{ comment.comment | linebreaks }}
+            </div>
             <div>{{ comment.created_on | date:"H:i d/m/Y" }}</div>
             <!-- delete and edit comment buttons -->
             <div class="d-flex justify-content-evenly">
                 {% if comment.author == user %}
                 <!-- delete comment -->
-                <!-- fa-solid fa-trash-can -->
-                <button type="button" class="my-btn btn-delete rounded" data-comment_id="{{ comment.id }}"
-                    aria-label="Delete comment">Delete</button>
+                <button type="button" class="btn my-btn btn-delete p-0 m-0" data-comment_id="{{ comment.id }}"
+                    aria-label="Delete comment">
+                    <i class="fa-solid fa-trash-can p-3"></i>
+                </button>
                 <!-- edit comment -->
-                <!-- fa-solid fa-pen-to-square -->
-                <button type="button" class="btn-edit rounded" data-bs-toggle="modal" data-bs-target="#comment-model"
-                    data-comment_id="{{ comment.id }}" aria-label="Edit comment">Edit</button>
+                <button type="button" class="btn btn-edit p-0 m-0" data-bs-toggle="modal"
+                    data-bs-target="#comment-model" data-comment_id="{{ comment.id }}" aria-label="Edit comment">
+                    <i class="fa-solid fa-pen-to-square p-3"></i>
+                </button>
                 {% endif %}
             </div>
         </fieldset>
@@ -56,29 +67,32 @@
 {% if user.is_authenticated %}
 <!-- code from https://getbootstrap.com/docs/5.3/components/modal/ -->
 <!-- comment button trigger modal -->
-<!-- fa-solid fa-pen -->
 <button id="the-comment-button" type="button"
     class="position-absolute bottom-0 end-0 m-3 btn text-light bg--medium btn-lg fs-2 rounded cc--hover"
-    data-bs-toggle="modal" data-bs-target="#comment-model">+</button>
+    data-bs-toggle="modal" data-bs-target="#comment-model" aria-label="Add a comment">
+    <i class="fa-solid fa-pen"></i>
+</button>
 {% endif %}
 <!-- comment and edit modal -->
-<div class="modal fade" id="comment-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<section class="modal fade" id="comment-model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="comment-modal-label">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <header class="modal-header">
                 <h5 class="modal-title fs-5 text-capitalize" id="comment-modal-label"><span
                         id="edit-comment-title"></span> Comment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    aria-hidden="true"></button>
-            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </header>
+            <!-- comment form -->
             <div id="comment-model-body" class="modal-body">
                 <form id="comment-form" method="POST">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
                     <div class="d-flex justify-content-between">
+                        <!-- cancel button -->
                         <button type="button" class="btn btn-lg bg--medium shadow text-light cc--hover"
                             data-bs-dismiss="modal">Cancel</button>
+                        <!-- submit button -->
                         <button id="comment-submit-button" type="submit"
                             class="btn btn-lg bg--medium shadow text-light cc--hover">Submit</button>
                     </div>
@@ -86,9 +100,8 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}
-
 {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}

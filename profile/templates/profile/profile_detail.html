@@ -5,16 +5,19 @@
 <section class="bg-dark vh-100">
     <h4 class="text--platinum ms-3 mt-5">User Information:</h4>
     <div class="d-flex flex-column text-light p-4">
+        <!-- username -->
         <fieldset class="ms-5">
             <legend>Username:</legend>
             <div>@{{ user }}</div>
         </fieldset>
         <hr>
+        <!-- phone -->
         <fieldset class="ms-5">
             <legend>Phone:</legend>
             <div>{{ profile.phone_number }}</div>
         </fieldset>
         <hr>
+        <!-- post code -->
         <fieldset class="ms-5">
             <legend>Post code:</legend>
             {% if profile.post_code %}
@@ -24,12 +27,14 @@
             {% endif %}
         </fieldset>
         <hr>
+        <!-- country -->
         <fieldset class="ms-5">
             <legend>Country:</legend>
             <div>{{ profile.country }}</div>
         </fieldset>
         <div class="d-flex justify-content-end me-5">
-            <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow">Edit</a>
+            <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow"
+                aria-label="Edit profile">Edit</a>
         </div>
     </div>
 </section>

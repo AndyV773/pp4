@@ -38,7 +38,7 @@ def add_channel(request):
             messages.add_message(request, messages.ERROR,
                                     'Error requesting channel!')
 
-    channel_list = Channel.objects.filter(approved=True).order_by("rank")
+    channel_list = Channel.objects.filter(approved=True)
     add_channel_form = AddChannelForm()        
 
     return render(

@@ -6,6 +6,7 @@ from crypto_channel.models import Channel
 
 
 # Create your views here
+# Credit for the profile code: Code Institute Boutique Ado project
 def profile_detail(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)

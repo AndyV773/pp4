@@ -3,8 +3,9 @@
 {% block content %}
 <!-- 404 page -->
 <section class="d-flex flex-column justify-content-center">
+    <!-- bouncy 404 image -->
     <img class="h--250" src="{% static 'images/404/404.svg' %}" alt="404 Error">
     <h4 class="text-center mt-0">Error Go Back</h4>
-    <a class="text-center fs-2" href="{% url 'home' %}">Home</a>
+    <a class="text-center fs-2" href="{% url 'home' %}" aria-label="Go to home">Home</a>
 </section>
 {% endblock content %}

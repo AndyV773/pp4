@@ -13,6 +13,18 @@ h5 {
     font-family: "Kanit", serif;
 }
 
+.z--3000 {
+    z-index: 3000;
+}
+
+.h--250 {
+    height: 250px;
+}
+
+.card {
+    width: 60rem !important;
+}
+
 .bg--dark {
     background-color: rgb(53, 53, 53);
 }
@@ -29,43 +41,20 @@ h5 {
     color: rgb(217, 217, 217);
 }
 
-.p--shadow:hover {
-    box-shadow: 0 0 4px 2px rgb(217, 217, 217);
-}
-
-.cc--hover:hover {
-    background-color: rgb(60, 110, 113);
+.plat--shadow {
+    box-shadow: 0 2px 8px rgb(217, 217, 217);
 }
 
 .disabled {
     color: rgb(60, 110, 113) !important;
 }
 
-.z--3000 {
-    z-index: 3000;
+.p--shadow:hover {
+    box-shadow: 0 0 4px 2px rgb(217, 217, 217);
 }
 
-.h--250 {
-    height: 250px;
-}
-
-/* ----------------------------------------------------------- fonts */
-.kanit {
-    font-family: "Kanit", serif;
-    font-weight: 500;
-    font-style: italic;
-}
-
-.ubuntu-regular {
-    font-family: "Ubuntu", serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.ubuntu-bold {
-    font-family: "Ubuntu", serif;
-    font-weight: 700;
-    font-style: italic;
+.cc--hover:hover {
+    background-color: rgb(60, 110, 113);
 }
 
 /* ----------------------------------------------------------- navigation menu */

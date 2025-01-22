@@ -11,6 +11,8 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+{% url 'channel_detail' channel.slug as channel_detail_url %}
+{% url 'post_detail' post.channel.slug post.id as post_detail_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,11 +41,11 @@
 </head>
 
 <body>
-    <!-- side navigational menu -->
+    <!-- pop out side navigational menu -->
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
     <nav id="mySidenav" class="sidenav bg--medium">
         <section>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" aria-label="Close side menu"><i
                     class="fa-solid fa-circle-arrow-left"></i></a>
             <h2 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i>
             </h2>
@@ -103,31 +105,38 @@
     <header class="d-none">
         <h1>Crypto Net</h1>
     </header>
+    <!-- main -->
     <main class="d-flex flex-row vh-100">
         <!-- left aside section -->
         <aside id="channel-list"
             class="d-flex flex-column col-12 col-sm-4 bg--dark shadow container-fluid overflow-y-auto p-0">
+            <!-- aside header -->
             <header class="sticky-top bg--dark text-light p-2">
                 <div class="d-flex justify-content-between">
                     <h2 id="side-header" class="fs-4 mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-                    <span id="menu-button" class="btn bg--light text-light p--shadow fs-4 m-2"
-                        style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                    <!-- navigational menu button -->
+                    <span id="menu-button" class="btn bg--light text-light p--shadow fs-4 m-2" onclick="openNav()"
+                        aria-label="Open menu"><i class="fa-solid fa-bars"></i></span>
                 </div>
+                <!-- user logged in message -->
                 {% if user.is_authenticated %}
                 <p class="mt-3">You are logged in as @{{ user }}</p>
                 {% else %}
                 <p class="mt-3">You are not logged in</p>
                 {% endif %}
+                <!-- channel list header -->
                 {% if channel_list %}
                 <h2 class="mt-4">Channels</h2>
                 {% endif %}
             </header>
+            <!-- channel list -->
             <ul class="list-unstyled p-2 flex-grow-1">
                 {% if channel_list %}
                 {% for channel in channel_list %}
                 <li class="overflow-y-hidden p-2">
                     <a href="{% url 'channel_detail' channel.slug %}"
-                        class="channel container-fluid btn text-light bg--light p--shadow">
+                        class="channel container-fluid btn text-light bg--light p--shadow"
+                        aria-label="Go to {{ channel.name }} channel">
                         <h3 class="m-0">{{ channel.name | capfirst }}</h3>
                     </a>
                 </li>
@@ -143,21 +152,23 @@
         <!-- added background color for landscape view with color backgrounds -->
         <article id="channel-content"
             class="{% if request.path == contact_url or request.path == profile_url or request.path == edit_profile_url %}bg-dark{% endif %} d-none d-sm-block col-sm-8 p-0 overflow-y-auto">
+            <!-- article header -->
             <header class="sticky-top shadow bg--medium">
-                {% if comment_count %}
-                <a class="btn position-absolute text--platinum fs-2"
-                    href="{% url 'channel_detail' post.channel.slug %}">
+                {% if request.path == post_detail_url %}
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'channel_detail' post.channel.slug %}"
+                    aria-label="Go back to channel">
                     <i class="fa-solid fa-circle-arrow-left"></i>
                 </a>
                 {% elif request.path == edit_profile_url %}
-                <a class="btn position-absolute text--platinum fs-2" href="{% url 'profile' %}"><i
-                        class="fa-solid fa-circle-arrow-left"></i></a>
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'profile' %}"
+                    aria-label="Go back to profile"><i class="fa-solid fa-circle-arrow-left"></i></a>
                 {% else %}
-                <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}">
+                <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}"
+                    aria-label="Go back to home">
                     <i class="fa-solid fa-circle-arrow-left"></i>
                 </a>
                 {% endif %}
-                <a class="text--platinum" href="{% url 'home' %}">
+                <a class="text--platinum" href="{% url 'home' %}" aria-label="Go back to home">
                     <h2 class="text-center p-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
                 </a>
                 <div class="d-flex justify-content-around">
@@ -165,30 +176,31 @@
                         {{ channel.name | capfirst }}
                     </h3>
                     <div class="d-flex text-light">
-                        {% if post_count %}
-                        <div class="ms-2">{{ post_count }} Posts</div>
-                        {% elif comment_count %}
-                        <div class="ms-2">{{ comment_count }} <i class="fa-solid fa-comments"></i></div>
+                        {% if request.path == channel_detail_url %}
+                        <div>{{ post_count }} Posts</div>
+                        {% elif request.path == post_detail_url %}
+                        <div>{{ comment_count }}<i class="fa-solid fa-comments ms-2"></i></div>
                         {% endif %}
                     </div>
                 </div>
             </header>
             <!-- displaying Django messages -->
-            <div class="container position-absolute mt-2 start-50 translate-middle z--3000">
+            <div class="container position-absolute mt-1 start-50 translate-middle z--3000">
                 <div>
                     <div>
                         {% for message in messages %}
                         <div class="alert {{ message.tags }} alert-dismissible
           fade show" id="msg" role="alert">
                             {{ message | safe }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                                aria-label="Close message"></button>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
             {% block content %}
-            <!-- Content Goes here -->
+            <!-- content goes here -->
             {% endblock content %}
         </article>
     </main>
@@ -196,8 +208,8 @@
     <!-- The Modal -->
     <section id="myModal" class="the-modal">
         <!-- Modal content -->
-        <div class="modal-content rounded-2">
-            <div class="modal-header">
+        <div class="modal-content rounded">
+            <header class="modal-header">
                 {% if post_count %}
                 <h5 id="delete-modal-label">Delete post?</h5>
                 {% else %}
@@ -205,8 +217,9 @@
                 {% endif %}
                 <button type="button" class="modal--close btn-close fs-3 position-absolute top-0 end-0 p-3"
                     aria-label="Close"></button>
-            </div>
+            </header>
             <hr>
+            <!-- delete modal body -->
             {% if post_count %}
             <p id="modal-body">
                 Are you sure you want to delete your comment?
@@ -218,8 +231,10 @@
             {% endif %}
             <hr>
             <div class="d-flex justify-content-end">
+                <!-- cancel delete button -->
                 <button type="button" class="modal--close btn bg--medium text-light cc--hover me-4"
                     aria-label="Cancel">Cancel</button>
+                <!-- confirm delete button -->
                 <a id="delete-model-confirm" href="#" class="btn
           btn-danger" aria-label="Confirm delete">Delete</a>
             </div>

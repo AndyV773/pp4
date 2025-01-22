@@ -7,23 +7,26 @@
 {% block content %}
 <!-- code used from code institute django blog -->
 <section class="container pb-5">
-  <div class="row">
+  <header class="row">
     <div class="col-md-8 mt-3 offset-md-2">
       <h4>{% trans "Sign In" %}</h4>
-      <p>{% blocktrans %}Welcome back to Crypto Net. To use our services, please log in. If
-        you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
-        first.{% endblocktrans %}</p>
+      <div>{% blocktrans %}Welcome back to Crypto Net. To use our services, please log in. If
+        you have not created an account yet, then <a class="link" href="{{ signup_url }}"
+          aria-label="Go to sign up">sign up</a>
+        first.{% endblocktrans %}</div>
     </div>
-  </div>
+  </header>
+  <!-- sign in form -->
   <div class="row">
     <div class="col-md-8 mt-3 offset-md-2">
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
         {{ form.as_p }}
         {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
         {% endif %}
-        <button class="btn btn-lg shadow bg--medium cc--hover text-light float-end me-4" type="submit">
+        <button class="btn btn-lg shadow bg--medium cc--hover text-light float-end me-4" type="submit"
+          aria-label="Sign in">
           {% trans "Sign In" %}
         </button>
       </form>
