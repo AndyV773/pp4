@@ -32,8 +32,8 @@
         {% if "placeholder" in post.featured_image.url %}
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded" alt="BTC Default">
         {% else %}
-        <!-- http://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/ijuyqgtwpvr8p0gphdmt.jpg -->
-        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.jpg" class="card-img-top rounded" alt="{{ post.author }} image">
+        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.jpg"
+            class="card-img-top rounded" alt="{{ post.author }} image">
         {% endif %}
         <div class="d-flex justify-content-evenly">
             <!-- view to comments -->
