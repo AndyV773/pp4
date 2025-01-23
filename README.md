@@ -30,6 +30,30 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 ## Features
 
+### Fonts
+
+- **The site uses the following fonts:**
+  - Base: [Ubuntu](https://fonts.google.com/specimen/Ubuntu)
+  - Headers: [Kanit](https://fonts.google.com/specimen/Kanit)
+
+The fonts were imported from [Google Fonts](https://fonts.google.com/)
+
+### Color Scheme
+
+- **The site uses the following colors:**
+  - Jet: rgb(53, 53, 53)
+  - Caribbean Current: rgb(60, 110, 113)
+  - White: rgb(255, 255, 255)
+  - Platinum: rgb(217, 217, 217)
+  - Indigo Dye: #rgb(40, 75, 99)
+
+![screenshot of color pallets taken from coolors.co](static/images/readme/color-pallet.jpg)
+
+This color pallet was made in [Coolors](https://coolors.co)
+
+- **Additional colors**
+  - Black from [Bootstraps](https://getbootstrap.com/docs/5.3/utilities/background/) default colors
+
 
 - **Input message return**
 
@@ -77,8 +101,17 @@ This project was deployed using Heroku.
   - Click on **Deploy**
 
 ## Credits
+### Content
+
 - Code Institute for [Code Institute Blog](https://github.com/Code-Institute-Solutions/blog/) and deployment to Heroku
 - [Django Project](https://www.djangoproject.com/)
 - [Boot Strap](https://getbootstrap.com/docs/)
 - [W3S](https://www.w3schools.com/)
 - [Stack Overflow](https://stackoverflow.com/)
+- [Stack Overflow](https://stackoverflow.com/)
+- The icons used were taken from [Font Awesome](https://fontawesome.com/)
+- Animated 404 .svg was from [Loading](https://loading.io/)
+
+### Media
+
+- Images were created using Grok from [X](https://x.com/)
