@@ -22,9 +22,10 @@ function displayChannel() {
 
 
 // calls the displayChannel function
-displayChannel()
+displayChannel();
 
-
-// resize event https://www.w3schools.com/jsref/event_onresize.asp
-// calls the displayChannel function as screen is adjusted
-window.addEventListener("resize", displayChannel);
+document.addEventListener("DOMContentLoaded", function () {
+    // resize event https://www.w3schools.com/jsref/event_onresize.asp
+    // calls the displayChannel function as screen is adjusted
+    window.addEventListener("resize", displayChannel);
+})

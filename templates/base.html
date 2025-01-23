@@ -41,12 +41,13 @@
 </head>
 
 <body>
-    <!-- pop out side navigational menu -->
+    <!-- side navigational menu -->
     <!-- code from w3s https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full -->
-    <nav id="mySidenav" class="sidenav bg--medium">
+    <nav id="the-sidenav" class="sidenav bg--medium">
         <section>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" aria-label="Close side menu"><i
-                    class="fa-solid fa-circle-arrow-left"></i></a>
+            <a id="sidenav-close" href="javascript:void(0)" class="closebtn" aria-label="Close sidenav">
+                <i class="fa-solid fa-circle-arrow-left"></i>
+            </a>
             <h2 class="text-center text-decoration-underline pt-2">Crypto Net <i class="fa-solid fa-chart-line"></i>
             </h2>
             {% if user.is_authenticated %}
@@ -114,9 +115,10 @@
             <header class="sticky-top bg--dark text-light p-2">
                 <div class="d-flex justify-content-between">
                     <h2 id="side-header" class="fs-4 mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
-                    <!-- navigational menu button -->
-                    <span id="menu-button" class="btn bg--light text-light p--shadow fs-4 m-2" onclick="openNav()"
-                        aria-label="Open menu"><i class="fa-solid fa-bars"></i></span>
+                    <!-- side navigational button -->
+                    <span id="sidenav-open" class="btn bg--light text-light p--shadow fs-4 m-2" aria-label="Open sidenav">
+                        <i class="fa-solid fa-bars"></i>
+                    </span>
                 </div>
                 <!-- user logged in message -->
                 {% if user.is_authenticated %}
@@ -204,9 +206,8 @@
             {% endblock content %}
         </article>
     </main>
-    <!-- delete modal -->
-    <!-- The Modal -->
-    <section id="myModal" class="the-modal">
+    <!-- the delete modal -->
+    <section id="delete-modal" class="the-modal p-2">
         <!-- Modal content -->
         <div class="modal-content rounded">
             <header class="modal-header">
@@ -247,7 +248,6 @@
     <!-- font awesome kit -->
     <script src="https://kit.fontawesome.com/73c0fc54c9.js" crossorigin="anonymous"></script>
     <!-- scripts -->
-    <script src="{% static 'js/sidenav.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     {% if request.path != home_url %}
     <script src="{% static 'js/content.js' %}"></script>

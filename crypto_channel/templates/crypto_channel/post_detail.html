@@ -45,7 +45,7 @@
             <div class="d-flex justify-content-evenly">
                 {% if comment.author == user %}
                 <!-- delete comment -->
-                <button type="button" class="btn my-btn btn-delete p-0 m-0" data-comment_id="{{ comment.id }}"
+                <button type="button" class="btn btn-modal btn-delete p-0 m-0" data-comment_id="{{ comment.id }}"
                     aria-label="Delete comment">
                     <i class="fa-solid fa-trash-can p-3"></i>
                 </button>
