@@ -19,7 +19,7 @@ class Channel(models.Model):
     approved = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ["rank",]
+        ordering = ["rank"]
 
     def __str__(self):
         return f"{self.name}"
@@ -27,7 +27,7 @@ class Channel(models.Model):
 
 class Post(models.Model):
     """
-    Stores a single crypto post entry related to :model:`auth.User`.
+    Stores a single channel post entry related to :model:`auth.User`.
     """
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="author_posts"
@@ -50,8 +50,8 @@ class Post(models.Model):
         ordering = ["approved", "-created_on"]
 
     def __str__(self):
-        return f"{self.channel.name}-{self.id}"
-    
+        return f"{self.id}"
+
     def number_of_likes(self):
         return self.likes.count()
 

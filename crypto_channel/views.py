@@ -6,6 +6,7 @@ from django.contrib import messages
 from .models import Channel, Post, Comment
 from .forms import AddChannelForm, PostForm, CommentForm
 
+
 # Create your views here.
 class ChannelList(generic.ListView):
     """
@@ -17,8 +18,13 @@ class ChannelList(generic.ListView):
 
 def add_channel(request):
     """
-    Allows user to make a contact requests
+    Display AddChannelForm for channel requests
+
     **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``add_channel_form``
+        An instance of :form:`crypto_channel.AddChannelForm`
 
     **Template:**
     :template:`crypto_channel/add_channel.html`
@@ -47,7 +53,8 @@ def add_channel(request):
                                  'Check it does not already exist!')
 
     channel_list = Channel.objects.filter(approved=True)
-    add_channel_form = AddChannelForm()        
+    # resets content of form
+    add_channel_form = AddChannelForm()
 
     return render(
             request,
@@ -61,19 +68,37 @@ def add_channel(request):
 
 def channel_detail(request, slug):
     """
-    Display an individual :model:`blog.Post`.
+    Display an individual :model:`crypto_channel.Channel`
 
     **Context**
+    ``posts``
+        All approved posts related to the channel
+    ``post_count``
+        A count of approved posts related to the channel
+    ``post.liked``
+        Returns a True or False instance of a liked post
+    ``post.comment_count``
+        A count of approved comments related to a post
+    ``channel``
+        An instance of :model:`crypto_channel.Channel`
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``post_form``
+        An instance of :form:`crypto_channel.PostForm`
 
+    **Template:**
     :template:`crypto_channel/channel_detail.html`
     """
 
     channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(channel_list, slug=slug)
-    posts = channel.channel_posts.filter(status=1).order_by("-created_on")
-    post_count = channel.channel_posts.filter(approved=True, status=1).count()
+    posts = channel.channel_posts.filter(approved=True,
+                                         status=1).order_by("-created_on")
+    post_count = channel.channel_posts.filter(approved=True,
+                                              status=1).count()
 
-    # code institute tutoring fixed this
+    # Credit for post.comment_count: code institute tutoring
+    # returns comment count to a post instance
     for post in posts:
         post.comment_count = post.comments.filter(approved=True).count()
 
@@ -99,9 +124,10 @@ def channel_detail(request, slug):
             return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
         else:
             messages.add_message(request, messages.ERROR,
-                                    'Error sending post!')
+                                 'Error sending post!')
 
-    post_form = PostForm()  # resets content of form
+    # resets content of form
+    post_form = PostForm()
 
     return render(
         request,
@@ -116,10 +142,17 @@ def channel_detail(request, slug):
     )
 
 
+# Credit for PostLike code: code institute
 # https://github.com/Code-Institute-Solutions/
 # Django3blog/blob/master/10_likes/blog/views.py
 class PostLike(View):
-    
+    """
+    post an individual like to a post related to the user
+
+    **context**
+    ``post``
+        An instance of :model:`crypto_channel.Post`
+    """
     def post(self, request, slug, post_id, *args, **kwargs):
         post = get_object_or_404(Post, id=post_id)
         if post.likes.filter(id=request.user.id).exists():
@@ -132,16 +165,29 @@ class PostLike(View):
 
 def post_detail(request, slug, post_id):
     """
-    Display an individual :model:`blog.Post`.
+    Display an individual :model:`crypto_channel.Post`
 
     **Context**
+    ``post``
+        An instance of :model:`crypto_channel.Post`
+    ``comments``
+        All approved comments related to the post
+    ``comment_count``
+        A count of approved comments related to a post
+    ``channel``
+        An instance of :model:`crypto_channel.Channel`
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``comment_form``
+        An instance of :form:`crypto_channel.CommnetForm`
 
+    **Template:**
     :template:`crypto_channel/post_detail.html`
     """
     channel_list = Channel.objects.filter(approved=True)
     channel = get_object_or_404(Channel, slug=slug)
     post = get_object_or_404(Post, id=post_id)
-    comments = post.comments.all().order_by("-created_on")
+    comments = post.comments.filter(approved=True).order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
 
     if request.method == "POST":
@@ -156,12 +202,14 @@ def post_detail(request, slug, post_id):
                 request, messages.SUCCESS,
                 'Comment sent'
             )
-            return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
+            return HttpResponseRedirect(reverse('post_detail',
+                                                args=[slug, post_id]))
         else:
             messages.add_message(request, messages.ERROR,
-                                    'Error sending comment!')
+                                 'Error sending comment!')
 
-    comment_form = CommentForm()  # resets content of form
+    # resets content of form
+    comment_form = CommentForm()
 
     return render(
         request,
@@ -179,23 +227,20 @@ def post_detail(request, slug, post_id):
 
 def post_edit(request, slug, post_id):
     """
-    Display an individual comment for edit.
+    Display an individual post for edit.
 
     **context**
-
     ``post``
-        An instance of :model:`blog.Post`.
-    ``comments``
-        A single comment related to the post.
-    ``coment_form``
-        An instance of :form:`blog.CommentForm`.
+        An instance of :model:`crypto_channel.Post`
+    ``channel``
+        An instance of :model:`crypto_channel.Channel`
+    ``post_form``
+        An instance of :form:`crypto_channel.PostForm`
     """
     if request.method == "POST":
 
-        channel_list = Channel.objects.filter(approved=True)
         channel = get_object_or_404(Channel, slug=slug)
-        post = Post.objects.filter(status=1)
-        post = get_object_or_404(post, id=post_id)
+        post = get_object_or_404(Post, id=post_id)
         post_form = PostForm(request.POST, request.FILES, instance=post)
 
         if post_form.is_valid() and post.author == request.user:
@@ -208,24 +253,19 @@ def post_edit(request, slug, post_id):
                 )
         else:
             messages.add_message(request, messages.ERROR,
-                                    'Error updating post!')
+                                 'Error updating post!')
 
     return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
 
 
 def post_delete(request, slug, post_id):
     """
-    Delete an individual comment.
+    Delete an individual post
 
     **context**
-
     ``post``
-        An instance of :model:`blog.Post`.
-    ``comments``
-        A single comment related to the post.
+        An instance of :model:`crypto_channel.Post`
     """
-    channel_list = Channel.objects.filter(approved=True)
-    channel = get_object_or_404(channel_list, slug=slug)
     post = get_object_or_404(Post, pk=post_id)
 
     if post.author == request.user:
@@ -236,7 +276,7 @@ def post_delete(request, slug, post_id):
             )
     else:
         messages.add_message(request, messages.ERROR,
-                                'Error deleting post!')
+                             'Error deleting post!')
 
     return HttpResponseRedirect(reverse('channel_detail', args=[slug]))
 
@@ -246,17 +286,15 @@ def comment_edit(request, slug, post_id, comment_id):
     Display an individual comment for edit.
 
     **context**
-
     ``post``
-        An instance of :model:`blog.Post`.
-    ``comments``
-        A single comment related to the post.
-    ``coment_form``
-        An instance of :form:`blog.CommentForm`.
+        An instance of :model:`crypto_channel.Post`
+    ``comment``
+        An instance of :model:`crypto_channel.Comment`
+    ``comment_form``
+        An instance of :form:`crypto_channel.CommnetForm`
     """
     if request.method == "POST":
 
-        channel = get_object_or_404(Channel, slug=slug)
         post = get_object_or_404(Post, pk=post_id)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
@@ -271,7 +309,7 @@ def comment_edit(request, slug, post_id, comment_id):
             )
     else:
         messages.add_message(request, messages.ERROR,
-                                'Error updating comment!')
+                             'Error updating comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
 
@@ -281,15 +319,9 @@ def comment_delete(request, slug, post_id, comment_id):
     Delete an individual comment.
 
     **context**
-
-    ``post``
-        An instance of :model:`blog.Post`.
-    ``comments``
-        A single comment related to the post.
+    ``comment``
+        An instance of :model:`crypto_channel.Comment`
     """
-
-    channel = get_object_or_404(Channel, slug=slug)
-    post = get_object_or_404(Post, pk=post_id)
     comment = get_object_or_404(Comment, pk=comment_id)
 
     if comment.author == request.user:
@@ -300,6 +332,6 @@ def comment_delete(request, slug, post_id, comment_id):
             )
     else:
         messages.add_message(request, messages.ERROR,
-                                'Error deleting comment!')
+                             'Error deleting comment!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug, post_id]))
