@@ -116,9 +116,9 @@
                 <div class="d-flex justify-content-between">
                     <h2 id="side-header" class="fs-4 mt-2">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
                     <!-- side navigational button -->
-                    <span id="sidenav-open" class="btn bg--light text-light p--shadow fs-4 m-2" aria-label="Open sidenav">
+                    <button id="sidenav-open" class="btn bg--light text-light p--shadow fs-4 m-2" aria-label="Open sidenav">
                         <i class="fa-solid fa-bars"></i>
-                    </span>
+                    </button>
                 </div>
                 <!-- user logged in message -->
                 {% if user.is_authenticated %}
@@ -174,9 +174,11 @@
                     <h2 class="text-center p-2 m-0">Crypto Net <i class="fa-solid fa-chart-line"></i></h2>
                 </a>
                 <div class="d-flex justify-content-around">
+                    {% if channel.name %}
                     <h3 class="text-light fs-5 m-0">
                         {{ channel.name | capfirst }}
                     </h3>
+                    {% endif %}
                     <div class="d-flex text-light">
                         {% if request.path == channel_detail_url %}
                         <div>{{ post_count }} Posts</div>

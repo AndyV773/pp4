@@ -4,9 +4,29 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 [Here is the live version of my project](https://cryptonet-0fc8d0019661.herokuapp.com/)
 
-[screenshot of Crypto Net from i am responsive]()
+![screenshot of Crypto Net from i am responsive](static/images/readme/resp-header.jpg)
 
+## User Story
+**New User**
+- I want to know what the site is for
+- I want to easily use the platform, so that I can quickly start interacting
+- I want to be able to look through content with minimal effort
+- I want to be able to see content clearly and see the discussions in the comments
+- I want to be able to see what channels are most popular with the most content and activity
 
+**Returning User**
+- I want to come back and see new content
+- I want to be able to keep up to date with my favorite crypto currencies
+- I want to add a post for new content
+- I want to view comments on my post and join in with the discussions
+- I want to see if there are any new channels
+- I want to add a new channel for my favorite crypto currency
+
+**Other Customer Scenarios**
+
+**Site Adminstrator**
+- As a site administrator, the platform should run smoothly and remain secure.
+- As a site administrator, that the site remain.
 
 ## Features
 
@@ -16,10 +36,16 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 ## Bugs
 ### Solved Bugs
+- **Get attribute icon issue**
 
+- **Displaying comment count of a individual post**
+
+- **Returning True or False for a liked post**
+
+- **Cloudinary http/https mixed content**
 
 ### Remaing Bugs
-- ***
+- **aria-hidden="true"**
 
 ## Testing
 ### Manual Testing
@@ -27,12 +53,19 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 
 ### Validator Testing
-- PEP8
-  - There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly related to whitespace and excessive line lengths
-    ![screenshot of pep8 errors]()
+#### HTML
+#### CSS
+#### JavaScript
+#### PEP8
+  - There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly related to whitespace and excessive line lengths. I had to reduce some lines in Django settings.py also.  
+    ![screenshot of pep8 errors](static/images/readme/pep8-errors.jpg)
+    ![screenshot of pep8 errors](static/images/readme/pep8-django-error.jpg)
 
   - All errors have been fixed
-    ![screenshot of pep8 pass]()
+    ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
+    ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
+
+#### Lighthouse Testing
 
 ## Deployment
 This project was deployed using Heroku.
