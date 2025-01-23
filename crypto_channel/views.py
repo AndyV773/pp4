@@ -27,16 +27,24 @@ def add_channel(request):
         add_channel_form = AddChannelForm(data=request.POST)
         if add_channel_form.is_valid():
             channel = add_channel_form.save(commit=False)
+            channel.name = channel.name.lower()
             channel.slug = slugify(channel.name)
-            channel.save()
-            messages.add_message(
-                    request, messages.SUCCESS,
-                    'Channel request sent'
-                )
-            return HttpResponseRedirect(reverse('add_channel'))
+            # checks if channel request already exist
+            if Channel.objects.filter(slug=channel.slug).exists():
+                messages.add_message(request, messages.ERROR,
+                                     'Error requesting channel. '
+                                     'Check it does not already exist!')
+            else:
+                channel.save()
+                messages.add_message(
+                        request, messages.SUCCESS,
+                        'Channel request sent'
+                    )
+                return HttpResponseRedirect(reverse('add_channel'))
         else:
             messages.add_message(request, messages.ERROR,
-                                    'Error requesting channel!')
+                                 'Error requesting channel. '
+                                 'Check it does not already exist!')
 
     channel_list = Channel.objects.filter(approved=True)
     add_channel_form = AddChannelForm()        
