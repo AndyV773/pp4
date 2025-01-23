@@ -4,10 +4,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
+
 # Create your models here.
 class About(models.Model):
     """
-    Stores a single about me text.
+    Stores a single about me context
     """
     title = models.CharField(max_length=200)
     content = models.TextField()

@@ -18,7 +18,7 @@ class ChannelList(generic.ListView):
 
 def add_channel(request):
     """
-    Display AddChannelForm for channel requests
+    Display add channel form for channel requests
 
     **Context**
     ``channel_list``

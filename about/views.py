@@ -10,9 +10,13 @@ from crypto_channel.models import Channel
 def about_me(request):
     """
     Renders the most recent information on the website author
-    and allows user collaboration requests
-    Displays an individual instance of :model:`about.About`.
+    Displays an individual instance of :model:`about.About`
+
     **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``about``
+        The most recent instance of :model:`about.About`
 
     **Template:**
     :template:`about/about.html`
@@ -33,7 +37,12 @@ def about_me(request):
 def contact_me(request):
     """
     Allows user to make a contact requests
+
     **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``collaborate_form``
+        An instance of :form:`about.CollaborateForm`
 
     **Template:**
     :template:`about/contact.html`

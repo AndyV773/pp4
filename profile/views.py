@@ -8,7 +8,18 @@ from crypto_channel.models import Channel
 # Create your views here
 # Credit for the profile code: Code Institute Boutique Ado project
 def profile_detail(request):
-    """ Display the user's profile. """
+    """
+    Display the user's profile
+
+    **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``profile``
+        An instance of :model:`profile.UserProfile`
+
+    **Template:**
+    :template:`profile/profile_detail.html`
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
     channel_list = Channel.objects.filter(approved=True)
 
@@ -18,13 +29,24 @@ def profile_detail(request):
         {
             "channel_list": channel_list,
             'profile': profile,
-            'on_profile_page': True,
         },  # context
     )
 
 
 def edit_profile(request):
-    """ Display the user's profile. """
+    """
+    Display pre filled user profile form
+    to edit user profile
+
+    **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``profile_form``
+        An instance of :form:`profile.UserProfileForm`
+
+    **Template:**
+    :template:`profile/edit_profile.html`
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -49,6 +71,5 @@ def edit_profile(request):
         {
             "channel_list": channel_list,
             'profile_form': profile_form,
-            'on_profile_page': True,
         },  # context
     )
