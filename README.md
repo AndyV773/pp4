@@ -30,6 +30,26 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 ## Features
 
+### Wire Frames
+
+- **Desktop**
+
+![wire frame of main view on desktop](static/images/readme/wf-lg-main.jpg)
+
+![wire frame of nav on desktop](static/images/readme/wf-lg-nav.jpg)
+
+- **Mobile**
+
+![wire frame of mobile devices](static/images/readme/wf-md.jpg)
+
+The wire frames were made using [Balsamiq](https://balsamiq.com/)
+
+### Entity Relationship Diagram
+
+![erd in lucid chart](static/images/readme/wf-md.jpg)
+
+The diagram was made using [Lucid Chart](https://www.lucidchart.com/)
+
 ### Typography
 
 - **The site uses the following fonts:**
@@ -47,16 +67,28 @@ The fonts were imported from [Google Fonts](https://fonts.google.com/)
   - Platinum: rgb(217, 217, 217)
   - Indigo Dye: #rgb(40, 75, 99)
 
-![screenshot of color pallets taken from coolors.co](static/images/readme/color-pallet.jpg)
+![color pallet](static/images/readme/color-pallet.jpg)
 
 This color pallet was made in [Coolors](https://coolors.co)
 
 - **Additional colors**
   - Black from [Bootstraps](https://getbootstrap.com/docs/5.3/utilities/background/) default colors
 
-
 - **Input message return**
 
+### Requirements
+
+#### Tools
+- **Gunicorn** Python HTTP server for WSGI applications
+- **Whitenoise** for serving of static files
+- **Cloudinary** cloud storage for images
+
+#### Libraries
+- **Psycopg2** Python PostgreSQL database adapter
+- **Django Allauth** registration authentication managment
+- **Django Crispy forms** super easy serving of crispy forms
+- **Django Summernote** for rich text editing in admin panel
+- **Django Countries** provides country choices for use with forms
 
 ## Bugs
 ### Solved Bugs
