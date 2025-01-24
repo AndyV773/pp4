@@ -13,12 +13,17 @@ h5 {
     font-family: "Kanit", serif;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 .z--3000 {
     z-index: 3000;
 }
 
-.h--250 {
-    height: 250px;
+.h--350 {
+    height: 350px;
 }
 
 .card {

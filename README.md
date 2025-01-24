@@ -46,9 +46,18 @@ The wire frames were made using [Balsamiq](https://balsamiq.com/)
 
 ### Entity Relationship Diagram
 
-![erd in lucid chart](static/images/readme/wf-md.jpg)
+![erd in lucid chart](static/images/readme/)
 
 The diagram was made using [Lucid Chart](https://www.lucidchart.com/)
+
+### 404 Page
+
+![404 page](static/images/readme/404-page.jpg)
+
+- Animated 404.svg from [Loading](https://loading.io/)
+- Information on 404 page [W3S](https://www.w3schools.com/django/django_404.php)
+
+
 
 ### Typography
 

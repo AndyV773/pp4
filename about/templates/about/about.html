@@ -6,7 +6,8 @@
     <div class="d-flex justify-content-center m-3 pb-5">
         <div class="card bg-dark border-2 border-secondary plat--shadow mt-5">
             {% if not "placeholder" in about.hero_image.url %}
-            <img src="{{ about.hero_image.url }}" class="card-img-top" alt="{{ about.title }}">
+            <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ about.hero_image }}.webp"
+                class="card-img-top" width="600px" height="600px" alt="{{ about.title }}">
             {% endif %}
             <div class="card-body text-light">
                 <h4 class="card-title text--platinum fs-3">{{ about.title }}</h4>
