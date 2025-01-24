@@ -32,7 +32,7 @@
         {% if "placeholder" in post.featured_image.url %}
         <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded" alt="BTC Default">
         {% else %}
-        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.jpg"
+        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
             class="card-img-top rounded" alt="{{ post.author }} image">
         {% endif %}
         <div class="d-flex justify-content-evenly">
