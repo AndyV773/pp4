@@ -3,28 +3,19 @@
 {% load static %}
 <!-- profile detail -->
 <section class="bg-dark vh-100">
-    <h4 class="text--platinum ms-3 mt-5">User Information:</h4>
+    <h3 class="text--platinum ms-3 mt-5">Profile</h3>
     <div class="d-flex flex-column text-light p-4">
         <!-- username -->
         <fieldset class="ms-5">
             <legend>Username:</legend>
-            <div>@{{ user }}</div>
+            <div>@{{ profile_account.username }}</div>
+            <div>{{ profile_account.email }}</div>
         </fieldset>
         <hr>
         <!-- phone -->
         <fieldset class="ms-5">
             <legend>Phone:</legend>
-            <div>{{ profile.phone_number }}</div>
-        </fieldset>
-        <hr>
-        <!-- post code -->
-        <fieldset class="ms-5">
-            <legend>Post code:</legend>
-            {% if profile.post_code %}
-            <div>{{ profile.post_code | upper }}</div>
-            {% else %}
             <div>{{ profile.post_code }}</div>
-            {% endif %}
         </fieldset>
         <hr>
         <!-- country -->
@@ -32,12 +23,88 @@
             <legend>Country:</legend>
             <div>{{ profile.country }}</div>
         </fieldset>
-        <div class="d-flex justify-content-end me-5">
-            <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow"
-                aria-label="Edit profile">Edit</a>
+    </div>
+</section>
+{% for post in posts %}
+{% if post.author == profile_account %}
+<section class="d-flex justify-content-center">
+    <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
+    <div class="card border-0 m-4">
+        <div class="card-body">
+            <!-- post header -->
+            <header class="d-flex justify-content-between">
+                <a href="{% url 'profile_detail' post.author %}">{{ post.author }}</a>
+                <h4 class="card-title">@{{ post.author }}</h4>
+                <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
+            </header>
+            <!-- post content -->
+            {% if post.author.is_staff %}
+            <div id="post{{ post.id }}" class="card-text">
+                {{ post.content | safe }}
+            </div>
+            {% else %}
+            <div id="post{{ post.id }}" class="card-text">
+                {{ post.content | linebreaks }}
+            </div>
+            {% endif %}
+        </div>
+        <!-- post image -->
+        {% if "placeholder" in post.featured_image.url %}
+        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500px" height="500px"
+            alt="Crypto Net BTC">
+        {% else %}
+        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
+            class="card-img-top rounded" width="500px" height="500px" alt="{{ post.author }} image">
+        {% endif %}
+        <div class="d-flex justify-content-evenly">
+            <!-- view to comments -->
+            <div class="align-self-center">
+                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment"
+                    aria-label="View post comments">
+                    {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
+            </div>
+            <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
+            <!-- The number of likes goes before the closing strong tag -->
+            <div class="align-self-center">
+                <span>{{ post.number_of_likes }} </span>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if post.liked %}
+                    <button type="submit" value="{{ post.id }}" class="btn" aria-label="Unlike post">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                    {% else %}
+                    <button type="submit" value="{{ post.id }}" class="btn" aria-label="Like post">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    {% endif %}
+                </form>
+                {% else %}
+                <span class="text-secondary"><i class="fa-regular fa-heart"></i></span>
+                {% endif %}
+            </div>
+            <!-- delete and edit post buttons  -->
+            {% if post.author == user %}
+            <!-- delete post -->
+            <button type="button" class="btn btn-modal btn-delete p-0 m-0" data-post_id="{{ post.id }}"
+                aria-label="Delete post">
+                <i class="fa-solid fa-trash-can p-3"></i>
+            </button>
+            <!-- edit post -->
+            <button type="button" class="btn btn-edit p-0 m-0" data-bs-toggle="modal" data-bs-target="#post-model"
+                data-post_id="{{ post.id }}" aria-label="Edit post">
+                <i class="fa-solid fa-pen-to-square p-3"></i>
+            </button>
+            {% endif %}
         </div>
     </div>
 </section>
+{% if not forloop.last %}
+<hr>
+{% endif %}
+{% endif %}
+{% endfor %}
 {% endblock content %}
 
 {% block extras %}

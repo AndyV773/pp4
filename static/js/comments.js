@@ -18,7 +18,7 @@ const deleteConfirm = document.getElementById("delete-model-confirm");
 if (theCommentButton) {
     theCommentButton.addEventListener("click", (e) => {
         editCommentTitle.innerHTML = "";
-        editCommentTitle.innerHTML = "Add a";
+        editCommentTitle.innerHTML = "Add ";
         commentText.value = "";
         commentForm.setAttribute("action", "");
         submitButton.innerText = "Submit";

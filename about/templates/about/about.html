@@ -10,7 +10,7 @@
                 class="card-img-top" width="600px" height="600px" alt="{{ about.title }}">
             {% endif %}
             <div class="card-body text-light">
-                <h4 class="card-title text--platinum fs-3">{{ about.title }}</h4>
+                <h3 class="card-title text--platinum fs-3">{{ about.title }}</h3>
                 <hr>
                 <div class="card-text fs-4">{{ about.content | safe }}</div>
                 <div class="text-end m-3">Updated on: {{ about.updated_on | date:"d/m/Y" }}</div>

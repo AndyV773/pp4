@@ -20,18 +20,25 @@
         <div class="card-body">
             <!-- post header -->
             <header class="d-flex justify-content-between">
+                <a href="{% url 'profile_detail' post.author %}">{{ post.author }}</a>
                 <h4 class="card-title">@{{ post.author }}</h4>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </header>
             <!-- post content -->
+            {% if post.author.is_staff %}
+            <div id="post{{ post.id }}" class="card-text">
+                {{ post.content | safe }}
+            </div>
+            {% else %}
             <div id="post{{ post.id }}" class="card-text">
                 {{ post.content | linebreaks }}
             </div>
+            {% endif %}
         </div>
         <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/btc-default.jpg' %}" class="card-img-bottom rounded" width="500px"
-            height="500px" alt="BTC Default">
+        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500px" height="500px"
+            alt="Crypto Net BTC">
         {% else %}
         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
             class="card-img-top rounded" width="500px" height="500px" alt="{{ post.author }} image">

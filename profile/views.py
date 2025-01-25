@@ -1,13 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
-from crypto_channel.models import Channel
+from crypto_channel.models import Channel, Post
 
 
 # Create your views here
 # Credit for the profile code: Code Institute Boutique Ado project
-def profile_detail(request):
+def profile_account(request):
     """
     Display the user's profile
 
@@ -18,10 +19,29 @@ def profile_detail(request):
         An instance of :model:`profile.UserProfile`
 
     **Template:**
-    :template:`profile/profile_detail.html`
+    :template:`profile/profile_account.html`
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     channel_list = Channel.objects.filter(approved=True)
+
+    return render(
+        request,
+        "profile/profile_account.html",
+        {
+            "channel_list": channel_list,
+            'profile': profile,
+        },  # context
+    )
+
+
+def profile_detail(request, username):
+    """
+    
+    """
+    profile_account = get_object_or_404(User, username=username)
+    channel_list = Channel.objects.filter(approved=True)
+    posts = Post.objects.filter(approved=True)
+    profile = get_object_or_404(UserProfile, user=profile_account)
 
     return render(
         request,
@@ -29,6 +49,8 @@ def profile_detail(request):
         {
             "channel_list": channel_list,
             'profile': profile,
+            'profile_account': profile_account,
+            'posts': posts,
         },  # context
     )
 

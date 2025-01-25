@@ -50,7 +50,7 @@ class Post(models.Model):
         ordering = ["approved", "-created_on"]
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.channel}-{self.author}-{self.id}"
 
     def number_of_likes(self):
         return self.likes.count()
