@@ -7,6 +7,14 @@
     <div class="d-flex flex-column text-light p-4">
         <!-- username -->
         <fieldset class="ms-5">
+            <!-- profile image -->
+            {% if "placeholder" in profile.profile_image.url %}
+            <img src="{% static 'images/profile/default-profile.jpg' %}" class="card-img-bottom rounded-circle"
+                width="300px" height="300px" alt="Default profile">
+            {% else %}
+            <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
+                class="card-img-top rounded-circle" width="300px" height="300px" alt="{{ user }} image">
+            {% endif %}
             <legend>Username:</legend>
             <div>@{{ user }}</div>
         </fieldset>

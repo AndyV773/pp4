@@ -3,19 +3,20 @@
 {% load static %}
 <!-- profile detail -->
 <section class="bg-dark vh-100">
-    <h3 class="text--platinum ms-3 mt-5">Profile</h3>
+    <h3 class="text--platinum ms-3">@{{ profile_detail.username }} Profile</h3>
     <div class="d-flex flex-column text-light p-4">
+        <!-- profile image -->
+        {% if "placeholder" in profile.profile_image.url %}
+        <img src="{% static 'images/profile/default-profile.jpg' %}" class="card-img-bottom rounded-circle"
+            width="300px" height="300px" alt="Default profile">
+        {% else %}
+        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
+            class="card-img-top rounded-circle" width="300px" height="300px" alt="{{ profile_detail.username }} image">
+        {% endif %}
         <!-- username -->
         <fieldset class="ms-5">
             <legend>Username:</legend>
-            <div>@{{ profile_account.username }}</div>
-            <div>{{ profile_account.email }}</div>
-        </fieldset>
-        <hr>
-        <!-- phone -->
-        <fieldset class="ms-5">
-            <legend>Phone:</legend>
-            <div>{{ profile.post_code }}</div>
+            <div>@{{ profile_detail.username }}</div>
         </fieldset>
         <hr>
         <!-- country -->
@@ -25,8 +26,9 @@
         </fieldset>
     </div>
 </section>
+<!-- user profile posts -->
 {% for post in posts %}
-{% if post.author == profile_account %}
+{% if post.author == profile_detail %}
 <section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
     <div class="card border-0 m-4">

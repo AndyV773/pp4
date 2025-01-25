@@ -38,10 +38,10 @@ def profile_detail(request, username):
     """
     
     """
-    profile_account = get_object_or_404(User, username=username)
+    profile_detail = get_object_or_404(User, username=username)
     channel_list = Channel.objects.filter(approved=True)
     posts = Post.objects.filter(approved=True)
-    profile = get_object_or_404(UserProfile, user=profile_account)
+    profile = get_object_or_404(UserProfile, user=profile_detail)
 
     return render(
         request,
@@ -49,7 +49,7 @@ def profile_detail(request, username):
         {
             "channel_list": channel_list,
             'profile': profile,
-            'profile_account': profile_account,
+            'profile_detail': profile_detail,
             'posts': posts,
         },  # context
     )
@@ -72,14 +72,14 @@ def edit_profile(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Profile saved'
             )
-            return redirect('profile')
+            return redirect('profile_account')
         else:
             messages.add_message(request, messages.ERROR,
                                  'Error updating profile!')

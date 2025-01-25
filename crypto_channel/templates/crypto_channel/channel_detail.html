@@ -20,8 +20,9 @@
         <div class="card-body">
             <!-- post header -->
             <header class="d-flex justify-content-between">
-                <a href="{% url 'profile_detail' post.author %}">{{ post.author }}</a>
-                <h4 class="card-title">@{{ post.author }}</h4>
+                <a href="{% url 'profile_detail' post.author %}">
+                    <h4 class="card-title">@{{ post.author }}</h4>
+                </a>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </header>
             <!-- post content -->
