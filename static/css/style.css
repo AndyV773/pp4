@@ -18,6 +18,12 @@ img {
     height: auto;
 }
 
+.profile-pic {
+    border-radius: 35%;
+    width: 70px;
+    height: auto;
+}
+
 .z--3000 {
     z-index: 3000;
 }

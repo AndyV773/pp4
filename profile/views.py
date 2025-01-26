@@ -39,9 +39,9 @@ def profile_detail(request, username):
     
     """
     profile_detail = get_object_or_404(User, username=username)
+    profile = get_object_or_404(UserProfile, user=profile_detail)
     channel_list = Channel.objects.filter(approved=True)
     posts = Post.objects.filter(approved=True)
-    profile = get_object_or_404(UserProfile, user=profile_detail)
 
     return render(
         request,

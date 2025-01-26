@@ -20,8 +20,18 @@
         <div class="card-body">
             <!-- post header -->
             <header class="d-flex justify-content-between">
-                <a href="{% url 'profile_detail' post.author %}">
-                    <h4 class="card-title">@{{ post.author }}</h4>
+                <a href="{% url 'profile_detail' post.author %}" class="d-flex">
+                    <!-- profile image -->
+                    <figure>
+                        {% if "placeholder" in post.profile.profile_image.url %}
+                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic" width="100px"
+                            height="100px" alt="Default profile">
+                        {% else %}
+                        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.profile.profile_image }}.webp"
+                            class="profile-pic" width="100px" height="100px" alt="{{ post.author }} image">
+                        {% endif %}
+                    </figure>
+                    <h4 class="card-title align-self-end mb-3">@{{ post.author }}</h4>
                 </a>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </header>
@@ -42,7 +52,7 @@
             alt="Crypto Net BTC">
         {% else %}
         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
-            class="card-img-top rounded" width="500px" height="500px" alt="{{ post.author }} image">
+            class="card-img-bottom rounded" width="500px" height="500px" alt="{{ post.author }} image">
         {% endif %}
         <div class="d-flex justify-content-evenly">
             <!-- view to comments -->

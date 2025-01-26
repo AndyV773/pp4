@@ -4,6 +4,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Channel, Post, Comment
+from profile.models import UserProfile
 from .forms import AddChannelForm, PostForm, CommentForm
 
 
@@ -96,16 +97,14 @@ def channel_detail(request, slug):
                                          status=1).order_by("-created_on")
     post_count = channel.channel_posts.filter(approved=True,
                                               status=1).count()
-
     # Credit for post.comment_count: code institute tutoring
     # returns comment count to a post instance
-    for post in posts:
-        post.comment_count = post.comments.filter(approved=True).count()
-
     # https://github.com/Code-Institute-Solutions/
     # Django3blog/blob/master/10_likes/blog/views.py
     liked = False
     for post in posts:
+        post.comment_count = post.comments.filter(approved=True).count()
+        post.profile = UserProfile.objects.get(user=post.author)
         if post.likes.filter(id=request.user.id).exists():
             post.liked = True
 
