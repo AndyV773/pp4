@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.models import User
+from django.views import View
 from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
-from crypto_channel.models import Channel, Post
+from crypto_channel.models import Channel, Post, Comment
 
 
 # Create your views here
@@ -42,6 +43,15 @@ def profile_detail(request, username):
     profile = get_object_or_404(UserProfile, user=profile_detail)
     channel_list = Channel.objects.filter(approved=True)
     posts = Post.objects.filter(approved=True)
+    post_count = profile_detail.author_posts.filter(approved=True).count()
+
+    # https://github.com/Code-Institute-Solutions/
+    # Django3blog/blob/master/10_likes/blog/views.py
+    liked = False
+    for post in posts:
+        post.comment_count = post.comments.filter(approved=True).count()
+        if post.likes.filter(id=request.user.id).exists():
+            post.liked = True
 
     return render(
         request,
@@ -51,6 +61,7 @@ def profile_detail(request, username):
             'profile': profile,
             'profile_detail': profile_detail,
             'posts': posts,
+            'post_count': post_count,
         },  # context
     )
 

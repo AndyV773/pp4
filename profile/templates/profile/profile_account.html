@@ -9,11 +9,11 @@
         <figure class="ms-5 mb-0">
             <figcaption class="fs-3 mb-2">Image:</figcaption>
             {% if "placeholder" in profile.profile_image.url %}
-            <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic" width="100px"
+            <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-detail-pic rounded" width="100px"
                 height="100px" alt="Default profile">
             {% else %}
             <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
-                class="profile-pic" width="100px" height="100px" alt="{{ user }} image">
+                class="profile-detail-pic rounded" width="100px" height="100px" alt="{{ user }} image">
             {% endif %}
         </figure>
         <hr>
@@ -42,7 +42,17 @@
         <!-- country -->
         <fieldset class="ms-5">
             <legend>Country:</legend>
+            {% if profile.country %}
             <div>{{ profile.country }}</div>
+            {% else %}
+            <p>Anonymous</p>
+            {% endif %}
+        </fieldset>
+        <hr>
+        <!-- bio -->
+        <fieldset class="ms-5">
+            <legend>Bio:</legend>
+            <div>{{ profile.bio }}</div>
         </fieldset>
         <div class="d-flex justify-content-end me-5">
             <a href="{% url 'edit_profile' %}" class="btn btn-lg bg--light text-light p--shadow"

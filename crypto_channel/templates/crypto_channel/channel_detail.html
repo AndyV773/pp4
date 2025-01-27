@@ -17,18 +17,18 @@
 <section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
     <div class="card border-0 m-4">
-        <div class="card-body">
+        <div class="card-body ps-0">
             <!-- post header -->
             <header class="d-flex justify-content-between">
-                <a href="{% url 'profile_detail' post.author %}" class="d-flex">
+                <a href="{% url 'profile_detail' post.author %}" class="d-flex text-decoration-none">
                     <!-- profile image -->
                     <figure>
                         {% if "placeholder" in post.profile.profile_image.url %}
-                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic" width="100px"
+                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded" width="100px"
                             height="100px" alt="Default profile">
                         {% else %}
                         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.profile.profile_image }}.webp"
-                            class="profile-pic" width="100px" height="100px" alt="{{ post.author }} image">
+                            class="profile-pic rounded" width="100px" height="100px" alt="{{ post.author }} image">
                         {% endif %}
                     </figure>
                     <h4 class="card-title align-self-end mb-3">@{{ post.author }}</h4>
@@ -37,11 +37,11 @@
             </header>
             <!-- post content -->
             {% if post.author.is_staff %}
-            <div id="post{{ post.id }}" class="card-text">
+            <div id="post{{ post.id }}" class="card-text ps-4">
                 {{ post.content | safe }}
             </div>
             {% else %}
-            <div id="post{{ post.id }}" class="card-text">
+            <div id="post{{ post.id }}" class="card-text ps-4">
                 {{ post.content | linebreaks }}
             </div>
             {% endif %}
@@ -70,7 +70,7 @@
                     {% csrf_token %}
                     {% if post.liked %}
                     <button type="submit" value="{{ post.id }}" class="btn" aria-label="Unlike post">
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart text--red"></i>
                     </button>
                     {% else %}
                     <button type="submit" value="{{ post.id }}" class="btn" aria-label="Like post">
@@ -99,7 +99,7 @@
     </div>
 </section>
 {% if not forloop.last %}
-<hr>
+<hr class="m-0">
 {% endif %}
 {% endfor %}
 {% endif %}

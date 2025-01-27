@@ -7,7 +7,7 @@
 {% url 'contact' as contact_url %}
 {% url 'add_channel' as add_channel_url %}
 {% url 'profile_account' as profile_account_url %}
-{% url 'profile_detail' user as profile_detail_url %}
+{% url 'profile_detail' profile_detail.username as profile_detail_url %}
 {% url 'edit_profile' as edit_profile_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
@@ -184,12 +184,18 @@
                     <h3 class="text-light fs-5 m-0">
                         {{ channel.name | capfirst }}
                     </h3>
+                    {% elif profile_detail.username %}
+                    <h3 class="text-light fs-5 m-0">
+                        @{{ profile_detail.username | capfirst }}
+                    </h3>
                     {% endif %}
                     <div class="d-flex text-light">
                         {% if request.path == channel_detail_url %}
                         <div>{{ post_count }} Posts</div>
                         {% elif request.path == post_detail_url %}
                         <div>{{ comment_count }}<i class="fa-solid fa-comments ms-2"></i></div>
+                        {% elif request.path == profile_detail_url %}
+                        <div>{{ post_count }} Posts</div>
                         {% endif %}
                     </div>
                 </div>

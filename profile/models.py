@@ -17,6 +17,7 @@ class UserProfile(models.Model):
     post_code = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(blank_label='Country', null=True, blank=True)
     profile_image = CloudinaryField('image', default='placeholder')
+    bio = models.TextField(max_length=280, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
