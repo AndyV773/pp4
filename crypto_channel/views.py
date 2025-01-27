@@ -86,6 +86,8 @@ def channel_detail(request, slug):
         All approved channels related to :model:`crypto_channel.Channel`
     ``post_form``
         An instance of :form:`crypto_channel.PostForm`
+    ``post.profile``
+        A instance of post author related :model:`profile.UserProfile`
 
     **Template:**
     :template:`crypto_channel/channel_detail.html`
@@ -179,6 +181,10 @@ def post_detail(request, slug, post_id):
         All approved channels related to :model:`crypto_channel.Channel`
     ``comment_form``
         An instance of :form:`crypto_channel.CommnetForm`
+    ``profile``
+        A instance of post author related :model:`profile.UserProfile`
+    ``comment.profile``
+        A instance of comment author related to:model:`profile.UserProfile`
 
     **Template:**
     :template:`crypto_channel/post_detail.html`
@@ -188,6 +194,10 @@ def post_detail(request, slug, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.filter(approved=True).order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
+    profile = UserProfile.objects.get(user=post.author)
+
+    for comment in comments:
+        comment.profile = UserProfile.objects.get(user=comment.author)
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
@@ -220,6 +230,7 @@ def post_detail(request, slug, post_id):
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
+            "profile": profile,
         },  # context
     )
 

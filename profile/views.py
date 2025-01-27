@@ -11,7 +11,7 @@ from crypto_channel.models import Channel, Post, Comment
 # Credit for the profile code: Code Institute Boutique Ado project
 def profile_account(request):
     """
-    Display the user's profile
+    Display the user's profile account
 
     **Context**
     ``channel_list``
@@ -37,7 +37,22 @@ def profile_account(request):
 
 def profile_detail(request, username):
     """
-    
+    Display the user's profile detail
+
+    **Context**
+    ``channel_list``
+        All approved channels related to :model:`crypto_channel.Channel`
+    ``posts``
+        All approved posts related to :model:`crypto_channel.Post`
+    ``post_count``
+        A count of approved posts related to the author
+    ``profile_detail``
+        An instance of :model:`User`
+    ``profile``
+        An instance of :model:`profile.UserProfile`
+
+    **Template:**
+    :template:`profile/profile_detail.html`
     """
     profile_detail = get_object_or_404(User, username=username)
     profile = get_object_or_404(UserProfile, user=profile_detail)

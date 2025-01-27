@@ -10,21 +10,33 @@
 <section class="d-flex justify-content-center">
     <!-- code from https://getbootstrap.com/docs/5.3/components/card/ -->
     <div class="card border-0 m-4">
-        <div class="card-body">
+        <div class="card-body ps-0">
             <!-- post header -->
             <header class="d-flex justify-content-between">
-                <h4 class="card-title">@{{ post.author }}</h4>
+                <a href="{% url 'profile_detail' post.author %}" class="d-flex text-decoration-none">
+                    <!-- profile image -->
+                    <figure>
+                        {% if "placeholder" in profile.profile_image.url %}
+                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded"
+                            width="100px" height="100px" alt="Default profile">
+                        {% else %}
+                        <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
+                            class="profile-pic rounded" width="100px" height="100px" alt="{{ post.author }} image">
+                        {% endif %}
+                    </figure>
+                    <h4 class="card-title align-self-end mb-3">@{{ post.author }}</h4>
+                </a>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </header>
             <!-- post content -->
-            <div class="card-text">
+            <div class="card-text ps-4">
                 {{ post.content | linebreaks }}
             </div>
         </div>
         <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500px"
-            height="500px" alt="Crypto Net BTC">
+        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500px" height="500px"
+            alt="Crypto Net BTC">
         {% else %}
         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
             class="card-img-top rounded" width="500px" height="500px" alt="{{ post.author }} image">
@@ -37,7 +49,19 @@
         <!-- comment section -->
         {% for comment in comments %}
         <fieldset class="mt-4">
-            <legend>@{{ comment.author }}</legend>
+            <a href="{% url 'profile_detail' comment.author %}" class="d-flex text-decoration-none">
+                <!-- profile image -->
+                <figure>
+                    {% if "placeholder" in comment.profile.profile_image.url %}
+                    <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded"
+                        width="100px" height="100px" alt="Default profile">
+                    {% else %}
+                    <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ comment.profile.profile_image }}.webp"
+                        class="profile-pic rounded" width="100px" height="100px" alt="{{ comment.author }} image">
+                    {% endif %}
+                </figure>
+                <legend class="card-title align-self-end mb-3">@{{ comment.author }}</legend>
+            </a>
             <div id="comment{{ comment.id }}" class="ms-3">
                 {{ comment.comment | linebreaks }}
             </div>
@@ -59,11 +83,10 @@
             </div>
         </fieldset>
         {% if not forloop.last %}
-        <hr>
+        <hr class="m-0">
         {% endif %}
         {% endfor %}
         {% endif %}
-    </div>
     </div>
 </section>
 {% if user.is_authenticated %}
