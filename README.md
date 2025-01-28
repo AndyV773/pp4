@@ -28,6 +28,9 @@ Crypto Net is a social networking platform designed specifically for individuals
 - As a site administrator, the platform should run smoothly and remain secure.
 - As a site administrator, that the site remain.
 
+- Using an agile approach with project board for user storys
+![project board](static/images/readme/github-board.jpg) 
+
 ## Features
 
 ### Wire Frames
@@ -46,7 +49,7 @@ The wire frames were made using [Balsamiq](https://balsamiq.com/)
 
 ### Entity Relationship Diagram
 
-![erd in lucid chart](static/images/readme/)
+![erd in lucid chart](static/images/readme/erd.jpg)
 
 The diagram was made using [Lucid Chart](https://www.lucidchart.com/)
 
@@ -74,6 +77,28 @@ This color pallet was made in [Coolors](https://coolors.co)
 - **Additional colors**
   - Black from [Bootstraps](https://getbootstrap.com/docs/5.3/utilities/background/) default colors
 
+### Home
+
+### About
+
+### Contact
+
+### Request Channel
+
+- **Input message return**
+
+### Channel
+
+- **Input message return**
+
+### Post
+
+- **Input message return**
+
+### Account
+
+### Profile
+
 ### 404 Page
 
 ![404 page](static/images/readme/404-page.jpg)
@@ -82,9 +107,18 @@ This color pallet was made in [Coolors](https://coolors.co)
 - Information on 404 page [W3S](https://www.w3schools.com/django/django_404.php)
 
 
-- **Input message return**
+## Future Features
+How deep is the rabbit hole?
 
-### Future Features
+With more time I would like to add the following features:
+
+- An istance to like, delete or edit posts within the profile_detail template
+- Edit and delete username/user functionality
+- Channel search bar
+- User fvorite channel list
+- Email verification
+- Report functionality
+- CoinGecko API dynamic data input and channel validation
 
 ## Requirements
 
@@ -102,11 +136,37 @@ This color pallet was made in [Coolors](https://coolors.co)
 
 
 ## Deployment
-This project was deployed using Heroku.
+This project was deployed using Heroku
+**PostgreSQL**
+This project uses PostgreSQL database provided by Code Institue
+**Cloudinary API**
+This project uses [Cloudinary](https://cloudinary.com/) for storing media files 
 - **Steps for deployment**
   - Fork or clone this [repository](https://github.com/AndyV773/pp4)
+  - You can install all requirements by typing in the terminal:
+
+  ` pip3 install -r requirements.txt `
+
+  - Ensure Procfile is added with the correct command to run gunicorn: 
+
+  `web: gunicorn cryptonet.wsgi`
+
+  - Ensure runtime.txt has the correct python version:
+
+  `python-3.12`
+
   - Create a new Heroku app
-  - Add Config Var in Heroku's settings. Here is [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
+  - Add Config Var in Heroku's settings, click Reveal Config Vars. Here is an example:
+
+  | key | Value |
+  | --- | --- |
+  | DATABASE_URL | <your_database_url> |
+  | SECRET_KEY | <your_secret_key> |
+  | CLOUDINARY_URL | cloudinary://<your_api_key>:<your_api_secret>@dpwhdmvce |
+  | DISABLE_COLLECTSTATIC | 1 (Can be used to temporary disable collection of static files) |
+
+  - Set Environment Varibles here is [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
+
   - Link the Heroku app to the repository
   - Click on **Deploy**
 
@@ -125,8 +185,10 @@ This project was deployed using Heroku.
 - [Stack Overflow](https://stackoverflow.com/)
 - [Lucid Chart](https://www.lucidchart.com/)
 - [Balsamiq](https://balsamiq.com/)
+- [Cloudinary](https://cloudinary.com/)
 - The icons used were taken from [Font Awesome](https://fontawesome.com/)
 - Animated 404.svg was from [Loading](https://loading.io/)
+- Optimise images with [Free Convert](https://www.freeconvert.com/)
 
 ### Media
 
