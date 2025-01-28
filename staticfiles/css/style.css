@@ -76,6 +76,10 @@ img {
     background-color: rgb(60, 110, 113);
 }
 
+.t--hover:hover {
+    color: rgb(60, 110, 113);
+}
+
 /* ----------------------------------------------------------- navigation menu */
 /* sidenav code from w3s */
 /* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full */

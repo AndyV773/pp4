@@ -4,15 +4,20 @@
 <!-- profile detail -->
 <section class="bg-dark shadow">
     <div class="d-flex flex-column text-light p-4 pb-2">
+        {% if profile_detail.username == user.username %}
+        <div>
+            <a href="{% url 'edit_profile' %}" class="rounded-5 bg-none float-end text-light plat--shadow p--shadow p-2 pt-0 pb-0 text-decoration-none"
+                aria-label="Edit profile">Edit Profile</a>
+        </div>
+        {% endif %}
         <!-- profile image -->
         <figure class="d-flex">
             {% if "placeholder" in profile.profile_image.url %}
-            <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-detail-pic rounded"
-                width="100" height="100" alt="Default profile">
+            <img src="{% static 'images/profile/default-profile.webp' %}" class="profile-detail-pic rounded" width="100"
+                height="100" alt="Default profile">
             {% else %}
             <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
-                class="profile-detail-pic rounded" width="100" height="100"
-                alt="{{ profile_detail.username }} image">
+                class="profile-detail-pic rounded" width="100" height="100" alt="{{ profile_detail.username }} image">
             {% endif %}
             <h3 class="align-self-end mb-0">@{{ profile_detail.username }}</h3>
         </figure>
@@ -45,7 +50,7 @@
                     <!-- profile image -->
                     <figure>
                         {% if "placeholder" in profile.profile_image.url %}
-                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded"
+                        <img src="{% static 'images/profile/default-profile.webp' %}" class="profile-pic rounded"
                             width="100" height="100" alt="Default profile">
                         {% else %}
                         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
@@ -69,7 +74,7 @@
         </div>
         <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500" height="500"
+        <img src="{% static 'images/posts/cn-btc.webp' %}" class="card-img-bottom rounded" width="500" height="500"
             alt="Crypto Net BTC">
         {% else %}
         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
@@ -78,7 +83,7 @@
         <div class="d-flex justify-content-evenly">
             <!-- view to comments -->
             <div class="align-self-center">
-                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment"
+                <a href="{% url 'post_detail' post.channel.slug post.id %}" class="btn btn-comment t--hover"
                     aria-label="View post comments">
                     {{ post.comment_count }} <i class="fa-solid fa-comments"></i></a>
             </div>

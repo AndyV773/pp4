@@ -9,7 +9,7 @@
         <figure class="ms-5 mb-0">
             <figcaption class="fs-3 mb-2">Image:</figcaption>
             {% if "placeholder" in profile.profile_image.url %}
-            <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-detail-pic rounded" width="100"
+            <img src="{% static 'images/profile/default-profile.webp' %}" class="profile-detail-pic rounded" width="100"
                 height="100" alt="Default profile">
             {% else %}
             <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"

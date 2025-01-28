@@ -76,6 +76,10 @@ img {
     background-color: rgb(60, 110, 113);
 }
 
+.yell--hover:hover {
+    color: orangered;
+}
+
 /* ----------------------------------------------------------- navigation menu */
 /* sidenav code from w3s */
 /* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full */

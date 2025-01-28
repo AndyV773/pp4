@@ -13,19 +13,19 @@
         <div class="card-body ps-0">
             <!-- post header -->
             <header class="d-flex justify-content-between">
-                <a href="{% url 'profile_detail' post.author %}" class="d-flex text-decoration-none"
+                <a href="{% url 'profile_detail' post.author %}" class="d-flex text-dark text-decoration-none"
                     aria-label="Go to {{ post.author }} profile">
                     <!-- profile image -->
                     <figure>
                         {% if "placeholder" in profile.profile_image.url %}
-                        <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded"
+                        <img src="{% static 'images/profile/default-profile.webp' %}" class="profile-pic rounded"
                             width="100" height="100" alt="Default profile">
                         {% else %}
                         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ profile.profile_image }}.webp"
                             class="profile-pic rounded" width="100" height="100" alt="{{ post.author }} profile">
                         {% endif %}
                     </figure>
-                    <h4 class="card-title align-self-end mb-3">@{{ post.author }}</h4>
+                    <h4 class="card-title align-self-end mb-3 t--hover">@{{ post.author }}</h4>
                 </a>
                 <div>{{ post.created_on | date:"H:i d/m/Y" }}</div>
             </header>
@@ -36,7 +36,7 @@
         </div>
         <!-- post image -->
         {% if "placeholder" in post.featured_image.url %}
-        <img src="{% static 'images/posts/cn-btc.jpg' %}" class="card-img-bottom rounded" width="500" height="500"
+        <img src="{% static 'images/posts/cn-btc.webp' %}" class="card-img-bottom rounded" width="500" height="500"
             alt="Crypto Net BTC">
         {% else %}
         <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ post.featured_image }}.webp"
@@ -50,19 +50,19 @@
         <!-- comment section -->
         {% for comment in comments %}
         <fieldset class="mt-4">
-            <a href="{% url 'profile_detail' comment.author %}" class="d-flex text-decoration-none"
+            <a href="{% url 'profile_detail' comment.author %}" class="d-flex text-dark text-decoration-none"
                 aria-label="Go to {{ comment.author }} profile">
                 <!-- profile image -->
                 <figure>
                     {% if "placeholder" in comment.profile.profile_image.url %}
-                    <img src="{% static 'images/profile/default-profile.jpg' %}" class="profile-pic rounded" width="100"
+                    <img src="{% static 'images/profile/default-profile.webp' %}" class="profile-pic rounded" width="100"
                         height="100" alt="Default profile">
                     {% else %}
                     <img src="https://res.cloudinary.com/dpwhdmvce/image/upload/v1737560480/{{ comment.profile.profile_image }}.webp"
                         class="profile-pic rounded" width="100" height="100" alt="{{ comment.author }} profile">
                     {% endif %}
                 </figure>
-                <legend class="card-title align-self-end mb-3">@{{ comment.author }}</legend>
+                <legend class="card-title align-self-end mb-3 t--hover">@{{ comment.author }}</legend>
             </a>
             <div id="comment{{ comment.id }}" class="ms-3">
                 {{ comment.comment | linebreaks }}
@@ -72,12 +72,12 @@
             <div class="d-flex justify-content-evenly">
                 {% if comment.author == user %}
                 <!-- delete comment -->
-                <button type="button" class="btn btn-modal btn-delete p-0 m-0" data-comment_id="{{ comment.id }}"
+                <button type="button" class="btn btn-modal btn-delete p-0 m-0 t--hover" data-comment_id="{{ comment.id }}"
                     aria-label="Delete comment">
                     <i class="fa-solid fa-trash-can p-3"></i>
                 </button>
                 <!-- edit comment -->
-                <button type="button" class="btn btn-edit p-0 m-0" data-bs-toggle="modal"
+                <button type="button" class="btn btn-edit p-0 m-0 t--hover" data-bs-toggle="modal"
                     data-bs-target="#comment-model" data-comment_id="{{ comment.id }}" aria-label="Edit comment">
                     <i class="fa-solid fa-pen-to-square p-3"></i>
                 </button>
