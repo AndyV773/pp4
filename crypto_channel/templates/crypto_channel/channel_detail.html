@@ -65,7 +65,7 @@
             <!-- https://github.com/Code-Institute-Solutions/Django3blog/blob/master/10_likes/blog/views.py -->
             <!-- The number of likes goes before the closing strong tag -->
             <div class="align-self-center">
-                <span>{{ post.number_of_likes }} </span>
+                <span>{{ post.number_of_likes }}</span>
                 {% if user.is_authenticated %}
                 <form class="d-inline" action="{% url 'post_like' post.channel.slug post.id %}" method="POST">
                     {% csrf_token %}

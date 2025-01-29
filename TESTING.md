@@ -3,6 +3,27 @@
 ## Manual Testing
 - Vigorous manual testing to ensure everything functions as expected
 
+#### Navigation 
+- Ensured that all buttons and links function correctly and link to the correct templates 
+- Confirmed that channel displays are correct, and link to the correct channels  
+
+#### CRUD Fuctionality 
+- **Channel tempalte:** Ensured all posts are created, read, updated and deleted correctly
+  - Checked the post count is accurate
+- **Add channel:** Ensured that adding a channel sends a request for admin approval
+  - Ensured that channel ordering is correct  
+- **Post template:**Ensured that all comments are created, read, updated and deleted correctly
+  - Checked the comment count is accurate 
+- **Contact template:** Ensured that contact details are posted correctly and the form autofills for users  
+- **About template:** Ensured that details are displayed correctly and update times are accurate  
+- **Profile templates:** Checked that user details are displayed correctly and can be edited in the Edit Profile section
+   - Ensure correct user posts are displayed in profile template
+
+#### User Management
+- Verified that unauthorized users are blocked from restricted functionality
+- Ensured that approved comments or posts are hidden when not approved
+- Checked that user deletion works as expected    
+
 ## Automated Testing
 - To be continued
 
@@ -110,5 +131,3 @@
   I decided to reach out to Code Institute tutoring to see if there was a solution. The tutor removed aria-label = true, and they no longer had the issue in their console, but it still persisted in mine. I tried using the browser in incognito mode (CTRL + Shift + N), but the issue remained. I then spoke with my mentor, who confirmed that the error was not in their terminal either, so it must be a local issue. 
 
   I have currently left the modals as they are, even though I’m still getting the error, but in the future, I plan to refactor the modals down to just one.
-
-- **Allauth HTML Register Error**
