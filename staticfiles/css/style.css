@@ -28,6 +28,10 @@ img {
     height: 4rem;
 }
 
+.w--40 {
+    width: 40px;
+}
+
 .z--3000 {
     z-index: 3000;
 }
@@ -76,8 +80,8 @@ img {
     background-color: rgb(60, 110, 113);
 }
 
-.t--hover:hover {
-    color: rgb(60, 110, 113);
+.yell--hover:hover {
+    color: orangered;
 }
 
 /* ----------------------------------------------------------- navigation menu */

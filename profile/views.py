@@ -121,3 +121,17 @@ def edit_profile(request):
             'profile_form': profile_form,
         },  # context
     )
+
+
+def delete_user(request, user_id):
+    """
+    Delete an individual user
+
+    **context**
+    ``user``
+        An instance of :model:`django.contrib.auth.User`
+    """
+    user = get_object_or_404(User, id=user_id)
+    if request.user == user:
+        user.delete()
+        return redirect('/')

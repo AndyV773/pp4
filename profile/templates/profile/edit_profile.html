@@ -4,9 +4,14 @@
 {% load static %}
 <!-- edit profile -->
 <section class="bg-dark vh-100">
-    <h3 class="text--platinum ms-3 mt-5">Edit User Information:</h3>
+    <header class="d-flex justify-content-around">
+        <h3 class="text--platinum ms-3 mt-5 mb-0">Edit User Information:</h3>
+        <!-- delete user button -->
+        <button type="button" class="btn btn-modal btn-delete text-light bg-danger align-self-end me-3"
+            data-user_id="{{ user.id }}" aria-label="Delete user">Delete</button>
+    </header>
     <!-- profile form -->
-    <div class="d-flex justify-content-center mt-4">
+    <div class="d-flex justify-content-center mt-4 pb-5">
         <form method="POST" class="col-8 text-light" enctype="multipart/form-data">
             {{ profile_form | crispy }}
             {% csrf_token %}
@@ -20,4 +25,5 @@
 {% endblock content %}
 
 {% block extras %}
+<script src="{% static 'js/user.js' %}"></script>
 {% endblock %}
