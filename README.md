@@ -78,14 +78,64 @@ This color pallet was made in [Coolors](https://coolors.co)
   - Black from [Bootstraps](https://getbootstrap.com/docs/5.3/utilities/background/) default colors
 
 ### Home
+**Resposive Design**
+
+The design of the home page displays only the channels on small devices using JavaScript, while on large devices, it shows the channels along with a large image
+
+This includes:
+- A list of approved channels and there rankings in order of rank
+- A Login/logout user display message
+- Copyright information with a dynamically updated date
+
+- Home desktop
+
+![home desktop](static/images/readme/home-destop.jpg)
+
+- Home mobile
+
+![home mobile](static/images/readme/home-mobile.jpg)
+
+### Navigation
+
+The naviagtional menu was used from [W3S Sidenav](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It slides in from the right and displays content for both authorized and unauthorized users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
+
+- Authorised user navigation menu on large devices
+
+![authorised user navigation on large device](static/images/readme/nav-login-d.jpg)
+
+- unauthorised user navigation on small devices
+
+![unauthorised user navigation on small device](static/images/readme/nav-logout-m.jpg)
 
 ### About
 
+The about page consists of a image, title and content that can be added from the admin panel. It also displays the date it was updated and includes a button linking to the contact page
+
+![about page](static/images/readme/about-d.jpg)
+
 ### Contact
+
+The user can send a contact request to the admin via the contact form. They must include a name, valid email, and message. If the user is authorised, the name and email fields will be autofilled with their data
+
+- Unauthorised user
+
+![contact form](static/images/readme/contact-form.jpg)
+
+- Authorised user
+
+![autofilled contact form](static/images/readme/contact-form-filled.jpg)
 
 ### Request Channel
 
-- **Input message return**
+If the user is authorized, they can submit a channel request to be approved by the admin. The goal is to only allow approved cryptocurrency channels that are listed on CoinGecko. A future feature will handle this via the CoinGecko API, but for now, it is managed through the admin panel. The user can only request channels that do not already exist. A validation error will be thrown if the same channel is requested twice, regardless of case (for example, "Bitcoin" or "bitcoin")
+
+- Approved channel message
+
+![approved channel](static/images/readme/add-channel-approved.jpg)
+
+- Rejected channel message
+
+![rejected channel](static/images/readme/add-channel-error.jpg)
 
 ### Channel
 
@@ -113,7 +163,7 @@ How deep is the rabbit hole?
 With more time I would like to add the following features:
 
 - An istance to like, delete or edit posts within the profile_detail template
-- Edit and delete username/user functionality
+- Edit username/user functionality
 - Channel search bar
 - User fvorite channel list
 - Email verification
