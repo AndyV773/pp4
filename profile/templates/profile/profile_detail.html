@@ -110,7 +110,7 @@
         </div>
     </div>
 </section>
-{% if not forloop.last %}
+{% if not forloop.last and post.author == profile_detail %}
 <hr class="m-0">
 {% endif %}
 {% endif %}
