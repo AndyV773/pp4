@@ -139,7 +139,48 @@ If the user is authorized, they can submit a channel request to be approved by t
 
 ### Channel
 
-- **Input message return**
+On approved channels, authorized users can create content with images, read content, update their own content, and delete their content
+
+Included features are:
+
+- Users can see the channel name and number of posts in a channel
+
+![channel header](static/images/readme/channel-detail.jpg)
+
+- Users can view the number of likes on a post and also like a post
+
+![channel likes](static/images/readme/channel-likes.jpg)
+
+- Users can view the number of comments on a post, with a clickable link to the post detail page that lists the comments
+
+!channel comment[](static/images/readme/channel-comments.jpg)
+
+- A pop-up modal is available to create a post or edit a post
+
+- Post a post
+
+![channel post modal](static/images/readme/channel-post.jpg)
+
+- Edit a post
+
+![channel edit modal](static/images/readme/channel-edit.jpg)
+
+
+- A delete confirmation is required before deleting content
+
+![channel delete modal](static/images/readme/channel-post-delete.jpg)
+
+- Message Confirmation
+
+A user will receive a message confirming whether the post was sent, updated or deleted
+
+![]()
+
+- Unathorised users can only view content
+
+There is also a link at the top prompting users to log in in order to leave a post. This link directs to the sign in page
+
+![unathorised user content](static/images/readme/channel-unathorised.jpg)
 
 ### Post
 
@@ -210,17 +251,17 @@ This project uses [Cloudinary](https://cloudinary.com/) for storing media files
 
   `python-3.12`
 
+  - Set Environment Varibles here is [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
+
   - Create a new Heroku app
   - Add Config Var in Heroku's settings, click Reveal Config Vars. Here is an example:
 
-  | key | Value |
+  | Key | Value |
   | --- | --- |
   | DATABASE_URL | <your_database_url> |
   | SECRET_KEY | <your_secret_key> |
   | CLOUDINARY_URL | cloudinary://<your_api_key>:<your_api_secret>@dpwhdmvce |
   | DISABLE_COLLECTSTATIC | 1 (Can be used to temporary disable collection of static files) |
-
-  - Set Environment Varibles here is [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
 
   - Link the Heroku app to the repository
   - Click on **Deploy**
