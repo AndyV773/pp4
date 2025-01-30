@@ -45,7 +45,6 @@
 | logout | ![]() | ![]() |
 | signup | ![]() | ![]() |
 | 404 | ![]() | ![]() |
-| base | ![]() | ![]() |
 
 #### CSS
 #### JavaScript
@@ -60,22 +59,24 @@
 
 #### Lighthouse Testing
 
+- Proformace issues mainly with mobile due to images
+- Low score for best practice due to third party cookies from cloudinary
+
 | Template | Mobile | Desktop |
 | :------ | :------: | :------: |
-| about | ![]() | ![]() |
-| contact | ![]() | ![]() |
-| add_channel | ![]() | ![]() |
-| channel_detail | ![]() | ![]() |
-| index | ![]() | ![]() |
-| post_detail | ![]() | ![]() |
-| edit_profile | ![]() | ![]() |
-| profile_account | ![]() | ![]() |
-| profile_detail | ![]() | ![]() |
-| login | ![]() | ![]() |
-| logout | ![]() | ![]() |
-| signup | ![]() | ![]() |
-| 404 | ![]() | ![]() |
-| base | ![]() | ![]() |
+| about | ![about mobile lighthouse](static/images/testing/lh-about-m.jpg) | ![about desktop lighthouse](static/images/testing/lh-about-d.jpg) |
+| contact | ![contact mobile lighthouse](static/images/testing/lh-contact-m.jpg) | ![contact desktop lighthouse](static/images/testing/lh-contact-d.jpg) |
+| add_channel | ![add channel mobile lighthouse](static/images/testing/lh-add-channel-m.jpg) | ![add channel desktop lighthouse](static/images/testing/lh-add-channel-d.jpg) |
+| channel_detail | ![channel detail mobile lighthouse](static/images/testing/lh-channel-detail-m.jpg) | ![channel detail desktop lighthouse](static/images/testing/lh-channel-detail-d.jpg) |
+| index | ![index mobile lighthouse](static/images/testing/lh-index-m.jpg) | ![index desktop lighthouse](static/images/testing/lh-index-d.jpg) |
+| post_detail | ![post detail mobile lighthouse](static/images/testing/lh-post-detail-m.jpg) | ![post detail desktop lighthouse](static/images/testing/lh-post-detail-d.jpg) |
+| edit_profile | ![edit profile mobile lighthouse](static/images/testing/lh-edit-profile-m.jpg) | ![edit profile desktop lighthouse](static/images/testing/lh-edit-profile-d.jpg) |
+| profile_account | ![profile account mobile lighthouse](static/images/testing/lh-profile-account-m.jpg) | ![profile account desktop ligthhouse](static/images/testing/lh-profile-account-d.jpg) |
+| profile_detail | ![profile detail mobile lighthouse](static/images/testing/lh-profile-detail-m.jpg) | ![profile detail desktop lighthouse](static/images/testing/lh-profile-detail-d.jpg) |
+| login | ![login mobile lighthouse](static/images/testing/lh-login-m.jpg) | ![login desktop lighthouse](static/images/testing/lh-login-d.jpg) |
+| logout | ![logout mobile lighthouse](static/images/testing/lh-logout-m.jpg) | ![logout desktop lighthouse](static/images/testing/lh-logout-d.jpg) |
+| signup | ![signup mobile lighthouse](static/images/testing/lh-signup-m.jpg) | ![signup desktop lighthouse](static/images/testing/lh-signup-d.jpg) |
+| 404 | ![404 mobile lighthouse](static/images/testing/lh-404-m.jpg) | ![404 desktop lighthouse](static/images/testing/lh-404-d.jpg) |
 
 
 ## Bugs
