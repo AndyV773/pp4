@@ -137,10 +137,15 @@ With more time I would like to add the following features:
 
 ## Deployment
 This project was deployed using Heroku
+
 **PostgreSQL**
+
 This project uses PostgreSQL database provided by Code Institue
+
 **Cloudinary API**
-This project uses [Cloudinary](https://cloudinary.com/) for storing media files 
+
+This project uses [Cloudinary](https://cloudinary.com/) for storing media files
+
 - **Steps for deployment**
   - Fork or clone this [repository](https://github.com/AndyV773/pp4)
   - You can install all requirements by typing in the terminal:

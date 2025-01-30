@@ -62,7 +62,7 @@
                         class="profile-pic rounded" width="100" height="100" alt="{{ comment.author }} profile">
                     {% endif %}
                 </figure>
-                <legend class="card-title align-self-end mb-3 t--hover">@{{ comment.author }}</legend>
+                <h5 class="card-title align-self-end mb-3 t--hover">@{{ comment.author }}</h5>
             </a>
             <div id="comment{{ comment.id }}" class="ms-3">
                 {{ comment.comment | linebreaks }}

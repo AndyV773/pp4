@@ -30,31 +30,36 @@
 ### Validator Testing
 #### HTML
 
-| Template | Mobile | Desktop |
-| :------ | :------: | :------: |
-| about | ![]() | ![]() |
-| contact | ![]() | ![]() |
-| add_channel | ![]() | ![]() |
-| channel_detail | ![]() | ![]() |
-| index | ![]() | ![]() |
-| post_detail | ![]() | ![]() |
-| edit_profile | ![]() | ![]() |
-| profile_account | ![]() | ![]() |
-| profile_detail | ![]() | ![]() |
-| login | ![]() | ![]() |
-| logout | ![]() | ![]() |
-| signup | ![]() | ![]() |
-| 404 | ![]() | ![]() |
+| Template | results |
+| :------ | :------: |
+| about | ![]() |
+| contact | ![]() |
+| add_channel | ![]() |
+| channel_detail | ![]() |
+| index | ![]() |
+| post_detail | ![]() |
+| edit_profile | ![]() |
+| profile_account | ![]() |
+| profile_detail | ![]() |
+| login | ![]() |
+| logout | ![]() |
+| signup | ![]() |
+| 404 | ![]() |
 
 #### CSS
 #### JavaScript
 #### PEP8
-  - There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly related to whitespace and excessive line lengths. I had to reduce some lines in Django settings.py also.  
+
+  - There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly related to whitespace and excessive line lengths. I had to reduce some lines in Django settings.py also. 
+
     ![screenshot of pep8 errors](static/images/readme/pep8-errors.jpg)
+
     ![screenshot of pep8 errors](static/images/readme/pep8-django-error.jpg)
 
   - All errors have been fixed
+
     ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
+
     ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
 
 #### Lighthouse Testing
