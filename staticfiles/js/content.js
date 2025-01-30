@@ -1,4 +1,3 @@
-const channel = document.getElementsByClassName("channel");
 const channelList = document.getElementById("channel-list");
 const channelContent = document.getElementById("channel-content");
 
@@ -28,4 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // resize event https://www.w3schools.com/jsref/event_onresize.asp
     // calls the displayChannel function as screen is adjusted
     window.addEventListener("resize", displayChannel);
-})
+});
