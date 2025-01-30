@@ -29,22 +29,31 @@
 
 ### Validator Testing
 #### HTML
+I ensured that the website fully complyed with [W3S HTML Validator](https://validator.w3.org/)
+
+![html validator pass](static/images/testing/html-pass.jpg)
+
+- Can find the results [here](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcryptonet-0fc8d0019661.herokuapp.com%2F)
+
+There was one issue with `form.as_p` withing allauth template. I replaced with crispy to resolve this.
+
+![html form error](static/images/testing/html-error-form.jpg)
 
 | Template | results |
 | :------ | :------: |
-| about | ![]() |
-| contact | ![]() |
-| add_channel | ![]() |
-| channel_detail | ![]() |
-| index | ![]() |
-| post_detail | ![]() |
-| edit_profile | ![]() |
-| profile_account | ![]() |
-| profile_detail | ![]() |
-| login | ![]() |
-| logout | ![]() |
-| signup | ![]() |
-| 404 | ![]() |
+| about | ![html about validator results](static/images/testing/html-about.jpg) |
+| contact | ![html contact validator results](static/images/testing/html-contact.jpg) |
+| add_channel | ![html add channel validator results](static/images/testing/html-add-channel.jpg) |
+| channel_detail | ![html channel detail validator results](static/images/testing/html-channel-detail.jpg) |
+| index | ![html index validator results](static/images/testing/html-index.jpg) |
+| post_detail | ![html post detail validator results](static/images/testing/html-post-detail.jpg) |
+| edit_profile | ![html edit profile validator results](static/images/testing/html-edit-profile.jpg) |
+| profile_account | ![html profile account validator results](static/images/testing/html-profile-account.jpg) |
+| profile_detail | ![html profile detail validator results](static/images/testing/html-profile-detail.jpg) |
+| login | ![html login validator results](static/images/testing/html-login.jpg) |
+| logout | ![html logout validator results](static/images/testing/html-logout.jpg) |
+| signup | ![html signup validator results](static/images/testing/html-signup.jpg) |
+| 404 | ![html 404 validator results](static/images/testing/html-404.jpg) |
 
 #### CSS
 #### JavaScript
@@ -137,3 +146,9 @@
   I decided to reach out to Code Institute tutoring to see if there was a solution. The tutor removed aria-label = true, and they no longer had the issue in their console, but it still persisted in mine. I tried using the browser in incognito mode (CTRL + Shift + N), but the issue remained. I then spoke with my mentor, who confirmed that the error was not in their terminal either, so it must be a local issue. 
 
   I have currently left the modals as they are, even though I’m still getting the error, but in the future, I plan to refactor the modals down to just one.
+
+  ![aria label error in incognito mode](static/images/testing/aria-label-error.jpg)
+
+> **Note:**
+>
+> Return to [README.md](README.md)
