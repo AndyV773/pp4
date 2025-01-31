@@ -281,6 +281,8 @@ This project uses [Cloudinary](https://cloudinary.com/) for storing media files
 
 Fork or clone this [repository](https://github.com/AndyV773/pp4)
 
+**SECURITY WARNING: don't run with debug turned on in production! Always ensure `DEBUG = False` in settings.py before deployment**
+
 Heroku requires 3 additional files for deployment
 - requirements.txt
 - Procfile
