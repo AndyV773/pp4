@@ -31,53 +31,71 @@
 #### HTML
 I ensured that the website fully complyed with [W3S HTML Validator](https://validator.w3.org/)
 
-![html validator pass](static/images/testing/html-pass.jpg)
+![html validator pass](static/images/testing/html/html-pass.jpg)
 
 - Can find the results [here](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcryptonet-0fc8d0019661.herokuapp.com%2F)
 
 There was one issue with `form.as_p` withing allauth template. I replaced with crispy to resolve this.
 
-![html form error](static/images/testing/html-error-form.jpg)
+![html form error](static/images/testing/html/html-error-form.jpg)
 
 | Template | results |
 | :------ | :------: |
-| about | ![html about validator results](static/images/testing/html-about.jpg) |
-| contact | ![html contact validator results](static/images/testing/html-contact.jpg) |
-| add_channel | ![html add channel validator results](static/images/testing/html-add-channel.jpg) |
-| channel_detail | ![html channel detail validator results](static/images/testing/html-channel-detail.jpg) |
-| index | ![html index validator results](static/images/testing/html-index.jpg) |
-| post_detail | ![html post detail validator results](static/images/testing/html-post-detail.jpg) |
-| edit_profile | ![html edit profile validator results](static/images/testing/html-edit-profile.jpg) |
-| profile_account | ![html profile account validator results](static/images/testing/html-profile-account.jpg) |
-| profile_detail | ![html profile detail validator results](static/images/testing/html-profile-detail.jpg) |
-| login | ![html login validator results](static/images/testing/html-login.jpg) |
-| logout | ![html logout validator results](static/images/testing/html-logout.jpg) |
-| signup | ![html signup validator results](static/images/testing/html-signup.jpg) |
-| 404 | ![html 404 validator results](static/images/testing/html-404.jpg) |
+| about | ![html about validator results](static/images/testing/html/html-about.jpg) |
+| contact | ![html contact validator results](static/images/testing/html/html-contact.jpg) |
+| add_channel | ![html add channel validator results](static/images/testing/html/html-add-channel.jpg) |
+| channel_detail | ![html channel detail validator results](static/images/testing/html/html-channel-detail.jpg) |
+| index | ![html index validator results](static/images/testing/html/html-index.jpg) |
+| post_detail | ![html post detail validator results](static/images/testing/html/html-post-detail.jpg) |
+| edit_profile | ![html edit profile validator results](static/images/testing/html/html-edit-profile.jpg) |
+| profile_account | ![html profile account validator results](static/images/testing/html/html-profile-account.jpg) |
+| profile_detail | ![html profile detail validator results](static/images/testing/html/html-profile-detail.jpg) |
+| login | ![html login validator results](static/images/testing/html/html-login.jpg) |
+| logout | ![html logout validator results](static/images/testing/html/html-logout.jpg) |
+| signup | ![html signup validator results](static/images/testing/html/html-signup.jpg) |
+| 404 | ![html 404 validator results](static/images/testing/html/html-404.jpg) |
 
 #### CSS
 
 All CSS comply with [W3S CSS Validator](https://jigsaw.w3.org/)
 
-![CSS validator pass](static/images/testing/css-validator.jpg)
+![CSS validator pass](static/images/testing/css/css-validator.jpg)
 
 #### JavaScript
 
 I have ensured that all JS file comply with [JS Hint Validator](https://jshint.com/)
 
+| JavaScript File | Results |
+| ------ | ------ |
+| comments | ![comments.js](static/images/testing/jshint/comments.jpg) | 
+| content | ![contnet.js](static/images/testing/jshint/content.jpg) | 
+| posts | ![posts.js](static/images/testing/jshint/posts.jpg) | 
+| script | ![script.js](static/images/testing/jshint/script.jpg) | 
+| user | ![user.js](static/images/testing/jshint/user.jpg) | 
+
 #### PEP8
 
 There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly related to whitespace and excessive line lengths. I had to reduce some lines in Django settings.py also. 
 
-  ![screenshot of pep8 errors](static/images/readme/pep8-errors.jpg)
+- Errors from crypto_channel views.py, and settings.py:
 
-  ![screenshot of pep8 errors](static/images/readme/pep8-django-error.jpg)
+  ![screenshot of pep8 errors](static/images/testing/pep8/pep8-errors.jpg)
+
+  ![screenshot of pep8 errors](static/images/testing/pep8/pep8-django-error.jpg)
 
 - All errors have been fixed
 
-  ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
+  ![screenshot of pep8 errors](static/images/testing/pep8/pep8-fix.jpg)
 
-  ![screenshot of pep8 errors](static/images/readme/pep8-django-fix.jpg)
+  ![screenshot of pep8 errors](static/images/testing/pep8/pep8-django-fix.jpg)
+
+- Just for clarification, here are some of the mian results:
+
+| Apps | Models | Views |
+| ---- | ---- | ---- |
+| about | ![about models](static/images/testing/pep8/about-models.jpg) | ![about views](static/images/testing/pep8/about-views.jpg) |
+| crypto_channel | ![crypto channel models](static/images/testing/pep8/crypto-channel-models.jpg) | ![crypto channel views](static/images/testing/pep8/crypto-channel-views.jpg) |
+| profile | ![profile models](static/images/testing/pep8/profile-models.jpg) | ![profile views](static/images/testing/pep8/profile-views.jpg) |
 
 #### Lighthouse Testing
 
@@ -86,19 +104,19 @@ There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly
 
 | Template | Mobile | Desktop |
 | :------ | :------: | :------: |
-| about | ![about mobile lighthouse](static/images/testing/lh-about-m.jpg) | ![about desktop lighthouse](static/images/testing/lh-about-d.jpg) |
-| contact | ![contact mobile lighthouse](static/images/testing/lh-contact-m.jpg) | ![contact desktop lighthouse](static/images/testing/lh-contact-d.jpg) |
-| add_channel | ![add channel mobile lighthouse](static/images/testing/lh-add-channel-m.jpg) | ![add channel desktop lighthouse](static/images/testing/lh-add-channel-d.jpg) |
-| channel_detail | ![channel detail mobile lighthouse](static/images/testing/lh-channel-detail-m.jpg) | ![channel detail desktop lighthouse](static/images/testing/lh-channel-detail-d.jpg) |
-| index | ![index mobile lighthouse](static/images/testing/lh-index-m.jpg) | ![index desktop lighthouse](static/images/testing/lh-index-d.jpg) |
-| post_detail | ![post detail mobile lighthouse](static/images/testing/lh-post-detail-m.jpg) | ![post detail desktop lighthouse](static/images/testing/lh-post-detail-d.jpg) |
-| edit_profile | ![edit profile mobile lighthouse](static/images/testing/lh-edit-profile-m.jpg) | ![edit profile desktop lighthouse](static/images/testing/lh-edit-profile-d.jpg) |
-| profile_account | ![profile account mobile lighthouse](static/images/testing/lh-profile-account-m.jpg) | ![profile account desktop ligthhouse](static/images/testing/lh-profile-account-d.jpg) |
-| profile_detail | ![profile detail mobile lighthouse](static/images/testing/lh-profile-detail-m.jpg) | ![profile detail desktop lighthouse](static/images/testing/lh-profile-detail-d.jpg) |
-| login | ![login mobile lighthouse](static/images/testing/lh-login-m.jpg) | ![login desktop lighthouse](static/images/testing/lh-login-d.jpg) |
-| logout | ![logout mobile lighthouse](static/images/testing/lh-logout-m.jpg) | ![logout desktop lighthouse](static/images/testing/lh-logout-d.jpg) |
-| signup | ![signup mobile lighthouse](static/images/testing/lh-signup-m.jpg) | ![signup desktop lighthouse](static/images/testing/lh-signup-d.jpg) |
-| 404 | ![404 mobile lighthouse](static/images/testing/lh-404-m.jpg) | ![404 desktop lighthouse](static/images/testing/lh-404-d.jpg) |
+| about | ![about mobile lighthouse](static/images/testing/lighthouse/lh-about-m.jpg) | ![about desktop lighthouse](static/images/testing/lighthouse/lh-about-d.jpg) |
+| contact | ![contact mobile lighthouse](static/images/testing/lighthouse/lh-contact-m.jpg) | ![contact desktop lighthouse](static/images/testing/lighthouse/lh-contact-d.jpg) |
+| add_channel | ![add channel mobile lighthouse](static/images/testing/lighthouse/lh-add-channel-m.jpg) | ![add channel desktop lighthouse](static/images/testing/lighthouse/lh-add-channel-d.jpg) |
+| channel_detail | ![channel detail mobile lighthouse](static/images/testing/lighthouse/lh-channel-detail-m.jpg) | ![channel detail desktop lighthouse](static/images/testing/lighthouse/lh-channel-detail-d.jpg) |
+| index | ![index mobile lighthouse](static/images/testing/lighthouse/lh-index-m.jpg) | ![index desktop lighthouse](static/images/testing/lighthouse/lh-index-d.jpg) |
+| post_detail | ![post detail mobile lighthouse](static/images/testing/lighthouse/lh-post-detail-m.jpg) | ![post detail desktop lighthouse](static/images/testing/lighthouse/lh-post-detail-d.jpg) |
+| edit_profile | ![edit profile mobile lighthouse](static/images/testing/lighthouse/lh-edit-profile-m.jpg) | ![edit profile desktop lighthouse](static/images/testing/lighthouse/lh-edit-profile-d.jpg) |
+| profile_account | ![profile account mobile lighthouse](static/images/testing/lighthouse/lh-profile-account-m.jpg) | ![profile account desktop ligthhouse](static/images/testing/lighthouse/lh-profile-account-d.jpg) |
+| profile_detail | ![profile detail mobile lighthouse](static/images/testing/lighthouse/lh-profile-detail-m.jpg) | ![profile detail desktop lighthouse](static/images/testing/lighthouse/lh-profile-detail-d.jpg) |
+| login | ![login mobile lighthouse](static/images/testing/lighthouse/lh-login-m.jpg) | ![login desktop lighthouse](static/images/testing/lighthouse/lh-login-d.jpg) |
+| logout | ![logout mobile lighthouse](static/images/testing/lighthouse/lh-logout-m.jpg) | ![logout desktop lighthouse](static/images/testing/lighthouse/lh-logout-d.jpg) |
+| signup | ![signup mobile lighthouse](static/images/testing/lighthouse/lh-signup-m.jpg) | ![signup desktop lighthouse](static/images/testing/lighthouse/lh-signup-d.jpg) |
+| 404 | ![404 mobile lighthouse](static/images/testing/lighthouse/lh-404-m.jpg) | ![404 desktop lighthouse](static/images/testing/lighthouse/lh-404-d.jpg) |
 
 
 ## Bugs
