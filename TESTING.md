@@ -133,9 +133,9 @@ There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly
 
   This is a valuable lesson on why the MVP (Minimum Viable Product) and Agile approaches are the best methods to use. Building basic functionality and design first before advancing the front end.
 
-  ![console error null](static/images/readme/js-null-error.jpg)
+  ![console error null](static/images/testing/js-null-error.jpg)
 
-  ![target attribute icon](static/images/readme/js-icon-target.jpg)
+  ![target attribute icon](static/images/testing/js-icon-target.jpg)
 
 - **Displaying comment count of a individual post**
 
@@ -159,7 +159,7 @@ There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly
 
   I also originally had the images set to .jpg, which caused some performance issues. By changing the end of the URL to .webp, Cloudinary automatically optimized the return format, improving the performance.
 
-![http mixed content warning](static/images/readme/mixed-content-http.jpg)
+![http mixed content warning](static/images/testing/mixed-content-http.jpg)
 
 
 ### Remaing Bugs

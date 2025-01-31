@@ -22,14 +22,12 @@ Crypto Net is a social networking platform designed specifically for individuals
 - I want to see if there are any new channels
 - I want to add a new channel for my favorite crypto currency
 
-**Other Customer Scenarios**
-
 **Site Adminstrator**
 - As a site administrator, the platform should run smoothly and remain secure.
 - As a site administrator, that the site remain.
 
 - Using an agile approach with project board for user storys
-![project board](static/images/readme/github-board.jpg) 
+![project board](static/images/readme/planning/github-board.jpg) 
 
 ## Features
 
@@ -37,19 +35,19 @@ Crypto Net is a social networking platform designed specifically for individuals
 
 - **Desktop**
 
-![wire frame of main view on desktop](static/images/readme/wf-lg-main.jpg)
+![wire frame of main view on desktop](static/images/readme/planning/wf-lg-main.jpg)
 
-![wire frame of nav on desktop](static/images/readme/wf-lg-nav.jpg)
+![wire frame of nav on desktop](static/images/readme/planning/wf-lg-nav.jpg)
 
 - **Mobile**
 
-![wire frame of mobile devices](static/images/readme/wf-md.jpg)
+![wire frame of mobile devices](static/images/readme/planning/wf-md.jpg)
 
 The wire frames were made using [Balsamiq](https://balsamiq.com/)
 
 ### Entity Relationship Diagram
 
-![erd in lucid chart](static/images/readme/erd.jpg)
+![erd in lucid chart](static/images/readme/planning/erd.jpg)
 
 The diagram was made using [Lucid Chart](https://www.lucidchart.com/)
 
@@ -70,7 +68,7 @@ The fonts were imported from [Google Fonts](https://fonts.google.com/)
   - Platinum: rgb(217, 217, 217)
   - Indigo Dye: #rgb(40, 75, 99)
 
-![color pallet](static/images/readme/color-pallet.jpg)
+![color pallet](static/images/readme/planning/color-pallet.jpg)
 
 This color pallet was made in [Coolors](https://coolors.co)
 
@@ -89,29 +87,43 @@ This includes:
 
 - Home desktop
 
-![home desktop](static/images/readme/home-destop.jpg)
+![home desktop](static/images/readme/features/home/home-destop.jpg)
 
 - Home mobile
 
-![home mobile](static/images/readme/home-mobile.jpg)
+![home mobile](static/images/readme/features/home/home-mobile.jpg)
 
 ### Navigation
 
 The naviagtional menu was used from [W3S Sidenav](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It slides in from the right and displays content for both authorized and unauthorized users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
 
-- Authorised user navigation menu on large devices
+- Authorised user navigation menu content includes
+  - Account
+  - Profile
+  - About
+  - Contact
+  - Request Channel
+  - Logout
 
-![authorised user navigation on large device](static/images/readme/nav-login-d.jpg)
+- Authorised access on large devices
 
-- unauthorised user navigation on small devices
+![authorised user navigation on large device](static/images/readme/features/nav/nav-login-d.jpg)
 
-![unauthorised user navigation on small device](static/images/readme/nav-logout-m.jpg)
+- unauthorised user navigation is restricted too
+  - About
+  - Contact
+  - Reqister
+  - Login
+
+- Unauthorised access on small devices
+
+![unauthorised user navigation on small device](static/images/readme/features/nav/nav-logout-m.jpg)
 
 ### About
 
 The about page consists of a image, title and content that can be added from the admin panel. It also displays the date it was updated and includes a button linking to the contact page
 
-![about page](static/images/readme/about-d.jpg)
+![about page](static/images/readme/features/about/about-d.jpg)
 
 ### Contact
 
@@ -119,11 +131,11 @@ The user can send a contact request to the admin via the contact form. They must
 
 - Unauthorised user
 
-![contact form](static/images/readme/contact-form.jpg)
+![contact form](static/images/readme/features/contact/contact-form.jpg)
 
 - Authorised user
 
-![autofilled contact form](static/images/readme/contact-form-filled.jpg)
+![autofilled contact form](static/images/readme/features/contact/contact-form-filled.jpg)
 
 ### Request Channel
 
@@ -131,11 +143,11 @@ If the user is authorized, they can submit a channel request to be approved by t
 
 - Approved channel message
 
-![approved channel](static/images/readme/add-channel-approved.jpg)
+![approved channel](static/images/readme/features/add-channel/add-channel-approved.jpg)
 
 - Rejected channel message
 
-![rejected channel](static/images/readme/add-channel-error.jpg)
+![rejected channel](static/images/readme/features/add-channel/add-channel-error.jpg)
 
 ### Channel
 
@@ -145,68 +157,96 @@ Included features are:
 
 - Users can see the channel name and number of posts in a channel
 
-![channel header](static/images/readme/channel-detail.jpg)
+![channel header](static/images/readme/features/channel/channel-detail.jpg)
 
-- Users can view the number of likes on a post and also like a post
+- Users can:
+  - Create a post
+  - View the number of likes on a post and also like a post
+  - View the number of comments on a post, with a clickable link to the post detail template that lists all the comments for that post
+  - View user profiles by clicking the user image or name
 
-![channel likes](static/images/readme/channel-likes.jpg)
+![channel likes](static/images/readme/features/channel/channel-likes.jpg)
 
-- Users can view the number of comments on a post, with a clickable link to the post detail page that lists the comments
+- Edit and delete there own posts
 
-!channel comment[](static/images/readme/channel-comments.jpg)
+![channel comment](static/images/readme/features/channel/channel-comments.jpg)
 
 - A pop-up modal is available to create a post or edit a post
 
-- Post a post
+- Post modal
 
-![channel post modal](static/images/readme/channel-post.jpg)
+![channel post modal](static/images/readme/features/channel/channel-post.jpg)
 
-- Edit a post
+- Edit post modal
 
-![channel edit modal](static/images/readme/channel-edit.jpg)
-
+![channel edit modal](static/images/readme/features/channel/channel-edit.jpg)
 
 - A delete confirmation is required before deleting content
 
-![channel delete modal](static/images/readme/channel-post-delete.jpg)
+![channel delete modal](static/images/readme/features/channel/channel-post-delete.jpg)
 
 - Message Confirmation
 
 A user will receive a message confirming whether the post was sent, updated or deleted
 
-![]()
+![post sent](static/images/readme/features/channel/post-sent.jpg)
 
-- Unathorised users can only view content
+![post deleted](static/images/readme/features/channel/post-deleted.jpg)
+
+- Unathorised users are restricted to only view content
 
 There is also a link at the top prompting users to log in in order to leave a post. This link directs to the sign in page
 
-![unathorised user content](static/images/readme/channel-unathorised.jpg)
+![unathorised user content](static/images/readme/features/channel/channel-unathorised.jpg)
 
 ### Post
 
-- **Input message return**
+The comment link will take users to the post template, where they can view other comments on the post. Authorized users can add, edit, and delete their comments. There is also a comment count displayed at the top of the template
 
-### Account
+![post comments](static/images/readme/features/post/post-comments.jpg)
 
 ### Profile
 
+The profile consists of three sections edit, account, and detail. 
+
+A user's profile details can be viewed by all users through the profile image and name links on posts and comments, or a user’s own profile can be accessed through the navigational menu
+
+Included is:
+
+- A count of posts made by the user
+- An option to link to edit the profile if the users is the authorised owner of the profile
+- The user's image, bio, location and date joined
+- All post created by the user
+
+![profile detail](static/images/readme/features/profile/profile-detail.jpg)
+
+In the edit profile section, a user can update any relevant information they would like to display or delete their account
+
+![edit profile](static/images/readme/features/profile/profile-edit.jpg)
+
+The user can view their account via the navigational menu, which will display all current relevant information and an option to edit their details
+
+![profile account](static/images/readme/features/profile/profile-account.jpg)
+
 ### 404 Page
 
-![404 page](static/images/readme/404-page.jpg)
+Features a bouncy 404 image for peace of mind
+
+![404 page](static/images/readme/features/404/404-page.jpg)
 
 - Animated 404.svg from [Loading](https://loading.io/)
 - Information on 404 page [W3S](https://www.w3schools.com/django/django_404.php)
 
-
 ## Future Features
+
 How deep is the rabbit hole?
 
-With more time I would like to add the following features:
+Just to list a few. With more time, I would like to add the following features:
 
-- An istance to like, delete or edit posts within the profile_detail template
-- Edit username/user functionality
+- An istance to like, delete or edit posts within the post_detail & profile_detail templates
+- Edit user/username functionality
 - Channel search bar
-- User fvorite channel list
+- User favorite channel list
 - Email verification
 - Report functionality
 - CoinGecko API dynamic data input and channel validation
@@ -237,34 +277,78 @@ This project uses PostgreSQL database provided by Code Institue
 
 This project uses [Cloudinary](https://cloudinary.com/) for storing media files
 
-- **Steps for deployment**
-  - Fork or clone this [repository](https://github.com/AndyV773/pp4)
-  - You can install all requirements by typing in the terminal:
+### Heroku Deployment
 
-  ` pip3 install -r requirements.txt `
+Fork or clone this [repository](https://github.com/AndyV773/pp4)
 
-  - Ensure Procfile is added with the correct command to run gunicorn: 
+Heroku requires 3 additional files for deployment
+- requirements.txt
+- Procfile
+- runtime.txt
 
-  `web: gunicorn cryptonet.wsgi`
+Ensure Procfile is added with the correct command to run gunicorn: 
 
-  - Ensure runtime.txt has the correct python version:
+`web: gunicorn cryptonet.wsgi`
 
-  `python-3.12`
+- You can create a new Procile with the following command:
 
-  - Set Environment Varibles here is [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
+`echo web: gunicorn <app_name>.wsgi > Procfile`
 
-  - Create a new Heroku app
-  - Add Config Var in Heroku's settings, click Reveal Config Vars. Here is an example:
+- Replace <app_name> with the primary Django app name that locates settings.py
 
-  | Key | Value |
-  | --- | --- |
-  | DATABASE_URL | <your_database_url> |
-  | SECRET_KEY | <your_secret_key> |
-  | CLOUDINARY_URL | cloudinary://<your_api_key>:<your_api_secret>@dpwhdmvce |
-  | DISABLE_COLLECTSTATIC | 1 (Can be used to temporary disable collection of static files) |
+Ensure runtime.txt has the correct Python version:
 
-  - Link the Heroku app to the repository
-  - Click on **Deploy**
+`python-3.12`
+
+- You can check Python version by running either command:
+
+`python -V`
+
+`python --version`
+
+**Create a new app in Heroku**
+
+- Click "New" in the Heroku dashboard and select "Create new app" from the drop down menu
+- Add an app name (must be unique) and select your closest region (United States or Europe), then click "Create app"
+- Navigate to the Settings tab within the new app, locate and click "Reveal Config Vars". Set the key and values. Here is an example:
+
+| Key | Value |
+| --- | --- |
+| DATABASE_URL | <your_database_url> |
+| SECRET_KEY | <your_secret_key> |
+| CLOUDINARY_URL | cloudinary://<your_api_key>:<your_api_secret>@dpwhdmvce |
+| DISABLE_COLLECTSTATIC | 1 (Can be used to temporary disable collection of static files) |
+
+Once this is done, navigate to the "deploy" tab:
+
+- Link the Heroku app to the GitHub repository
+- Click on **Deploy Branch** in "Manual deploy" section
+
+Alternatively, you can enable automatic deployments with every push to the repository by clicking "Enable Automatic Deploy" in the "Automatic Deploy" section
+
+### Local Deployment
+
+- Fork or clone this [repository](https://github.com/AndyV773/pp4)
+
+- Install all requirements by running the following command in the terminal:
+
+` pip3 install -r requirements.txt `
+
+If you have your own packages or have installed other requirements, then you can updated the requirements.txt with the command:
+
+`pip3 freeze --local > requirements.txt`
+
+- Set Environment Varibles, here is an example [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+
+- Start the Django app: `python3 manage.py runserver`
+- Stop the app once it's loaded: `CTRL+C` or `⌘+C` (Mac)
+- Make any necessary migrations: `python3 manage.py makemigrations`
+- Migrate the data to the database: `python3 manage.py migrate`
+- Create a superuser: `python3 manage.py createsuperuser`
+- Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
+- Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
 
 ## Testing
 > **Note:**
@@ -274,18 +358,19 @@ This project uses [Cloudinary](https://cloudinary.com/) for storing media files
 ## Credits
 ### Content
 
-- Code Institute for [Code Institute Blog](https://github.com/Code-Institute-Solutions/blog/) and deployment to Heroku
+- Code Institute for [Code Institute Blog](https://github.com/Code-Institute-Solutions/blog/), Postgres database and deployment to Heroku
 - [Django Project](https://www.djangoproject.com/)
-- [Boot Strap](https://getbootstrap.com/docs/)
 - [W3S](https://www.w3schools.com/)
 - [Stack Overflow](https://stackoverflow.com/)
-- [Lucid Chart](https://www.lucidchart.com/)
-- [Balsamiq](https://balsamiq.com/)
-- [Cloudinary](https://cloudinary.com/)
+- Front-end development framework [Bootstrap](https://getbootstrap.com/docs/)
+- Entity Relationship Diagram [Lucid Chart](https://www.lucidchart.com/)
+- Wireframes [Balsamiq](https://balsamiq.com/)
 - The icons used were taken from [Font Awesome](https://fontawesome.com/)
-- Animated 404.svg was from [Loading](https://loading.io/)
-- Optimise images with [Free Convert](https://www.freeconvert.com/)
 
 ### Media
 
 - Images were created using Grok from [X](https://x.com/)
+- Media storage [Cloudinary](https://cloudinary.com/)
+- Favicon was generated using [Ionos](https://www.ionos.co.uk/tools/favicon-generator)
+- Animated 404.svg was from [Loading](https://loading.io/)
+- Optimise images with [Free Convert](https://www.freeconvert.com/)
