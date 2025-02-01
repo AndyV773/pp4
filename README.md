@@ -23,23 +23,23 @@ Crypto Net is a social networking platform designed specifically for individuals
 - I want to add a new channel for my favorite crypto currency
 
 **Site Adminstrator**
-- As a site administrator, the platform should run smoothly and remain secure.
-- As a site administrator, that the site remain.
+- As a site administrator, the platform should run smoothly and remain secure
+- As a site administrator, I should be able to unapprove comments so that they are hidden
 
-- Using an agile approach with project board for user storys
+Using an agile approach with project board for user storys
 ![project board](static/images/readme/planning/github-board.jpg) 
 
 ## Features
 
 ### Wire Frames
 
-- **Desktop**
+**Desktop**
 
 ![wire frame of main view on desktop](static/images/readme/planning/wf-lg-main.jpg)
 
 ![wire frame of nav on desktop](static/images/readme/planning/wf-lg-nav.jpg)
 
-- **Mobile**
+**Mobile**
 
 ![wire frame of mobile devices](static/images/readme/planning/wf-md.jpg)
 
@@ -66,7 +66,7 @@ The fonts were imported from [Google Fonts](https://fonts.google.com/)
   - Caribbean Current: rgb(60, 110, 113)
   - White: rgb(255, 255, 255)
   - Platinum: rgb(217, 217, 217)
-  - Indigo Dye: #rgb(40, 75, 99)
+  - Indigo Dye: rgb(40, 75, 99)
 
 ![color pallet](static/images/readme/planning/color-pallet.jpg)
 
@@ -85,17 +85,17 @@ This includes:
 - A Login/logout user display message
 - Copyright information with a dynamically updated date
 
-- Home desktop
+**Desktop**
 
 ![home desktop](static/images/readme/features/home/home-destop.jpg)
 
-- Home mobile
+**Mobile**
 
 ![home mobile](static/images/readme/features/home/home-mobile.jpg)
 
 ### Navigation
 
-The naviagtional menu was used from [W3S Sidenav](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It slides in from the right and displays content for both authorized and unauthorized users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
+The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It slides in from the right and displays content for both authorized and unauthorised users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
 
 - Authorised user navigation menu content includes
   - Account
@@ -105,7 +105,7 @@ The naviagtional menu was used from [W3S Sidenav](https://www.w3schools.com/howt
   - Request Channel
   - Logout
 
-- Authorised access on large devices
+**Authorised User Desktop**
 
 ![authorised user navigation on large device](static/images/readme/features/nav/nav-login-d.jpg)
 
@@ -115,7 +115,7 @@ The naviagtional menu was used from [W3S Sidenav](https://www.w3schools.com/howt
   - Reqister
   - Login
 
-- Unauthorised access on small devices
+**Unauthorised User Mobile**
 
 ![unauthorised user navigation on small device](static/images/readme/features/nav/nav-logout-m.jpg)
 
@@ -129,29 +129,29 @@ The about page consists of a image, title and content that can be added from the
 
 The user can send a contact request to the admin via the contact form. They must include a name, valid email, and message. If the user is authorised, the name and email fields will be autofilled with their data
 
-- Unauthorised user
+**Unauthorised User**
 
 ![contact form](static/images/readme/features/contact/contact-form.jpg)
 
-- Authorised user
+**Authorised User**
 
 ![autofilled contact form](static/images/readme/features/contact/contact-form-filled.jpg)
 
 ### Request Channel
 
-If the user is authorized, they can submit a channel request to be approved by the admin. The goal is to only allow approved cryptocurrency channels that are listed on CoinGecko. A future feature will handle this via the CoinGecko API, but for now, it is managed through the admin panel. The user can only request channels that do not already exist. A validation error will be thrown if the same channel is requested twice, regardless of case (for example, "Bitcoin" or "bitcoin")
+If the user is authorised, they can submit a channel request to be approved by the admin. The goal is to only allow approved cryptocurrency channels that are listed on CoinGecko. A future feature will handle this via the CoinGecko API, but for now, it is managed through the admin panel. The user can only request channels that do not already exist. A validation error will be thrown if the same channel is requested twice, regardless of case (for example, "Bitcoin" or "bitcoin")
 
-- Approved channel message
+**Approved Channel Message**
 
 ![approved channel](static/images/readme/features/add-channel/add-channel-approved.jpg)
 
-- Rejected channel message
+**Rejected Channel Message**
 
 ![rejected channel](static/images/readme/features/add-channel/add-channel-error.jpg)
 
 ### Channel
 
-On approved channels, authorized users can create content with images, read content, update their own content, and delete their content
+On approved channels, authorised users can create content with images, read content, update their own content, and delete their content
 
 Included features are:
 
@@ -284,21 +284,21 @@ Fork or clone this [repository](https://github.com/AndyV773/pp4)
 **SECURITY WARNING: don't run with debug turned on in production! Always ensure `DEBUG = False` in settings.py before deployment**
 
 Heroku requires 3 additional files for deployment
-- requirements.txt
-- Procfile
-- runtime.txt
+- **requirements.txt**
+- **Procfile**
+- **runtime.txt**
 
-Ensure Procfile is added with the correct command to run gunicorn: 
+Ensure **Procfile** is added with the correct command to run **gunicorn**: 
 
 `web: gunicorn cryptonet.wsgi`
 
-- You can create a new Procile with the following command:
+- You can create a new **Procile** with the following command:
 
 `echo web: gunicorn <app_name>.wsgi > Procfile`
 
-- Replace <app_name> with the primary Django app name that locates settings.py
+- Replace **<app_name>** with the primary Django app name that locates **settings.py**
 
-Ensure runtime.txt has the correct Python version:
+Ensure **runtime.txt** has the correct Python version:
 
 `python-3.12`
 
@@ -310,9 +310,9 @@ Ensure runtime.txt has the correct Python version:
 
 **Create a new app in Heroku**
 
-- Click "New" in the Heroku dashboard and select "Create new app" from the drop down menu
-- Add an app name (must be unique) and select your closest region (United States or Europe), then click "Create app"
-- Navigate to the Settings tab within the new app, locate and click "Reveal Config Vars". Set the key and values. Here is an example:
+- Click **"New"** in the Heroku dashboard and select **"Create new app"** from the drop down menu
+- Add an app name (must be unique) and select your closest region (United States or Europe), then click **"Create app"**
+- Navigate to the **"Settings"** tab within the new app, locate and click **"Reveal Config Vars"**. Set the key and values. Here is an example:
 
 | Key | Value |
 | --- | --- |
@@ -321,12 +321,12 @@ Ensure runtime.txt has the correct Python version:
 | CLOUDINARY_URL | cloudinary://<your_api_key>:<your_api_secret>@dpwhdmvce |
 | DISABLE_COLLECTSTATIC | 1 (Can be used to temporary disable collection of static files) |
 
-Once this is done, navigate to the "deploy" tab:
+Once this is done, navigate to the **"deploy"** tab:
 
 - Link the Heroku app to the GitHub repository
-- Click on **Deploy Branch** in "Manual deploy" section
+- Click on **"Deploy Branch"** in the **Manual deploy** section
 
-Alternatively, you can enable automatic deployments with every push to the repository by clicking "Enable Automatic Deploy" in the "Automatic Deploy" section
+Alternatively, you can enable automatic deployments with every push to the repository by clicking **"Enable Automatic Deploy"** in the **Automatic deploy"** section
 
 ### Local Deployment
 
@@ -336,9 +336,17 @@ Alternatively, you can enable automatic deployments with every push to the repos
 
 ` pip3 install -r requirements.txt `
 
-If you have your own packages or have installed other requirements, then you can updated the requirements.txt with the command:
+If you have your own packages or have installed other requirements, then you can updated the **requirements.txt** with the command:
 
 `pip3 freeze --local > requirements.txt`
+
+- Create a **.env** file with the following command:
+
+`touch .env`
+
+- Ensure **.env** is added to **.gitignore** to prevent it from being committed to the repository. You can do this by running:
+
+`echo ".env" >> .gitignore`
 
 - Set Environment Varibles, here is an example [.env.example](https://github.com/AndyV773/pp4/blob/main/.env.example)
 
@@ -346,6 +354,7 @@ Once the project is cloned or forked, in order to run it locally, you'll need to
 
 - Start the Django app: `python3 manage.py runserver`
 - Stop the app once it's loaded: `CTRL+C` or `⌘+C` (Mac)
+- To check migrations before making migrations, use the command: `python3 manage.py makemigrations --dry-run`
 - Make any necessary migrations: `python3 manage.py makemigrations`
 - Migrate the data to the database: `python3 manage.py migrate`
 - Create a superuser: `python3 manage.py createsuperuser`
