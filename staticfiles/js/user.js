@@ -1,6 +1,14 @@
 // delete user
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteModelConfirm = document.getElementById("delete-model-confirm");
+// div element in edit profile for image
+const div = document.getElementsByClassName('input-group')[0];
+
+
+// removes the div element that contains the class name input-group
+if (div) {
+    div.remove();
+}
 
 
 /**
