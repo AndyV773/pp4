@@ -1,28 +1,145 @@
 # Testing
 
 ## Manual Testing
-- Vigorous manual testing to ensure everything functions as expected
+- Vigorous manual testing to ensure everything functions as expected. The outcome was as followed:
 
-#### Navigation 
-- Ensured that all buttons and links function correctly and link to the correct templates 
-- Confirmed that channel displays are correct, and link to the correct channels  
+### About
 
-#### CRUD Fuctionality 
-- **Channel tempalte:** Ensured all posts are created, read, updated and deleted correctly
-  - Checked the post count is accurate
-- **Add channel:** Ensured that adding a channel sends a request for admin approval
-  - Ensured that channel ordering is correct  
-- **Post template:**Ensured that all comments are created, read, updated and deleted correctly
-  - Checked the comment count is accurate 
-- **Contact template:** Ensured that contact details are posted correctly and the form autofills for users  
-- **About template:** Ensured that details are displayed correctly and update times are accurate  
-- **Profile templates:** Checked that user details are displayed correctly and can be edited in the Edit Profile section
-   - Ensure correct user posts are displayed in profile template
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Hero image | Admin can choose to display an image or not | Pass |
+| Title | Title is displayed correctly from the admin panel | Pass |
+| Content | Content is displayed correctly from the admin panel | Pass |
+| Updated on | Clearly displays the correct date when the About template was last updated | Pass |
+| Get in touch link | Goes to the Contact template | Pass |
 
-#### User Management
-- Verified that unauthorized users are blocked from restricted functionality
-- Ensured that approved comments or posts are hidden when not approved
-- Checked that user deletion works as expected    
+### Contact
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Unauthorised user | Can post a contact request | Pass |
+| Authorised user | Can post a contact request, and form is prefilled with username and email | Pass |
+| Verification | Form will not submit if incorrect email is entered or any field is blank | Pass |
+| Confirmation message | A clear message is displayed if the contact request is sent | Pass |
+| Redirect | Form is cleared, and user is redirected to either a blank form or prefilled form if authorised | Pass |
+| Admin control | Admin can filter for read contact requests | Pass |
+
+### Add Channel
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Unauthorised user | Hidden from unauthorised users in the navigation | Pass |
+| Authorised user | Can post a channel request to admin if it does not already exist | Pass |
+| Verification | Form will not submit if left blank or will return an error message if the requested channel already exists | Pass |
+| Confirmation message | A clear message is displayed if the channel request is successful | Pass |
+| Error message | A clear error message is displayed if there was an error with the request | Pass |
+| Redirect | Form is cleared, and user is redirected to a blank form | Pass |
+| Admin control | Admin can filter for unapproved channel requests, add their rank, and approve channels | Pass |
+| Channel display | Approved channels are displayed in the channel list with their rank in ascending order | Pass |
+ 
+### Channel Detail
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Header | Displays the channel name and correct number of posts related to the channel | Pass |
+| No posts | Displays a "No Posts" message and image if there are no posts on this channel | Pass |
+| Unauthorised user | Displays a highlighted message at the top of the page linking to the sign in template if the user is not authorised. The post button is not visible. If the user is not the owner of a post, they cannot edit or delete it | Pass |
+| Authorised user | An authorised user can post content, add images, edit, or delete their posts. They can also like posts | Pass |
+| Content | Content is displayed clearly, showing the post author's name, profile image, time and date posted, content, and either a default or featured image. Posts are displayed in descending order | Pass |
+| Profile links | The author's name and image are linked to their profile page | Pass |
+| Comments link | Links to the post details template with the correct information for the post | Pass |
+| Comment count | Displays the correct number of comments for the post | Pass |
+| Liked posts | Authorised users can like and unlike posts | Pass |
+| Liked count | Displays the correct number of likes on a post | Pass |
+| Admin control | Admins can create, update, and delete posts. They can filter posts by channel or author, allowing them to unapprove them so that they are hidden | Pass |
+
+### Home
+
+| Features | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| content.js | Displays only a list of channels on devices with a screen width less than 576px | Pass |
+| Channel list | Display correct details in the correct ranking order | Pass |
+| Channel links | Links to the channel detail template display the correct details | Pass |
+| Authorised user | An authorised user can comment on a post and edit, or delete their comments | Pass |
+
+### Post Detail
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to related channel | Pass |
+| Header | Displays the channel name and correct number of comments related to the post | Pass |
+| No comments | Displays a "No Comment" message and image if there are no comments on this post | Pass |
+| Unauthorised user | Displays a highlighted message at the top of the page linking to the sign in template if the user is not authorised. The comment button is not visible. If the user is not the owner of a comment, they cannot edit or delete it | Pass |
+| Comments | Comments are displayed clearly, showing the comment author's name, profile image, time and date posted and content. Comments are displayed in descending order | Pass |
+| Profile links | The author's name and image are linked to their profile page | Pass |
+| Admin control | Admins can create, update, and delete comments. They can filter comments by channel or author, allowing them to unapprove them so that they are hidden | Pass |
+
+### Edit Profile
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to profile account | Pass |
+| Delete user | Deletes the user and returns to the home page as an unauthorised user | Pass |
+| Form | Displays a prefilled form with the user's details, if any. Allows user's to updated all their information | Pass |
+| Save | Saves the user's details and redirects to the profile account | Pass |
+| Confirmation message | A clear message is displayed if the profile is saved successful | Pass |
+| Cancel button | Returns to profile account | Pass |
+
+### Profile Account
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| User's information | Displays all the correct updated information about the user | Pass |
+| Edit button | Linked to the edit profile template with all the related information | Pass |
+
+### Profile Detail
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to the previous refered url | Pass |
+| Header | Displays the user profile's name and correct number of posts related to the user | Pass |
+| Edit profile button | Only displayed if the user profile is related to user. Linked to edit profile template | Pass |
+| Profile information | Displays the user's profile image and clear information about the user. Related to the user's account | Pass |
+| User's posts | Displays all posts related to the user | Pass |
+
+### Login
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Login | Unauthorised users can login and are redirected to the home page, as an authorised user | Pass |
+
+### Logout
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Login | Authorised users can logout and are redirected to the home page, as an unauthorised user | Pass |
+
+### Signup
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Sign up | Unauthorised users can sign up | Pass |
+| Sign up | Only unique usernames allowed (Except, uppercase and lowercase variations are considered different, e.g., 'andy' and 'Andy' are treated as separate usernames) | Pass |
+| Redirect | Once users sign up, they are redirected to the home page as an authorised user | Pass |
+
+### Navigation
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Closes menu | Pass |
+| Resposive design | Takes up the full width on screens smaller than 576px and 67% on larger screens | Pass |
+| Burger/Menu button | Opens and closes menu. Changes depending on width of screen | Pass |
+| Unauthorised user's | Displays correct links | Pass |
+| Authorised user's | Displays correct links | Pass |
+| Links | All links verified that the go to the correct destinations | Pass |
 
 ## Automated Testing
 - To be continued
@@ -99,7 +216,7 @@ There were errors in the [PEP8 Validator](https://pep8ci.herokuapp.com/), mainly
 
 #### Lighthouse Testing
 
-- Proformace issues mainly with mobile due to images
+- Performace issues mainly with mobile due to images
 - Low score for best practice due to third party cookies from cloudinary
 
 | Template | Mobile | Desktop |

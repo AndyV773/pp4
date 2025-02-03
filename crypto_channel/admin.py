@@ -11,7 +11,7 @@ class ChannelAdmin(admin.ModelAdmin):
     """
     list_display = ('name', 'rank', 'slug', 'approved', 'created_on')
     search_fields = ['name', 'rank']
-    list_filter = ('name', 'rank', 'approved')
+    list_filter = ('approved',)
     prepopulated_fields = {'slug': ('name',)}
 
 
@@ -23,8 +23,8 @@ class PostAdmin(SummernoteModelAdmin):
     """
     list_display = ('author', 'channel', 'content',
                     'status', 'approved', 'created_on')
-    search_fields = ['author']
-    list_filter = ('channel', 'status', 'created_on')
+    search_fields = ['author__username', 'channel__name']
+    list_filter = ('status', 'created_on', 'approved')
     summernote_fields = ('content',)
 
 
@@ -35,6 +35,6 @@ class CommentAdmin(admin.ModelAdmin):
     """
     list_display = ('author', 'channel', 'post',
                     'comment', 'approved', 'created_on')
-    search_fields = ['author']
-    list_filter = ('channel', 'approved', 'created_on')
+    search_fields = ['author__username', 'channel__name']
+    list_filter = ('created_on', 'approved')
     summernote_fields = ('comment',)

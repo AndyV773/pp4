@@ -95,7 +95,7 @@ This includes:
 
 ### Navigation
 
-The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It slides in from the right and displays content for both authorized and unauthorised users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
+The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It transitions in from the right and displays content for both authorised and unauthorised users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
 
 - Authorised user navigation menu content includes
   - Account
@@ -167,7 +167,7 @@ Included features are:
 
 ![channel likes](static/images/readme/features/channel/channel-likes.jpg)
 
-- Edit and delete there own posts
+- Edit and delete their own posts
 
 ![channel comment](static/images/readme/features/channel/channel-comments.jpg)
 
@@ -201,7 +201,7 @@ There is also a link at the top prompting users to log in in order to leave a po
 
 ### Post
 
-The comment link will take users to the post template, where they can view other comments on the post. Authorized users can add, edit, and delete their comments. There is also a comment count displayed at the top of the template
+The comment link will take users to the post template, where they can view other comments on the post. Authorised users can add, edit, and delete their comments. There is also a comment count displayed at the top of the template
 
 ![post comments](static/images/readme/features/post/post-comments.jpg)
 
@@ -243,7 +243,7 @@ How deep is the rabbit hole?
 
 Just to list a few. With more time, I would like to add the following features:
 
-- An istance to like, delete or edit posts within the post_detail & profile_detail templates
+- Functionality to like, delete or edit posts within the post_detail & profile_detail templates
 - Edit user/username functionality
 - Channel search bar
 - User favorite channel list

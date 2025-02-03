@@ -9,5 +9,5 @@ class UserProfileAdmin(admin.ModelAdmin):
     Admin configuration for the User Profile model
     """
     list_display = ('user', 'phone_number', 'post_code')
-    search_fields = ['user', 'post_code']
+    search_fields = ['user__username', 'post_code']
     list_filter = ('post_code',)
