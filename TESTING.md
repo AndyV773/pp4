@@ -130,6 +130,14 @@
 | Sign up | Only unique usernames allowed (Except, uppercase and lowercase variations are considered different, e.g., 'andy' and 'Andy' are treated as separate usernames) | Pass |
 | Redirect | Once users sign up, they are redirected to the home page as an authorised user | Pass |
 
+### 404
+
+| Feature | Expected Outcome | Result |
+| ---------- | ---------- | ---------- |
+| Back icon | Returns to home | Pass |
+| Home link | Returns to home | Pass |
+| 404 image | Bounces | Pass |
+
 ### Navigation
 
 | Feature | Expected Outcome | Result |
