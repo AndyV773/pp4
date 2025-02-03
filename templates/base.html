@@ -171,6 +171,10 @@
                 {% elif request.path == edit_profile_url %}
                 <a class="btn position-absolute text--platinum fs-2" href="{% url 'profile_account' %}"
                     aria-label="Go back to profile"><i class="fa-solid fa-circle-arrow-left"></i></a>
+                {% elif request.path == profile_detail_url %}
+                <!-- https://stackoverflow.com/questions/4406377/django-request-to-find-previous-referrer -->
+                <a class="btn position-absolute text--platinum fs-2" href="{% if request.META.HTTP_REFERER %}{{ request.META.HTTP_REFERER }}{% else %}{% url 'home' %}{% endif %}"
+                    aria-label="Go back to profile"><i class="fa-solid fa-circle-arrow-left"></i></a>
                 {% else %}
                 <a class="btn position-absolute text--platinum fs-2" href="{% url 'home' %}"
                     aria-label="Go back to home">
