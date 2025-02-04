@@ -11,8 +11,8 @@
 | Hero image | Admin can choose to display an image or not | Pass |
 | Title | Title is displayed correctly from the admin panel | Pass |
 | Content | Content is displayed correctly from the admin panel | Pass |
-| Updated on | Clearly displays the correct date when the About template was last updated | Pass |
-| Get in touch link | Goes to the Contact template | Pass |
+| Updated on | Clearly displays the correct date when the about template was last updated | Pass |
+| Get in touch link | Goes to the contact template | Pass |
 
 ### Contact
 
@@ -23,8 +23,8 @@
 | Authorised user | Can post a contact request, and form is prefilled with username and email | Pass |
 | Verification | Form will not submit if incorrect email is entered or any field is blank | Pass |
 | Confirmation message | A clear message is displayed if the contact request is sent | Pass |
-| Redirect | Form is cleared, and user is redirected to either a blank form or prefilled form if authorised | Pass |
-| Admin control | Admin can filter for read contact requests | Pass |
+| Redirect | The form is cleared, and the user is redirected to either a blank form or prefilled form if authorised | Pass |
+| Admin control | The admin can filter read contact requests | Pass |
 
 ### Add Channel
 
@@ -33,11 +33,11 @@
 | Back icon | Returns to home | Pass |
 | Unauthorised user | Hidden from unauthorised users in the navigation | Pass |
 | Authorised user | Can post a channel request to admin if it does not already exist | Pass |
-| Verification | Form will not submit if left blank or will return an error message if the requested channel already exists | Pass |
+| Verification | The form will not submit if left blank, or it will return an error message if the requested channel already exists | Pass |
 | Confirmation message | A clear message is displayed if the channel request is successful | Pass |
 | Error message | A clear error message is displayed if there was an error with the request | Pass |
-| Redirect | Form is cleared, and user is redirected to a blank form | Pass |
-| Admin control | Admin can filter for unapproved channel requests, add their rank, and approve channels | Pass |
+| Redirect | The form is cleared, and the user is redirected to a blank form | Pass |
+| Admin control | The admin can filter unapproved channel requests, add their rank, and approve channels | Pass |
 | Channel display | Approved channels are displayed in the channel list with their rank in ascending order | Pass |
  
 ### Channel Detail
@@ -50,6 +50,10 @@
 | Unauthorised user | Displays a highlighted message at the top of the page linking to the sign in template if the user is not authorised. The post button is not visible. If the user is not the owner of a post, they cannot edit or delete it | Pass |
 | Authorised user | An authorised user can post content, add images, edit, or delete their posts. They can also like posts | Pass |
 | Content | Content is displayed clearly, showing the post author's name, profile image, time and date posted, content, and either a default or featured image. Posts are displayed in descending order | Pass |
+| Post button | Visible only to authorised users. Deploys a modal so users can add posts. Posts the content to the correct channel | Pass |
+| Edit button | Only visible to the author of the post. Deploys prefilled post modal with the current post data. Updates the post accordingly | Pass |
+| Delete button | Only visible to the author of the post. Deploys a delete modal prompting the user with a warning message. The delete modal contains the correct post ID data. The user can cancel or confirm their decision to delete the post | Pass |
+| Redirect | The form is cleared, and the user is redirected to the channel template | Pass |
 | Profile links | The author's name and image are linked to their profile page | Pass |
 | Comments link | Links to the post details template with the correct information for the post | Pass |
 | Comment count | Displays the correct number of comments for the post | Pass |
@@ -75,6 +79,10 @@
 | No comments | Displays a "No Comment" message and image if there are no comments on this post | Pass |
 | Unauthorised user | Displays a highlighted message at the top of the page linking to the sign in template if the user is not authorised. The comment button is not visible. If the user is not the owner of a comment, they cannot edit or delete it | Pass |
 | Comments | Comments are displayed clearly, showing the comment author's name, profile image, time and date posted and content. Comments are displayed in descending order | Pass |
+| Comment button | Visible only to authorised users. Deploys a modal so users can add comments. Adds a comment to the correct post | Pass |
+| Edit button | Only visible to the author of the comment. Deploys prefilled comment modal with the current comment data. Updates the comment accordingly | Pass |
+| Delete button | Only visible to the author of the comment. Deploys a delete modal prompting the user with a warning message. The delete modal contains the correct comment ID data. The user can cancel or confirm their decision to delete the comment | Pass |
+| Redirect | The form is cleared, and the user is redirected to the post template | Pass |
 | Profile links | The author's name and image are linked to their profile page | Pass |
 | Admin control | Admins can create, update, and delete comments. They can filter comments by channel or author, allowing them to unapprove them so that they are hidden | Pass |
 
@@ -83,18 +91,18 @@
 | Feature | Expected Outcome | Result |
 | ---------- | ---------- | ---------- |
 | Back icon | Returns to profile account | Pass |
-| Delete user | Deletes the user and returns to the home page as an unauthorised user | Pass |
+| Delete button | Deploys a delete modal prompting the user with a warning message. The delete modal contains the correct user ID data. The user can cancel or confirm their decision to delete the account. Upon confirmation, the user is deleted and redirected to the home page | Pass |
 | Form | Displays a prefilled form with the user's details, if any. Allows user's to updated all their information | Pass |
-| Save | Saves the user's details and redirects to the profile account | Pass |
+| Save | Saves the user's details and redirects them to their profile account | Pass |
 | Confirmation message | A clear message is displayed if the profile is saved successful | Pass |
-| Cancel button | Returns to profile account | Pass |
+| Cancel button | Returns to their profile account | Pass |
 
 ### Profile Account
 
 | Feature | Expected Outcome | Result |
 | ---------- | ---------- | ---------- |
 | Back icon | Returns to home | Pass |
-| User's information | Displays all the correct updated information about the user | Pass |
+| Users information | Displays all correct and updated information about the user | Pass |
 | Edit button | Linked to the edit profile template with all the related information | Pass |
 
 ### Profile Detail
@@ -102,10 +110,10 @@
 | Feature | Expected Outcome | Result |
 | ---------- | ---------- | ---------- |
 | Back icon | Returns to the previous refered url | Pass |
-| Header | Displays the user profile's name and correct number of posts related to the user | Pass |
-| Edit profile button | Only displayed if the user profile is related to user. Linked to edit profile template | Pass |
+| Header | Displays the user's profile name and the correct number of posts related to the user | Pass |
+| Edit profile button | Only displayed if the user profile is related to the user. Linked to edit profile template | Pass |
 | Profile information | Displays the user's profile image and clear information about the user. Related to the user's account | Pass |
-| User's posts | Displays all posts related to the user | Pass |
+| Profile posts | Display all posts related to the user | Pass |
 
 ### Login
 
@@ -127,7 +135,7 @@
 | ---------- | ---------- | ---------- |
 | Back icon | Returns to home | Pass |
 | Sign up | Unauthorised users can sign up | Pass |
-| Sign up | Only unique usernames allowed (Except, uppercase and lowercase variations are considered different, e.g., 'andy' and 'Andy' are treated as separate usernames) | Pass |
+| Sign up | Only unique usernames allowed | Pass |
 | Redirect | Once users sign up, they are redirected to the home page as an authorised user | Pass |
 
 ### 404
@@ -136,6 +144,7 @@
 | ---------- | ---------- | ---------- |
 | Back icon | Returns to home | Pass |
 | Home link | Returns to home | Pass |
+| 404 error | A broken or incorect URL redirects to the 404 template | Pass |
 | 404 image | Bounces | Pass |
 
 ### Navigation
@@ -145,8 +154,8 @@
 | Back icon | Closes menu | Pass |
 | Resposive design | Takes up the full width on screens smaller than 576px and 67% on larger screens | Pass |
 | Burger/Menu button | Opens and closes menu. Changes depending on width of screen | Pass |
-| Unauthorised user's | Displays correct links | Pass |
-| Authorised user's | Displays correct links | Pass |
+| Unauthorised users | Display correct links | Pass |
+| Authorised users | Display correct links | Pass |
 | Links | All links verified that the go to the correct destinations | Pass |
 
 ## Automated Testing

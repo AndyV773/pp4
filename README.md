@@ -97,7 +97,7 @@ This includes:
 
 The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_full). It transitions in from the right and displays content for both authorised and unauthorised users. It also adjusts to the screen size, covering the full screen on small devices and 67% on large devices, ensuring the channel list remains visible. Additionally, it includes copyright information with a dynamically updated date
 
-- Authorised user navigation menu content includes
+- Authorised user navigation menu content includes:
   - Account
   - Profile
   - About
@@ -109,7 +109,7 @@ The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.
 
 ![authorised user navigation on large device](static/images/readme/features/nav/nav-login-d.jpg)
 
-- unauthorised user navigation is restricted too
+- unauthorised user navigation is restricted to:
   - About
   - Contact
   - Reqister
@@ -121,7 +121,7 @@ The naviagtional menu was used from [W3S](https://www.w3schools.com/howto/tryit.
 
 ### About
 
-The about page consists of a image, title and content that can be added from the admin panel. It also displays the date it was updated and includes a button linking to the contact page
+The about page consists of an image, title and content that can be added from the admin panel. It also displays the date it was updated and includes a button linking to the contact page
 
 ![about page](static/images/readme/features/about/about-d.jpg)
 
@@ -214,7 +214,7 @@ A user's profile details can be viewed by all users through the profile image an
 Included is:
 
 - A count of posts made by the user
-- An option to link to edit the profile if the users is the authorised owner of the profile
+- An option to link to the edit profile template if the user is the authorised owner of the profile
 - The user's image, bio, location and date joined
 - All post created by the user
 
@@ -292,7 +292,7 @@ Ensure **Procfile** is added with the correct command to run **gunicorn**:
 
 `web: gunicorn cryptonet.wsgi`
 
-- You can create a new **Procile** with the following command:
+- You can create a new **Procfile** with the following command:
 
 `echo web: gunicorn <app_name>.wsgi > Procfile`
 
